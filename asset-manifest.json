@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/need-for-drive/static/css/main.d062b9eb.css",
+    "main.js": "/need-for-drive/static/js/main.8ea41a8a.js",
+    "index.html": "/need-for-drive/index.html",
+    "main.d062b9eb.css.map": "/need-for-drive/static/css/main.d062b9eb.css.map",
+    "main.8ea41a8a.js.map": "/need-for-drive/static/js/main.8ea41a8a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d062b9eb.css",
+    "static/js/main.8ea41a8a.js"
+  ]
+}
