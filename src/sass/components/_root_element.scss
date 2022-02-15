@@ -1,0 +1,6 @@
+@use '../tools/mixins' as *;
+
+#root {
+  @include flex(_,_,column);
+  min-height: 100%;
+}
