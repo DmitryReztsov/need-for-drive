@@ -32,7 +32,10 @@
                 "ts": "never",
                 "tsx": "never"
             }
-        ]
+        ],
+        "object-curly-spacing": "off",
+        "@typescript-eslint/object-curly-spacing": ["error"],
+        "linebreak-style": ["error", "unix"]
     },
     "settings": {
         "import/resolver": {
