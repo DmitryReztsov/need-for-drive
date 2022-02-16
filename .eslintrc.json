@@ -34,8 +34,7 @@
             }
         ],
         "object-curly-spacing": "off",
-        "@typescript-eslint/object-curly-spacing": ["error"],
-        "linebreak-style": ["error", "unix"]
+        "@typescript-eslint/object-curly-spacing": ["error"]
     },
     "settings": {
         "import/resolver": {

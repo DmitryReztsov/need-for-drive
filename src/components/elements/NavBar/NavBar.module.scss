@@ -1,5 +1,75 @@
 @use '/src/sass/tools' as *;
 
 .nav {
-  color: $green;
+  @include flex(space-between,center,column);
+  padding: 2rem 0.5rem;
+  color: $white;
+  background-color: $black-blue;
 }
+
+.nav__burger {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+
+  span {
+    position: absolute;
+    display: block;
+    width: 2rem;
+    height: 0.25rem;
+    background-color: $white;
+    top: calc(50% - 0.125rem);
+    right: 0;
+    @include transition(0.2s,0s);
+
+    &:first-child {
+      top: 0%;
+    }
+
+    &:last-child {
+      top: calc(100% - 0.25rem);
+    }
+  }
+}
+
+.nav__switcher {
+  @include flex(center,center,_);
+  width: 3rem;
+  height: 3rem;
+  font-family: $bold;
+  font-size: 0.8rem;
+  color: $green;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  @include transition(0.2s,0s);
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+    border: 1px solid $white;
+    @include transition(0.2s,0s);
+  }
+  &:active {
+    color: $green;
+    @include transition(0.2s,0s);
+  }
+}
+
+.active {
+  span {
+    transform: scale(0);
+    @include transition(0.2s,0s);
+    &:first-child {
+      top: 50%;
+      transform: scale(1);
+      transform: rotate(45deg);
+
+    }
+    &:last-child {
+      top: 50%;
+      transform: scale(1);
+      transform: rotate(-45deg);
+    }
+  }
+}
+
