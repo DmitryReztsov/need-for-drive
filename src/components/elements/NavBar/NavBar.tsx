@@ -3,7 +3,7 @@ import styles from './NavBar.module.scss';
 
 function NavBar() {
   return (
-    <div className={styles.app}>
+    <div className={styles.nav}>
       Navbar here
     </div>
   );

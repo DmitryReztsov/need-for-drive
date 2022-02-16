@@ -1,6 +1,5 @@
-@use '/src/sass/tools/colors' as *;
+@use '/src/sass/tools' as *;
 
-
-.app {
+.nav {
   color: $green;
 }

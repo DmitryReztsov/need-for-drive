@@ -1,2 +1,4 @@
-@import "tools/reset";
-@import "components/components";
+@use "tools/reset";
+@use "tools/colors";
+@use "tools/mixins";
+@use "components/components";
