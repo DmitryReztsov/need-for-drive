@@ -1,15 +1,14 @@
 import React from 'react';
-import Header from '../../elements/Header/Header';
-import Footer from '../../elements/Footer/Footer';
 import Slider from '../../elements/Slider/Slider';
+import styles from './Homepage.module.scss';
+import Start from '../../elements/Start/Start';
 
 function Homepage() {
   return (
-    <div>
-      <Header />
-      <Footer />
+    <main className={styles.homepage}>
+      <Start />
       <Slider />
-    </div>
+    </main>
   );
 }
 

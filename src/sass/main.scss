@@ -1,4 +1,3 @@
-@use "tools/reset";
-@use "tools/colors";
-@use "tools/mixins";
+@use "./tools";
 @use "components/components";
+@use "reset";

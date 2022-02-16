@@ -1,0 +1,7 @@
+@use '/src/sass/tools' as *;
+
+.layout {
+  @include flex (_,_,_);
+  min-height: 100%;
+  flex: 1 1 auto;
+}

@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Roboto-Light';
+  src: url(../../content/fonts/Roboto-Light.ttf);
+}
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url(../../content/fonts/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url(../../content/fonts/Roboto-Bold.ttf);
+}
+
+$light: 'Roboto-Light', sans-serif;
+$regular: 'Roboto-Regular', sans-serif;
+$bold: 'Roboto-Bold', sans-serif;

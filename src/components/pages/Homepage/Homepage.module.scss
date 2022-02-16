@@ -1,0 +1,6 @@
+@use '/src/sass/tools' as *;
+
+.homepage {
+  @include flex(_,_,_);
+  flex: 1 1 auto;
+}
