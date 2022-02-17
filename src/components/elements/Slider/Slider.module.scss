@@ -1,5 +1,13 @@
 @use '/src/sass/tools' as *;
 
 .slider {
-  flex: 0 1 688px;
+  flex: 0 1 50%;
+
+  @include media($xl) {
+    flex: 0 1 30%;
+  }
+
+  @include media($lg) {
+    display: none;
+  }
 }

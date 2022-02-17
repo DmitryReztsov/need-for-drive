@@ -7,8 +7,14 @@
   span {
     color: $gray;
   }
-}
 
-.link {
-  color: $black;
+  a {
+    text-decoration: none;
+    color: $black;
+    @include transition(0.2s,0s);
+    &:hover {
+      color: $green;
+      @include transition(0.2s,0s);
+    }
+  }
 }
