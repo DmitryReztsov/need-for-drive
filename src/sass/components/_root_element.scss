@@ -3,5 +3,6 @@
 #root {
   @include flex(_,_,column);
   min-height: 100%;
+  font-family: $regular;
   color: $black;
 }

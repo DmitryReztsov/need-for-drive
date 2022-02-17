@@ -39,15 +39,15 @@ function NavBar() {
 
   function setStyle(): string {
     if (active) {
-      return `${styles.nav__burger} ${styles.active}`;
+      return `${styles.burger} ${styles.active}`;
     }
-    return styles.nav__burger;
+    return styles.burger;
   }
   function setStyleMenu(): string {
     if (active) {
-      return `${styles.nav__menu} ${styles.active}`;
+      return `${styles.menu} ${styles.active}`;
     }
-    return styles.nav__menu;
+    return styles.menu;
   }
 
   useEffect(() => {
@@ -68,7 +68,7 @@ function NavBar() {
         <span />
       </span>
       <span
-        className={styles.nav__switcher}
+        className={styles.switcher}
         role="button"
         tabIndex={0}
         onClick={switcherClickHandler}
@@ -77,22 +77,22 @@ function NavBar() {
         {lang}
       </span>
       <div className={setStyleMenu()}>
-        <div className={styles.nav__body}>
-          <ul className={styles.nav__list}>
+        <div className={styles.body}>
+          <ul className={styles.list}>
             <li>
-              <CustomLink className={styles.nav__link}>ПАРКОВКА</CustomLink>
+              <CustomLink className={styles.link}>ПАРКОВКА</CustomLink>
             </li>
             <li>
-              <CustomLink className={styles.nav__link}>СТРАХОВАНИЕ</CustomLink>
+              <CustomLink className={styles.link}>СТРАХОВАНИЕ</CustomLink>
             </li>
             <li>
-              <CustomLink className={styles.nav__link}>БЕНЗИН</CustomLink>
+              <CustomLink className={styles.link}>БЕНЗИН</CustomLink>
             </li>
             <li>
-              <CustomLink className={styles.nav__link}>ОБСЛУЖИВАНИЕ</CustomLink>
+              <CustomLink className={styles.link}>ОБСЛУЖИВАНИЕ</CustomLink>
             </li>
           </ul>
-          <ul className={styles.nav__social}>
+          <ul className={styles.social}>
             <li>
               <CustomLink><FacebookIcon className="logo" /></CustomLink>
             </li>

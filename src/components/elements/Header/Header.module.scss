@@ -1,0 +1,24 @@
+@use '/src/sass/tools' as *;
+
+.header {
+  @include flex(space-between,center,_);
+  padding: 2rem 2rem 2rem 4rem;
+}
+
+.geo {
+  @include flex(_,center,_);
+  color: $gray;
+  &:hover {
+    color: $green;
+    svg {
+      path {
+        fill: none;
+        stroke: $green;
+      }
+    }
+  }
+
+  svg {
+    height: 1.5rem;
+  }
+}
