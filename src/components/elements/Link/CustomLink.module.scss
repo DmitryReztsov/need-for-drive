@@ -1,7 +1,6 @@
 @use '/src/sass/tools' as *;
 
 .link {
-
   text-decoration: none;
   @include transition(0.2s,0s);
   &:hover {

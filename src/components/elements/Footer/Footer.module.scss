@@ -1,0 +1,14 @@
+@use '/src/sass/tools' as *;
+
+.footer {
+  @include flex(space-between,center,_);
+  padding: 0 2rem 3rem 2rem;
+
+  span {
+    color: $gray;
+  }
+}
+
+.link {
+  color: $black;
+}

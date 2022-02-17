@@ -5,7 +5,7 @@ import {ReactComponent as GeoIcon} from '../../../content/svg/geo.svg';
 
 function Header() {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <h1>Need for Drive</h1>
       <CustomLink className={styles.geo}>
         <>
@@ -13,7 +13,7 @@ function Header() {
           <span>Ульяновск</span>
         </>
       </CustomLink>
-    </div>
+    </header>
   );
 }
 

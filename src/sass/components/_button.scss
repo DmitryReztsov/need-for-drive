@@ -1,0 +1,22 @@
+@use "../tools" as *;
+
+.button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  text-align: center;
+  color: $white;
+  background: $grad-green;
+  background-blend-mode: darken;
+  border-radius: 0.5rem;
+  border: none;
+  &:hover,focus {
+    background: $grad-dark-green;
+  }
+  &:active {
+    background: $grad-very-dark-green;
+  }
+  &_big {
+    padding: 1rem 4rem;
+  }
+}
