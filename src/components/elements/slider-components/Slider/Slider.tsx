@@ -1,35 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './Slider.module.scss';
 import Slide from '../Slide/Slide';
-import parking from '../../../../content/slider-img/parking.png';
-import insurance from '../../../../content/slider-img/insurance.png';
-import fuel from '../../../../content/slider-img/fuel.png';
-import service from '../../../../content/slider-img/service.png';
-
-const images = [
-  parking,
-  insurance,
-  fuel,
-  service,
-];
 
 interface ContentProps {
-  translate: string | number,
+  translate: string | number
 }
 
-function Slider() {
-  const getWidth = () => images[0].innerWidth;
+interface SliderProps {
+  slides: string [],
+}
 
+function Slider({slides}: SliderProps): React.ReactElement {
+  const ref = useRef<HTMLDivElement>(null);
   const [state] = useState<ContentProps>({
     translate: 0,
   });
 
   const {translate} = state;
-
+  useEffect(() => {
+    console.log(ref?.current?.clientWidth);
+  });
   return (
     <div className={styles.slider}>
-      <div className={styles.content} style={{transform: `translateX(${translate})`, width: getWidth()}}>
-        <Slide src={images[0]} />
+      <div className={styles.content} style={{transform: `translateX(-${translate}px)`, width: ref?.current?.clientWidth}}>
+        {slides.map((slide, i) => <Slide refProp={ref} key={slides[i]} src={slides[i]} />)}
       </div>
     </div>
   );
