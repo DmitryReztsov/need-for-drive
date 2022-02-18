@@ -3,12 +3,11 @@ import styles from './Slide.module.scss';
 
 interface SlideProps {
   src: string,
-  refProp: React.Ref<HTMLDivElement>,
 }
 
-function Slide({src, refProp}: SlideProps): React.ReactElement {
+function Slide({src}: SlideProps): React.ReactElement {
   return (
-    <div ref={refProp} className={styles.slide} style={{backgroundImage: `url(${src})`}} />
+    <div className={styles.slide} style={{backgroundImage: `url(${src})`}} />
   );
 }
 
