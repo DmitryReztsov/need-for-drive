@@ -6,7 +6,7 @@
   overflow: hidden;
 
   @include media($xl) {
-    flex: 0 1 30%;
+    flex: 0 1 40%;
   }
 
   @include media($lg) {
@@ -51,5 +51,9 @@
   }
   &_right {
     right: 0;
+  }
+
+  @include media($xl) {
+    padding: 0 1rem;
   }
 }

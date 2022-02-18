@@ -1,12 +1,19 @@
 import React from 'react';
 import styles from './Dots.module.scss';
+import {Slide} from '../../../../utils/types';
 
 interface DotsProps {
-  slides: string [],
+  slides: Slide [],
   activeIndex: number,
+  click: (i: number) => void,
+  tap: (e:React.KeyboardEvent<HTMLSpanElement>, i: number) => void,
 }
 
-function Dots({slides, activeIndex} : DotsProps): React.ReactElement {
+function Dots(
+  {
+    slides, activeIndex, click, tap,
+  }: DotsProps,
+): React.ReactElement {
   function getColor(i: number) {
     if (activeIndex === i) {
       return `${styles.dot} ${styles.active}`;
@@ -17,7 +24,14 @@ function Dots({slides, activeIndex} : DotsProps): React.ReactElement {
   return (
     <div className={styles.dots}>
       {slides.map((slide, i) => (
-        <span key={slide} className={getColor(i)} />
+        <span
+          role="button"
+          tabIndex={0}
+          key={slide.src}
+          className={getColor(i)}
+          onClick={() => click(i)}
+          onKeyDown={(e) => tap(e, i)}
+        />
       ))}
     </div>
   );

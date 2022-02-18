@@ -43,6 +43,7 @@ function NavBar() {
     }
     return styles.burger;
   }
+
   function setStyleMenu(): string {
     if (active) {
       return `${styles.menu} ${styles.active}`;
@@ -104,6 +105,15 @@ function NavBar() {
             </li>
           </ul>
         </div>
+        <span
+          className={styles.switcher}
+          role="button"
+          tabIndex={0}
+          onClick={switcherClickHandler}
+          onKeyDown={switcherKeyDownHandler}
+        >
+          {lang}
+        </span>
       </div>
     </div>
   );

@@ -3,6 +3,11 @@
 .header {
   @include flex(space-between,center,_);
   padding: 2rem 2rem 2rem 4rem;
+
+  @include media($md) {
+    @include flex(_,flex-end,column);
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
 }
 
 .geo {
@@ -16,6 +21,10 @@
         stroke: $green;
       }
     }
+  }
+
+  @include media($md) {
+    margin-top: 0.5rem;
   }
 
   svg {

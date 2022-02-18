@@ -4,6 +4,7 @@ import Slide from '../Slide/Slide';
 import {ReactComponent as LeftArrow} from '../../../../content/svg/left-arrow.svg';
 import {ReactComponent as RightArrow} from '../../../../content/svg/right-arrow.svg';
 import Dots from '../Dots/Dots';
+import {Slide as ISlide} from '../../../../utils/types';
 
 interface ContentProps {
   activeIndex: number,
@@ -12,7 +13,7 @@ interface ContentProps {
 }
 
 interface SliderProps {
-  slides: string [],
+  slides: ISlide [],
 }
 
 function Slider({slides}: SliderProps): React.ReactElement {
@@ -20,17 +21,10 @@ function Slider({slides}: SliderProps): React.ReactElement {
   const [state, setState] = useState<ContentProps>({
     activeIndex: 0,
     translate: 0,
-    width: ref?.current?.clientWidth || 0,
+    width: 0,
   });
 
   const {activeIndex, translate, width} = state;
-
-  function handleResize() {
-    setState({
-      ...state,
-      width: ref?.current?.clientWidth || 0,
-    });
-  }
 
   function prevSlide() {
     if (activeIndex === 0) {
@@ -102,18 +96,61 @@ function Slider({slides}: SliderProps): React.ReactElement {
     return setState({...state});
   }
 
+  function dotClickHandler(i: number) {
+    return setState({
+      ...state,
+      activeIndex: i,
+      translate: i * width,
+    });
+  }
+
+  function dotTapHandler(e: React.KeyboardEvent<HTMLSpanElement>, i: number) {
+    if (e.code === 'Enter') {
+      return setState({
+        ...state,
+        activeIndex: i,
+        translate: i * width,
+      });
+    }
+    return setState({...state});
+  }
+
+  function handleResize() {
+    return setState({
+      ...state,
+      width: ref?.current?.clientWidth || 0,
+    });
+  }
+
+  function autoPlay(tick: number) {
+    return setInterval(nextSlide, tick);
+  }
+
   useEffect(() => {
+    console.log(ref?.current?.clientWidth);
     setState({
       ...state,
       width: ref?.current?.clientWidth || 0,
     });
+
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  useEffect(() => {
+    let timerId: any;
+    if (width) {
+      timerId = autoPlay(3000);
+    }
+    return () => clearInterval(timerId);
+  }, [width, activeIndex]);
   return (
     <div ref={ref} className={styles.slider}>
       <div className={styles.content} style={{transform: `translateX(-${translate}px)`, width}}>
-        {slides.map((slide, i) => <Slide key={slides[i]} src={slides[i]} />)}
+        {slides.map((slide, i) => <Slide key={slides[i].src} slide={slides[i]} />)}
       </div>
       <div
         role="button"
@@ -133,7 +170,12 @@ function Slider({slides}: SliderProps): React.ReactElement {
       >
         <RightArrow />
       </div>
-      <Dots slides={slides} activeIndex={activeIndex} />
+      <Dots
+        slides={slides}
+        activeIndex={activeIndex}
+        click={dotClickHandler}
+        tap={dotTapHandler}
+      />
     </div>
   );
 }

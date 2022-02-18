@@ -8,3 +8,33 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.body {
+  margin: 30vh 15% 0 15%;
+
+  @include media($xl) {
+    margin: 35vh 15% 0 15%;
+  }
+}
+
+.title {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  font-family: $medium;
+  color: $white;
+
+  @include media($xl) {
+    font-size: 2rem;
+  }
+}
+
+.text {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  font-family: $light;
+  color: $gray-light;
+}
+
+.button {
+  margin-top: 2rem;
+}

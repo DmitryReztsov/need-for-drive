@@ -3,13 +3,23 @@
 .main {
   flex: 1 1 auto;
   padding-left: 4rem;
+
+  @include media($md) {
+    padding-left: 0;
+  }
 }
 
 .title {
-  margin-top: 10rem;
+  margin-top: 20vh;
   font-size: 4.5rem;
   &_green {
     color: $green;
+  }
+
+  @include media($md) {
+    margin-top: 10vh;
+    font-size: 2rem;
+    padding: 0 1rem;
   }
 }
 
@@ -18,8 +28,20 @@
   font-family: $light;
   font-size: 1.6rem;
   color: $gray;
+  padding: 0 1rem;
+
+  @include media($md) {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
 }
 
 .button {
   margin-top: 4rem;
+
+  @include media($md) {
+    margin-top: 2rem;
+    width: 100%;
+    border-radius: 0;
+  }
 }

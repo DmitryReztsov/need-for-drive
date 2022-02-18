@@ -6,6 +6,15 @@
 
   span {
     color: $gray;
+
+    @include media($md) {
+      margin-top: 0.5rem;
+      order: 1;
+    }
+
+    @include media($md) {
+      color: $gray-light;
+    }
   }
 
   a {
@@ -16,5 +25,16 @@
       color: $green;
       @include transition(0.2s,0s);
     }
+
+    @include media($md) {
+      color: $green;
+    }
+  }
+
+  @include media($md) {
+    @include flex(_,flex-end,column);
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: $black-blue;
+    font-size: 0.75rem;
   }
 }
