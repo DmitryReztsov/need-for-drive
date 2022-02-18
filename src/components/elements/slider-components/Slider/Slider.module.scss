@@ -4,7 +4,6 @@
   position: relative;
   flex: 0 1 50%;
   overflow: hidden;
-  z-index: -1;
 
   @include media($xl) {
     flex: 0 1 30%;
@@ -19,4 +18,38 @@
   @include flex (_,_,_);
   height: 100%;
   @include transition(0.5s,0s);
+}
+
+.arrow {
+  position: absolute;
+  top: 0%;
+  @include flex(_,center,_);
+  height: 100%;
+  z-index: 3;
+  padding: 0 2rem;
+  @include transition(0.2s,0s);
+  cursor: pointer;
+  svg {
+    path {
+      fill: none;
+    }
+  }
+
+  &:hover {
+    background-color: rgba($green,0.5);
+    @include transition(0.2s,0s);
+  }
+
+  &:hover {
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &_left {
+    left: 0;
+  }
+  &_right {
+    right: 0;
+  }
 }
