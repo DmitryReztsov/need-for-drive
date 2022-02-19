@@ -52,6 +52,7 @@ function NavBar() {
     return styles.menu;
   }
 
+  // Для отмены прокрутки при открытом меню
   function toggleBodyOverflow() {
     const body = document.querySelector('body')!;
     if (active) {

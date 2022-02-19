@@ -26,6 +26,9 @@ function Slider({slides}: SliderProps): React.ReactElement {
 
   const {activeIndex, translate, width} = state;
 
+  // использовался гайд по слайдеру из песочницы с адаптацией по стилям sass:
+  // https://betterprogramming.pub/build-an-image-slider-with-react-es6-264368de68e4
+
   function prevSlide() {
     if (activeIndex === 0) {
       return setState({
@@ -126,6 +129,8 @@ function Slider({slides}: SliderProps): React.ReactElement {
     return setInterval(nextSlide, tick);
   }
 
+  // При первом запуске берем ширину слайдера и вешаем обработчик события изменения ширины
+  // (пока без троттлера)
   useEffect(() => {
     setState({
       ...state,

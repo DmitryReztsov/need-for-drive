@@ -6,7 +6,7 @@ import {ReactComponent as GeoIcon} from '../../../content/svg/geo.svg';
 function Header() {
   return (
     <header className={styles.header}>
-      <h1>Need for Drive</h1>
+      <h1>Need for drive</h1>
       <CustomLink className={styles.geo}>
         <>
           <GeoIcon className="logo" />

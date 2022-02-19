@@ -6,7 +6,7 @@ import getButtonColor from '../../../../utils/common';
 interface SlideProps {
   slide: ISlide,
 }
-
+// Пока думаю, как можно совместить переменную и фон для добавления в класс компонента
 const fade = 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)';
 
 function Slide({slide}: SlideProps): React.ReactElement {
