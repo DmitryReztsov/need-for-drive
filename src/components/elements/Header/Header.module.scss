@@ -2,7 +2,11 @@
 
 .header {
   @include flex(space-between,center,_);
-  padding: 2rem 2rem 2rem 4rem;
+  padding: 2rem 4rem 2rem 4rem;
+
+  @include media($xl) {
+    padding: 2rem 2rem 2rem 2rem;
+  }
 
   @include media($md) {
     @include flex(_,flex-end,column);

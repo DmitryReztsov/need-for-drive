@@ -127,7 +127,6 @@ function Slider({slides}: SliderProps): React.ReactElement {
   }
 
   useEffect(() => {
-    console.log(ref?.current?.clientWidth);
     setState({
       ...state,
       width: ref?.current?.clientWidth || 0,

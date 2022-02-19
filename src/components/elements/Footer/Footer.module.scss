@@ -2,7 +2,7 @@
 
 .footer {
   @include flex(space-between,center,_);
-  padding: 2rem 2rem 3rem 2rem;
+  padding: 2rem 4rem 2rem 4rem;
 
   span {
     color: $gray;
@@ -29,6 +29,10 @@
     @include media($md) {
       color: $green;
     }
+  }
+
+  @include media($xl) {
+    padding: 1rem 2rem 1rem 2rem;
   }
 
   @include media($md) {

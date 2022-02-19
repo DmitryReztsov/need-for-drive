@@ -7,12 +7,14 @@ interface SlideProps {
   slide: ISlide,
 }
 
+const fade = 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)';
+
 function Slide({slide}: SlideProps): React.ReactElement {
   const {
     src, title, text, color,
   } = slide;
   return (
-    <div className={styles.slide} style={{backgroundImage: `url(${src}),linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)`}}>
+    <div className={styles.slide} style={{backgroundImage: `url(${src}),${fade}`}}>
       <div className={styles.body}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.text}>{text}</p>

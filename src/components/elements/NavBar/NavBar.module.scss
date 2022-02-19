@@ -1,12 +1,8 @@
 @use '/src/sass/tools' as *;
 
-body {
-
-}
-
 .nav {
   @include flex(space-between,center,column);
-  padding: 2rem 1rem;
+  padding: 0 1rem;
   color: $white;
   background-color: $black-blue;
   opacity: 0.99;
@@ -22,6 +18,7 @@ body {
 
 .burger {
   position: relative;
+  margin-top: 2rem;
   z-index: 9999;
   width: 2rem;
   height: 2rem;
@@ -71,6 +68,7 @@ body {
 
 .switcher {
   @include flex(center,center,_);
+  margin-bottom: 1rem;
   width: 3rem;
   height: 3rem;
   font-family: $bold;

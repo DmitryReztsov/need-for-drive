@@ -4,6 +4,7 @@ import styles from './NavBar.module.scss';
 import {ReactComponent as FacebookIcon} from '../../../content/svg/facebook-brands.svg';
 import {ReactComponent as TelegramIcon} from '../../../content/svg/telegram-brands.svg';
 import {ReactComponent as InstagramIcon} from '../../../content/svg/instagram-brands.svg';
+import options from '../../../utils/lists';
 
 function NavBar() {
   const [lang, setLang] = useState<string>('Рус');
@@ -89,19 +90,12 @@ function NavBar() {
       </span>
       <div className={setStyleMenu()}>
         <div className={styles.body}>
-          <ul className={styles.list}>
-            <li>
-              <CustomLink className={styles.link}>ПАРКОВКА</CustomLink>
-            </li>
-            <li>
-              <CustomLink className={styles.link}>СТРАХОВАНИЕ</CustomLink>
-            </li>
-            <li>
-              <CustomLink className={styles.link}>БЕНЗИН</CustomLink>
-            </li>
-            <li>
-              <CustomLink className={styles.link}>ОБСЛУЖИВАНИЕ</CustomLink>
-            </li>
+          <ul role="menu" tabIndex={0} className={styles.list}>
+            {options.map((option) => (
+              <li role="menuitem" tabIndex={0} onClick={burgerClickHandler} onKeyDown={burgerKeyDownHandler}>
+                <CustomLink className={styles.link}>{option}</CustomLink>
+              </li>
+            ))}
           </ul>
           <ul className={styles.social}>
             <li>
