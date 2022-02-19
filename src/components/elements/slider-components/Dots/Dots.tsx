@@ -27,6 +27,7 @@ function Dots(
         <span
           role="button"
           tabIndex={0}
+          aria-label="Choose slide"
           key={slide.src}
           className={getColor(i)}
           onClick={() => click(i)}
