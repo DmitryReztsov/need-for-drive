@@ -4,9 +4,19 @@ import fuel from '../content/slider-img/fuel.png';
 import service from '../content/slider-img/service.png';
 import {Slide} from './types';
 
-export const slides: Slide [] = [
-  {src: parking, title: 'Бесплатная парковка', text: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.'},
-  {src: insurance, title: 'Страховка', text: 'Полная страховка страховка автомобиля'},
-  {src: fuel, title: 'Бензин', text: 'Полный бак на любой заправке города за наш счёт'},
-  {src: service, title: 'Обслуживание', text: 'Автомобиль проходит еженедельное ТО'},
+const slides: Slide [] = [
+  {
+    src: parking, title: 'Бесплатная парковка', text: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.', color: 'forest',
+  },
+  {
+    src: insurance, title: 'Страховка', text: 'Полная страховка страховка автомобиля', color: 'sea',
+  },
+  {
+    src: fuel, title: 'Бензин', text: 'Полный бак на любой заправке города за наш счёт', color: 'magenta',
+  },
+  {
+    src: service, title: 'Обслуживание', text: 'Автомобиль проходит еженедельное ТО', color: 'purple',
+  },
 ];
+
+export default slides;

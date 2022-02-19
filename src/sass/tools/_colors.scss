@@ -1,5 +1,5 @@
-//COLORS
-//green
+// COLORS
+// green
 $green: #0EC261;
 $second-green: #039F67;
 $dark-green: darken($green, 10%);
@@ -7,19 +7,74 @@ $dark-second-green: darken($second-green, 10%);
 $very-dark-green: darken($green, 20%);
 $very-dark-second-green: darken($second-green, 20%);
 
-//black
+// forest green
+$forest: #13493F;
+$second-forest: #0C7B1B;
+$dark-forest: darken($forest, 10%);
+$dark-second-forest: darken($second-forest, 10%);
+$very-dark-forest: darken($forest, 20%);
+$very-dark-second-forest: darken($second-forest, 20%);
+
+// sea
+$sea: #132949;
+$second-sea: #0C7B67;
+$dark-sea: darken($sea, 10%);
+$dark-second-sea: darken($second-sea, 10%);
+$very-dark-sea: darken($sea, 20%);
+$very-dark-second-sea: darken($second-sea, 20%);
+
+// magenta
+$magenta: #493013;
+$second-magenta: #7B0C3B;
+$dark-magenta: darken($magenta, 10%);
+$dark-second-magenta: darken($second-magenta, 10%);
+$very-dark-magenta: darken($magenta, 20%);
+$very-dark-second-magenta: darken($second-magenta, 20%);
+
+// purple
+$purple: #281349;
+$second-purple: #720C7B;
+$dark-purple: darken($purple, 10%);
+$dark-second-purple: darken($second-purple, 10%);
+$very-dark-purple: darken($purple, 20%);
+$very-dark-second-purple: darken($second-purple, 20%);
+
+// black
 $black: #121212;
 $black-blue: #151B1F;
 
-//gray
+// gray
 $gray: #999999;
 $gray-light: #EEEEEE;
 
-//white
+// white
 $white: #ffffff;
 
-//GRADIENTS
-//green
+// GRADIENTS
+// green
 $grad-green: linear-gradient(90deg, $green 2.61%, $second-green 112.6%);
 $grad-dark-green: linear-gradient(90deg, $dark-green 2.61%, $dark-second-green 112.6%);
 $grad-very-dark-green: linear-gradient(90deg, $very-dark-green 2.61%, $very-dark-second-green 112.6%);
+
+// forest green
+$grad-forest: linear-gradient(90deg, $forest 0%, $second-forest 100%);
+$grad-dark-forest: linear-gradient(90deg, $dark-forest 0%, $dark-second-forest 100%);
+$grad-very-dark-forest: linear-gradient(90deg, $very-dark-forest 0%, $very-dark-second-forest 100%);
+
+// sea
+$grad-sea: linear-gradient(90deg, $sea 0%, $second-sea 100%);
+$grad-dark-sea: linear-gradient(90deg, $dark-sea 0%, $dark-second-sea 100%);
+$grad-very-dark-sea: linear-gradient(90deg, $very-dark-sea 0%, $very-dark-second-sea 100%);
+
+// magenta
+$grad-magenta: linear-gradient(90deg, $magenta 0%, $second-magenta 100%);
+$grad-dark-magenta: linear-gradient(90deg, $dark-magenta 0%, $dark-second-magenta 100%);
+$grad-very-dark-magenta: linear-gradient(90deg, $very-dark-magenta 0%, $very-dark-second-magenta 100%);
+
+// purple
+$grad-purple: linear-gradient(90deg, $purple 0%, $second-purple 100%);
+$grad-dark-purple: linear-gradient(90deg, $dark-purple 0%, $dark-second-purple 100%);
+$grad-very-dark-purple: linear-gradient(90deg, $very-dark-purple 0%, $very-dark-second-purple 100%);
+
+// fade
+$fade: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);

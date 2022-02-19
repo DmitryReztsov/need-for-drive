@@ -51,9 +51,19 @@ function NavBar() {
     return styles.menu;
   }
 
+  function toggleBodyOverflow() {
+    const body = document.querySelector('body')!;
+    if (active) {
+      body.classList.add('active');
+    } else {
+      body.classList.remove('active');
+    }
+  }
+
   useEffect(() => {
     setStyle();
     setStyleMenu();
+    toggleBodyOverflow();
   }, [active]);
   return (
     <div className={styles.nav}>

@@ -7,9 +7,10 @@
   text-align: center;
   color: $white;
   background: $grad-green;
-  background-blend-mode: darken;
   border-radius: 0.5rem;
   border: none;
+  cursor: pointer;
+
   &:hover,focus {
     background: $grad-dark-green;
   }
@@ -18,5 +19,41 @@
   }
   &_big {
     padding: 1rem 4rem;
+  }
+  &_forest {
+    background: $grad-forest;
+    &:hover,focus {
+      background: $grad-dark-forest;
+    }
+    &:active {
+      background: $grad-very-dark-forest;
+    }
+  }
+  &_sea {
+    background: $grad-sea;
+    &:hover,focus {
+      background: $grad-dark-sea;
+    }
+    &:active {
+      background: $grad-very-dark-sea;
+    }
+  }
+  &_magenta {
+    background: $grad-magenta;
+    &:hover,focus {
+      background: $grad-dark-magenta;
+    }
+    &:active {
+      background: $grad-very-dark-magenta;
+    }
+  }
+  &_purple {
+    background: $grad-purple;
+    &:hover,focus {
+      background: $grad-dark-purple;
+    }
+    &:active {
+      background: $grad-very-dark-purple;
+    }
   }
 }

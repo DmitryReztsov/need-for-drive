@@ -6,3 +6,7 @@
   font-family: $regular;
   color: $black;
 }
+
+body.active {
+  overflow: hidden;
+}
