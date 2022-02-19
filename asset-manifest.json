@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/need-for-drive/static/css/main.2a3227f7.css",
-    "main.js": "/need-for-drive/static/js/main.93675cbb.js",
-    "static/media/fuel.png": "/need-for-drive/static/media/fuel.942953f198f2a2ed1305.png",
-    "static/media/insurance.png": "/need-for-drive/static/media/insurance.a181b75c06a534ee4dbb.png",
-    "static/media/parking.png": "/need-for-drive/static/media/parking.be3c462d25b6c12c5162.png",
-    "static/media/service.png": "/need-for-drive/static/media/service.9fedc25aa3a9d3839bb7.png",
+    "main.js": "/need-for-drive/static/js/main.4f36918e.js",
+    "static/media/service.png": "/need-for-drive/static/media/service.f6dd0c19bdc544af18d8.png",
+    "static/media/fuel.png": "/need-for-drive/static/media/fuel.062527c84b5fe160d398.png",
+    "static/media/insurance.png": "/need-for-drive/static/media/insurance.3ba9718302f36529c03d.png",
+    "static/media/parking.png": "/need-for-drive/static/media/parking.60c0602c4029131517cc.png",
     "static/media/Roboto-Medium.ttf": "/need-for-drive/static/media/Roboto-Medium.7429a63c09f79a1760b0.ttf",
     "static/media/Roboto-Regular.ttf": "/need-for-drive/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
     "static/media/Roboto-Bold.ttf": "/need-for-drive/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
@@ -18,10 +18,10 @@
     "static/media/left-arrow.svg": "/need-for-drive/static/media/left-arrow.f7e2f40f61f4299b206ba1977f333bb8.svg",
     "static/media/right-arrow.svg": "/need-for-drive/static/media/right-arrow.ed8aa7d98b3a866d9e5fa9e8e33ec44f.svg",
     "main.2a3227f7.css.map": "/need-for-drive/static/css/main.2a3227f7.css.map",
-    "main.93675cbb.js.map": "/need-for-drive/static/js/main.93675cbb.js.map"
+    "main.4f36918e.js.map": "/need-for-drive/static/js/main.4f36918e.js.map"
   },
   "entrypoints": [
     "static/css/main.2a3227f7.css",
-    "static/js/main.93675cbb.js"
+    "static/js/main.4f36918e.js"
   ]
 }
