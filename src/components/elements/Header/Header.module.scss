@@ -14,7 +14,7 @@
 
   @include media($md) {
     @include flex(_,flex-end,column);
-    padding: 1.5rem 1rem 1rem 1rem;
+    padding: 16px;
   }
 }
 
@@ -33,10 +33,10 @@
   }
 
   @include media($md) {
-    margin-top: 0.5rem;
+    margin-top: 8px;
   }
 
   svg {
-    height: 1.5rem;
+    height: 24px;
   }
 }

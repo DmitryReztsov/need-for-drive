@@ -5,6 +5,7 @@ import {ReactComponent as FacebookIcon} from '../../../content/svg/facebook-bran
 import {ReactComponent as TelegramIcon} from '../../../content/svg/telegram-brands.svg';
 import {ReactComponent as InstagramIcon} from '../../../content/svg/instagram-brands.svg';
 import options from '../../../utils/lists';
+import Burger from '../Burger/Burger';
 
 function NavBar() {
   const [lang, setLang] = useState<string>('Рус');
@@ -18,6 +19,12 @@ function NavBar() {
     setActive(!active);
   }
 
+  function burgerKeyDownHandler(e: React.KeyboardEvent<HTMLSpanElement>): void {
+    if (e.code === 'Enter') {
+      setActive(!active);
+    }
+  }
+
   function switcherKeyDownHandler(e: React.KeyboardEvent<HTMLSpanElement>): void {
     if (e.code === 'Enter') {
       if (lang === 'Рус') {
@@ -26,19 +33,6 @@ function NavBar() {
         setLang('Рус');
       }
     }
-  }
-
-  function burgerKeyDownHandler(e: React.KeyboardEvent<HTMLSpanElement>): void {
-    if (e.code === 'Enter') {
-      setActive(!active);
-    }
-  }
-
-  function setStyle(): string {
-    if (active) {
-      return `${styles.burger} ${styles.active}`;
-    }
-    return styles.burger;
   }
 
   function setStyleMenu(): string {
@@ -63,17 +57,12 @@ function NavBar() {
   }, [active]);
   return (
     <div className={styles.nav}>
-      <span
-        className={setStyle()}
-        role="button"
-        tabIndex={0}
-        onClick={burgerClickHandler}
-        onKeyDown={burgerKeyDownHandler}
-      >
-        <span />
-        <span />
-        <span />
-      </span>
+      <Burger
+        className={styles.burger}
+        active={active}
+        click={burgerClickHandler}
+        keyDown={burgerKeyDownHandler}
+      />
       <span
         className={styles.switcher}
         role="button"
