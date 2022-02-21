@@ -4,7 +4,7 @@ import Slide from '../Slide/Slide';
 import {ReactComponent as LeftArrow} from '../../../../content/svg/left-arrow.svg';
 import {ReactComponent as RightArrow} from '../../../../content/svg/right-arrow.svg';
 import Dots from '../Dots/Dots';
-import {ISlide} from '../../../pages/Homepage/Homepage';
+import {ISlide} from '../../../pages/Homepage/slides';
 
 interface ContentProps {
   activeIndex: number,
