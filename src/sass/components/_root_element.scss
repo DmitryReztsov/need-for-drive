@@ -3,7 +3,7 @@
 #root {
   @include flex(_,_,column);
   min-height: 100%;
-  font-family: $regular;
+  font-family: $roboto;
   color: $black;
 }
 

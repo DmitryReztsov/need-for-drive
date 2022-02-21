@@ -71,7 +71,7 @@
   margin-bottom: 1rem;
   width: 3rem;
   height: 3rem;
-  font-family: $bold;
+  font-weight: 700;
   font-size: 0.8rem;
   color: $green;
   border-radius: 50%;
@@ -141,7 +141,7 @@
 
 .link {
   font-size: 2rem;
-  font-family: $medium;
+  font-weight: 500;
   color: $white;
 
   @include media($lg) {

@@ -11,11 +11,7 @@ function NavBar() {
   const [active, setActive] = useState<boolean>(false);
 
   function switcherClickHandler(): void {
-    if (lang === 'Рус') {
-      setLang('Eng');
-    } else {
-      setLang('Рус');
-    }
+    setLang(lang === 'Рус' ? 'Eng' : 'Рус');
   }
 
   function burgerClickHandler(): void {
@@ -63,8 +59,6 @@ function NavBar() {
   }
 
   useEffect(() => {
-    setStyle();
-    setStyleMenu();
     toggleBodyOverflow();
   }, [active]);
   return (

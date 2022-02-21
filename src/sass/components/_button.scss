@@ -1,13 +1,15 @@
 @use "../tools" as *;
 
 .button {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  line-height: 1.1;
+  padding: 15px 32px 11px 32px;
+  font-family: $roboto;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 21px;
   text-align: center;
   color: $white;
   background: $grad-green;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
 

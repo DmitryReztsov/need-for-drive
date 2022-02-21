@@ -26,7 +26,7 @@
   @include flex(_,center,_);
   height: 100%;
   z-index: 3;
-  padding: 0 2rem;
+  padding: 0 28px;
   @include transition(0.2s,0s);
   cursor: pointer;
   svg {

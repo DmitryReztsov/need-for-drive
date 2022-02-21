@@ -2,20 +2,21 @@
 
 .main {
   flex: 1 1 auto;
-  padding-left: 4rem;
+  padding: 0px 16px 16px 64px;
 
   @include media($xl) {
-    padding: 2rem 2rem 2rem 2rem;
+    padding: 32px;
   }
 
   @include media($md) {
-    padding: 2rem 0rem 2rem 0rem;
+    padding: 2rem 0rem;
   }
 }
 
 .title {
   margin-top: 15vh;
-  font-size: 4.5rem;
+  font-size: 4.375rem;
+  line-height: 66px;
 
   &_green {
     color: $green;
@@ -28,16 +29,15 @@
   @include media($md) {
     margin-top: 0;
     font-size: 2rem;
-    padding: 0 1rem;
   }
 }
 
 .text {
-  margin-top: 2rem;
-  font-family: $light;
+  margin-top: 34px;
   font-size: 1.6rem;
+  font-weight: 300;
   color: $gray;
-  padding-right: 1rem;
+  line-height: 30.47px;
 
   @include media($md) {
     margin-top: 1rem;
@@ -47,7 +47,7 @@
 }
 
 .button {
-  margin-top: 4rem;
+  margin-top: 60px;
 
   @include media($md) {
     margin-top: 2rem;
