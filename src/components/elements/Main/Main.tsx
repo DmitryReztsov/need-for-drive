@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Main.module.scss';
 import CustomLink from '../Link/CustomLink';
+import Button from '../Button/Button';
 
 function Main() {
   return (
@@ -12,7 +13,7 @@ function Main() {
       </h2>
       <p className={styles.text}>Поминутная аренда авто твоего города</p>
       <CustomLink href="/order">
-        <button type="submit" className={`${styles.button} button button_big`}>Забронировать</button>
+        <Button className={styles.button}>Забронировать</Button>
       </CustomLink>
     </div>
   );

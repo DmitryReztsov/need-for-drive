@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Slide.module.scss';
-import {Slide as ISlide} from '../../../../utils/types';
-import getButtonColor from '../../../../utils/common';
+import {ISlide} from '../../../pages/Homepage/Homepage';
+import Button from '../../Button/Button';
 
 interface SlideProps {
   slide: ISlide,
@@ -18,7 +18,7 @@ function Slide({slide}: SlideProps): React.ReactElement {
       <div className={styles.body}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.text}>{text}</p>
-        <button type="submit" className={`${styles.button} ${getButtonColor(color)}`}>Подробнее</button>
+        <Button className={styles.button} color={color}>Подробнее</Button>
       </div>
     </div>
   );

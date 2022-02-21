@@ -4,7 +4,7 @@ import Slide from '../Slide/Slide';
 import {ReactComponent as LeftArrow} from '../../../../content/svg/left-arrow.svg';
 import {ReactComponent as RightArrow} from '../../../../content/svg/right-arrow.svg';
 import Dots from '../Dots/Dots';
-import {Slide as ISlide} from '../../../../utils/types';
+import {ISlide} from '../../../pages/Homepage/Homepage';
 
 interface ContentProps {
   activeIndex: number,
@@ -12,11 +12,11 @@ interface ContentProps {
   width: number
 }
 
-interface SliderProps {
+interface ISliderProps {
   slides: ISlide [],
 }
 
-function Slider({slides}: SliderProps): React.ReactElement {
+function Slider({slides}: ISliderProps): React.ReactElement {
   const ref = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<ContentProps>({
     activeIndex: 0,
@@ -30,70 +30,43 @@ function Slider({slides}: SliderProps): React.ReactElement {
   // https://betterprogramming.pub/build-an-image-slider-with-react-es6-264368de68e4
 
   function prevSlide() {
-    if (activeIndex === 0) {
-      return setState({
-        ...state,
-        translate: (slides.length - 1) * width,
-        activeIndex: slides.length - 1,
-      });
-    }
-
+    const condition = activeIndex === 0;
     return setState({
       ...state,
-      activeIndex: activeIndex - 1,
-      translate: (activeIndex - 1) * width,
+      activeIndex: condition ? slides.length - 1 : activeIndex - 1,
+      translate: condition ? (slides.length - 1) * width : (activeIndex - 1) * width,
     });
   }
 
   function prevSlideEnter(e: React.KeyboardEvent<HTMLDivElement>) {
+    const condition = activeIndex === 0;
     if (e.code === 'Enter') {
-      if (activeIndex === 0) {
-        return setState({
-          ...state,
-          translate: (slides.length - 1) * width,
-          activeIndex: slides.length - 1,
-        });
-      }
-
       return setState({
         ...state,
-        activeIndex: activeIndex - 1,
-        translate: (activeIndex - 1) * width,
+        activeIndex: condition ? slides.length - 1 : activeIndex - 1,
+        translate: condition ? (slides.length - 1) * width : (activeIndex - 1) * width,
       });
     }
     return setState({...state});
   }
 
   function nextSlide() {
-    if (activeIndex === slides.length - 1) {
-      return setState({
-        ...state,
-        translate: 0,
-        activeIndex: 0,
-      });
-    }
+    const condition = activeIndex === slides.length - 1;
 
     return setState({
       ...state,
-      activeIndex: activeIndex + 1,
-      translate: (activeIndex + 1) * width,
+      activeIndex: condition ? 0 : activeIndex + 1,
+      translate: condition ? 0 : (activeIndex + 1) * width,
     });
   }
 
   function nextSlideEnter(e: React.KeyboardEvent<HTMLDivElement>) {
+    const condition = activeIndex === slides.length - 1;
     if (e.code === 'Enter') {
-      if (activeIndex === slides.length - 1) {
-        return setState({
-          ...state,
-          translate: 0,
-          activeIndex: 0,
-        });
-      }
-
       return setState({
         ...state,
-        activeIndex: activeIndex + 1,
-        translate: (activeIndex + 1) * width,
+        activeIndex: condition ? 0 : activeIndex + 1,
+        translate: condition ? 0 : (activeIndex + 1) * width,
       });
     }
     return setState({...state});
