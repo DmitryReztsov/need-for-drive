@@ -1,0 +1,66 @@
+@use '/src/sass/tools' as *;
+
+.burger {
+  position: relative;
+  z-index: 9999;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+
+  @include media($lg) {
+    width: 42px;
+  }
+
+  @include media($md) {
+    width: 32px;
+  }
+
+  span {
+    position: absolute;
+    display: block;
+    top: calc(50% - 2px);
+    left: calc(50% - 12px);
+    width: 24px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: $white;
+    @include transition(0.2s,0s);
+
+    &:first-child {
+      top: calc(50% - 10px);
+    }
+
+    &:last-child {
+      top: calc(50% + 6px);
+    }
+
+    @include media($lg) {
+      width: 32px;
+      left: calc(50% - 16px);
+    }
+
+    @include media($md) {
+      width: 22px;
+      left: calc(50% - 11px);
+      background-color: $black;
+    }
+  }
+  &.active {
+    span {
+      transform: scale(0);
+      background-color: $white;
+      @include transition(0.2s,0s);
+      &:first-child {
+        top: 50%;
+        transform: scale(1);
+        transform: rotate(45deg);
+
+      }
+      &:last-child {
+        top: 50%;
+        transform: scale(1);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

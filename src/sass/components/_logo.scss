@@ -1,0 +1,19 @@
+@use "../tools" as *;
+
+.logo {
+  width: 2rem;
+  height: 2rem;
+}
+
+svg {
+  path {
+    fill: $white;
+    @include transition(0.2s, 0s)
+  }
+  &:hover {
+    path {
+      fill: $green;
+      @include transition(0.2s, 0s)
+    }
+  }
+}

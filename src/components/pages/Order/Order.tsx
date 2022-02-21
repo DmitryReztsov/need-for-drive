@@ -3,7 +3,7 @@ import React from 'react';
 function Order() {
   return (
     <main>
-      Страница ордера
+      Здесь должен оформляться заказ!
     </main>
   );
 }

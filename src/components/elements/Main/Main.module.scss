@@ -1,0 +1,68 @@
+@use '/src/sass/tools' as *;
+
+.main {
+  flex: 1 1 auto;
+  padding: 0px 16px 16px 64px;
+
+  @include media($xl) {
+    padding: 32px;
+  }
+
+  @include media($md) {
+    padding: 16px 0rem;
+  }
+}
+
+.title {
+  margin-top: 15vh;
+  font-size: 4.375rem;
+  line-height: 66px;
+
+  &_green {
+    color: $green;
+  }
+
+  span:first-child {
+    @include media($md) {
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+  }
+
+  @include media($xl) {
+    margin-top: 10vh;
+  }
+
+  @include media($md) {
+    margin-top: 0;
+    padding: 0 16px;
+    font-size: 2rem;
+    line-height: 32px;
+  }
+}
+
+.text {
+  margin-top: 34px;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: $gray;
+  line-height: 30.47px;
+
+  @include media($md) {
+    margin-top: 16px;
+    font-size: 1.1rem;
+    line-height: 18px;
+    padding: 0 16px;
+  }
+}
+
+button.button {
+  margin-top: 60px;
+  padding: 16px 64px 16px 64px;
+
+  @include media($md) {
+    margin-top: 32px;
+    width: 100%;
+    border-radius: 0;
+  }
+}
