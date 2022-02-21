@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/need-for-drive/static/css/main.2a3227f7.css",
-    "main.js": "/need-for-drive/static/js/main.4f36918e.js",
+    "main.css": "/need-for-drive/static/css/main.f379f5dc.css",
+    "main.js": "/need-for-drive/static/js/main.1986cf33.js",
     "static/media/service.png": "/need-for-drive/static/media/service.f6dd0c19bdc544af18d8.png",
     "static/media/fuel.png": "/need-for-drive/static/media/fuel.062527c84b5fe160d398.png",
     "static/media/insurance.png": "/need-for-drive/static/media/insurance.3ba9718302f36529c03d.png",
@@ -12,16 +12,16 @@
     "static/media/Roboto-Light.ttf": "/need-for-drive/static/media/Roboto-Light.8be2d1487420548b3b8d.ttf",
     "static/media/telegram-brands.svg": "/need-for-drive/static/media/telegram-brands.79cb8c0a92854ac464aeb151c6d38118.svg",
     "static/media/instagram-brands.svg": "/need-for-drive/static/media/instagram-brands.53cded02bdb5aafdbb7e3902b3451abb.svg",
-    "static/media/geo.svg": "/need-for-drive/static/media/geo.d1c430366bcf731c595d5fd70d6639bb.svg",
+    "static/media/geo.svg": "/need-for-drive/static/media/geo.d1cf334bc7bedd6f17f576da86afca7f.svg",
     "index.html": "/need-for-drive/index.html",
     "static/media/facebook-brands.svg": "/need-for-drive/static/media/facebook-brands.8db607999a206267b50d2c89662bd887.svg",
-    "static/media/left-arrow.svg": "/need-for-drive/static/media/left-arrow.f7e2f40f61f4299b206ba1977f333bb8.svg",
-    "static/media/right-arrow.svg": "/need-for-drive/static/media/right-arrow.ed8aa7d98b3a866d9e5fa9e8e33ec44f.svg",
-    "main.2a3227f7.css.map": "/need-for-drive/static/css/main.2a3227f7.css.map",
-    "main.4f36918e.js.map": "/need-for-drive/static/js/main.4f36918e.js.map"
+    "static/media/left-arrow.svg": "/need-for-drive/static/media/left-arrow.a4afacf36f5effeaa1a7cf7f707f6147.svg",
+    "static/media/right-arrow.svg": "/need-for-drive/static/media/right-arrow.aa22f97f5e46321a93a963a1cf28b2f7.svg",
+    "main.f379f5dc.css.map": "/need-for-drive/static/css/main.f379f5dc.css.map",
+    "main.1986cf33.js.map": "/need-for-drive/static/js/main.1986cf33.js.map"
   },
   "entrypoints": [
-    "static/css/main.2a3227f7.css",
-    "static/js/main.4f36918e.js"
+    "static/css/main.f379f5dc.css",
+    "static/js/main.1986cf33.js"
   ]
 }
