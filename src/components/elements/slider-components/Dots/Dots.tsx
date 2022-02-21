@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Dots.module.scss';
-import {ISlide} from '../../../pages/Homepage/Homepage';
+import {ISlide} from '../../../pages/Homepage/slides';
 
 interface DotsProps {
   slides: ISlide [],
