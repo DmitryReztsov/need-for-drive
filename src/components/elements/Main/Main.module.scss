@@ -9,7 +9,7 @@
   }
 
   @include media($md) {
-    padding: 2rem 0rem;
+    padding: 16px 0rem;
   }
 }
 
@@ -22,13 +22,22 @@
     color: $green;
   }
 
+  span:first-child {
+    @include media($md) {
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+  }
+
   @include media($xl) {
     margin-top: 10vh;
   }
 
   @include media($md) {
     margin-top: 0;
+    padding: 0 16px;
     font-size: 2rem;
+    line-height: 32px;
   }
 }
 
@@ -40,9 +49,10 @@
   line-height: 30.47px;
 
   @include media($md) {
-    margin-top: 1rem;
-    font-size: 1rem;
-    padding: 0 1rem;
+    margin-top: 16px;
+    font-size: 1.1rem;
+    line-height: 18px;
+    padding: 0 16px;
   }
 }
 

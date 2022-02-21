@@ -6,7 +6,7 @@ function Main() {
   return (
     <div className={styles.main}>
       <h2 className={styles.title}>
-        Каршеринг
+        <span>Каршеринг</span>
         <br />
         <span className={styles.title_green}>Need for drive</span>
       </h2>
