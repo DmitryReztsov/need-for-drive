@@ -4,42 +4,42 @@ import styles from './NavBar.module.scss';
 import {ReactComponent as FacebookIcon} from '../../../content/svg/facebook-brands.svg';
 import {ReactComponent as TelegramIcon} from '../../../content/svg/telegram-brands.svg';
 import {ReactComponent as InstagramIcon} from '../../../content/svg/instagram-brands.svg';
-import options from '../../../utils/lists';
 import Burger from '../Burger/Burger';
+import LangSwitcher from '../LangSwitcher/LangSwitcher';
+
+const options = [
+  'ПАРКОВКА',
+  'СТРАХОВКА',
+  'БЕНЗИН',
+  'ОБСЛУЖИВАНИЕ',
+];
 
 function NavBar() {
   const [lang, setLang] = useState<string>('Рус');
   const [active, setActive] = useState<boolean>(false);
 
-  function switcherClickHandler(): void {
-    setLang(lang === 'Рус' ? 'Eng' : 'Рус');
-  }
-
-  function burgerClickHandler(): void {
+  function clickHandler(): void {
     setActive(!active);
   }
 
-  function burgerKeyDownHandler(e: React.KeyboardEvent<HTMLSpanElement>): void {
+  function keyDownHandler(e: React.KeyboardEvent<HTMLSpanElement>): void {
     if (e.code === 'Enter') {
       setActive(!active);
     }
   }
 
+  function switcherClickHandler(): void {
+    setLang(lang === 'Рус' ? 'Eng' : 'Рус');
+  }
+
   function switcherKeyDownHandler(e: React.KeyboardEvent<HTMLSpanElement>): void {
     if (e.code === 'Enter') {
-      if (lang === 'Рус') {
-        setLang('Eng');
-      } else {
-        setLang('Рус');
-      }
+      setLang(lang === 'Рус' ? 'Eng' : 'Рус');
     }
   }
 
   function setStyleMenu(): string {
-    if (active) {
-      return `${styles.menu} ${styles.active}`;
-    }
-    return styles.menu;
+    return active ? `${styles.menu} ${styles.active}` : styles.menu;
   }
 
   // Для отмены прокрутки при открытом меню
@@ -60,23 +60,20 @@ function NavBar() {
       <Burger
         className={styles.burger}
         active={active}
-        click={burgerClickHandler}
-        keyDown={burgerKeyDownHandler}
+        click={clickHandler}
+        keyDown={keyDownHandler}
       />
-      <span
+      <LangSwitcher
+        lang={lang}
         className={styles.switcher}
-        role="button"
-        tabIndex={0}
-        onClick={switcherClickHandler}
-        onKeyDown={switcherKeyDownHandler}
-      >
-        {lang}
-      </span>
+        click={switcherClickHandler}
+        keyDown={switcherKeyDownHandler}
+      />
       <div className={setStyleMenu()}>
         <div className={styles.body}>
           <ul role="menu" tabIndex={0} className={styles.list}>
             {options.map((option) => (
-              <li role="menuitem" tabIndex={0} onClick={burgerClickHandler} onKeyDown={burgerKeyDownHandler}>
+              <li role="menuitem" tabIndex={0} key={option} onClick={clickHandler} onKeyDown={keyDownHandler}>
                 <CustomLink className={styles.link}>{option}</CustomLink>
               </li>
             ))}
@@ -93,15 +90,13 @@ function NavBar() {
             </li>
           </ul>
         </div>
-        <span
+        <div className={styles.glass} />
+        <LangSwitcher
+          lang={lang}
           className={styles.switcher}
-          role="button"
-          tabIndex={0}
-          onClick={switcherClickHandler}
-          onKeyDown={switcherKeyDownHandler}
-        >
-          {lang}
-        </span>
+          click={switcherClickHandler}
+          keyDown={switcherKeyDownHandler}
+        />
       </div>
     </div>
   );

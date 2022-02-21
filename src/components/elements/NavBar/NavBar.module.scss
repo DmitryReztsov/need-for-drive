@@ -1,11 +1,18 @@
 @use '/src/sass/tools' as *;
 
+.switcher {
+  margin-bottom: 16px;
+
+  @include media($xl) {
+    margin-bottom: 22px;
+  }
+}
+
 .nav {
   @include flex(space-between,center,column);
   width: 64px;
   color: $white;
-  background-color: $black-blue;
-  opacity: 0.99;
+  background: $shadow-black;
   z-index: 999;
 
   @include media($lg) {
@@ -29,43 +36,14 @@
   }
 }
 
-.switcher {
-  @include flex(center,center,_);
-  margin-bottom: 1rem;
-  width: 3rem;
-  height: 3rem;
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: $green;
-  border-radius: 50%;
-  border: 1px solid transparent;
-  @include transition(0.2s,0s);
-  cursor: pointer;
-
-  &:hover {
-    color: $white;
-    border: 1px solid $white;
-    @include transition(0.2s,0s);
-  }
-  &:active {
-    color: $green;
-    @include transition(0.2s,0s);
-  }
-
-  @include media($md) {
-    display: none;
-  }
-}
-
 .menu {
   position: absolute;
   top: 0;
   left: 0;
-  @include flex(_,center,_);
+  @include flex(space-between,_,_);
   width: 100vw;
   height: 100vh;
   transform: translateX(-100%);
-  background-color: $black-blue;
   overflow: auto;
 
   @include transition(0.5s,0s);
@@ -82,23 +60,52 @@
   .switcher {
     display: none;
     @include media($md) {
-      display:inherit;
-      margin: 1rem;
+      position: absolute;
+      top: calc(100% - 10px);
+      left: 10px;
+      transform: translate(0%, -100%);
+      display: inherit;
+      background: $shadow-black;
     }
   }
 }
 
 .body {
-  margin: 5rem 2rem 2rem 5rem;
+  flex: 1 1 auto;
+  padding: 35vh 0px 0px 128px;
+  max-height: 100%;
+  background: $shadow-black;
+
+  @include media($xl) {
+    flex: 1 1 100%;
+    padding: 35vh 0px 0px 97px;
+  }
+
   @include media($md) {
-    margin: 7rem 1rem 1rem 1.75rem;
+    flex: 1 1 100%;
+    padding: 15vh 0px 0px 28px;
+  }
+}
+
+.glass {
+  flex: 0 0 calc(50% - 33px);
+  height: 100%;
+  background: $black-blue;
+  opacity: 0.81;
+
+  @include media($xl) {
+    flex: 0 0 calc(40% - 27px);
+  }
+
+  @include media($lg) {
+    flex: 0 0 0;
   }
 }
 
 .list {
-  margin-bottom: 2rem;
+  margin-bottom: 38px;
   li {
-    margin-bottom: 1rem;
+    margin-bottom: 22px;
   }
 }
 
@@ -110,11 +117,15 @@
   @include media($lg) {
     font-size: 1.75rem;
   }
+
+  @include media($md) {
+    font-size: 1.4rem;
+  }
 }
 
 .social {
   @include flex(_,_,_);
   svg {
-    margin-right: 1rem;
+    margin-right: 24px;
   }
 }
