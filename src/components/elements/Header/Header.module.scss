@@ -1,0 +1,42 @@
+@use '/src/sass/tools' as *;
+
+.header {
+  @include flex(space-between,center,_);
+  padding: 32px 64px 32px 64px;
+
+  h1 {
+    line-height: 35.16px;
+  }
+
+  @include media($xl) {
+    padding: 32px 32px 32px 32px;
+  }
+
+  @include media($md) {
+    @include flex(_,flex-end,column);
+    padding: 16px;
+  }
+}
+
+.geo {
+  @include flex(_,center,_);
+  font-size: 0.875rem;
+  color: $gray;
+  &:hover {
+    color: $green;
+    svg {
+      path {
+        fill: none;
+        stroke: $green;
+      }
+    }
+  }
+
+  @include media($md) {
+    margin-top: 8px;
+  }
+
+  svg {
+    height: 24px;
+  }
+}

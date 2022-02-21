@@ -4,3 +4,13 @@
   align-items: $ai;
   flex-direction: $fd;
 }
+
+@mixin transition($s: 0.5s, $d: 0s) {
+  transition: $s all ease-in-out $d;
+}
+
+@mixin media($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}

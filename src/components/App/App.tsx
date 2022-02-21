@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Homepage />} />
-          <Route element={<Order />} />
+          <Route path="order" element={<Order />} />
         </Route>
       </Routes>
     </div>

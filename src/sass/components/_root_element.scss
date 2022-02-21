@@ -3,5 +3,10 @@
 #root {
   @include flex(_,_,column);
   min-height: 100%;
+  font-family: $roboto;
   color: $black;
+}
+
+body.active {
+  overflow: hidden;
 }
