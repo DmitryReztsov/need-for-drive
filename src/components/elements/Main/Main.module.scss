@@ -56,9 +56,9 @@
   }
 }
 
-button.button {
+.button {
   margin-top: 60px;
-  padding: 16px 64px 16px 64px;
+  padding: 15px 64px 12px 64px;
 
   @include media($md) {
     margin-top: 32px;

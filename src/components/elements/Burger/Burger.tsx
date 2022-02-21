@@ -15,7 +15,7 @@ function Burger(props: IBurgerProps): React.ReactElement {
 
   return (
     <span
-      className={active ? `${styles.burger} ${styles.active} ${className}` : `${styles.burger} ${className}`}
+      className={`${styles.burger} ${active ? styles.active : ''} ${className}`}
       role="button"
       tabIndex={0}
       onClick={click}
