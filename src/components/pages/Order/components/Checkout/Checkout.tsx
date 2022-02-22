@@ -3,7 +3,9 @@ import styles from './Checkout.module.scss';
 
 function Checkout() {
   return (
-    <div className={styles.checkout} />
+    <div className={styles.checkout}>
+      <button type="submit">Отправить</button>
+    </div>
   );
 }
 

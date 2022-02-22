@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useFormik} from 'formik';
 import Navigation from '../Navigation/Navigation';
 import styles from './Main.module.scss';
 import Creator from '../Creator/Creator';
@@ -24,15 +25,30 @@ function Main() {
     }
   }
 
+  const form = useFormik({
+    initialValues: {
+      city: '',
+      pickPoint: '',
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <main className={styles.main}>
-      <Navigation stages={stages} click={setClickIndex} keyDown={setKeyIndex} />
-      <div className={styles.body}>
+      <Navigation stages={stages} index={activeIndex} click={setClickIndex} keyDown={setKeyIndex} />
+      <form className={styles.body} onSubmit={form.handleSubmit}>
         <Container className={styles.container}>
-          <Creator index={activeIndex} />
+          <Creator
+            index={activeIndex}
+            city={form.values.city}
+            pickPoint={form.values.pickPoint}
+            change={form.handleChange}
+          />
           <Checkout />
         </Container>
-      </div>
+      </form>
     </main>
   );
 }

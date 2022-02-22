@@ -44,3 +44,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+input, select, textarea {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  &:focus {
+    outline: 0;
+  }
+}

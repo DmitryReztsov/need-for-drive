@@ -7,16 +7,23 @@ import Features from './stages/Features/Features';
 
 interface ICreatorProps {
   index: number,
+  city: string,
+  pickPoint: string,
+  change: (e:React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-const components = [
-  <Geo />,
-  <Model />,
-  <Features />,
-  <Total />,
-];
+function Creator(props : ICreatorProps) {
+  const {
+    index, city, pickPoint, change,
+  } = props;
 
-function Creator({index}: ICreatorProps) {
+  const components = [
+    <Geo city={city} pickPoint={pickPoint} change={change} />,
+    <Model />,
+    <Features />,
+    <Total />,
+  ];
+
   return (
     <div className={styles.creator}>
       {components[index]}

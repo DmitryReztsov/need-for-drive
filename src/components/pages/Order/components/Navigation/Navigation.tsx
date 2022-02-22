@@ -4,12 +4,15 @@ import styles from './Navigation.module.scss';
 
 interface INavigationProps {
   stages: string [],
+  index: number,
   click: (id: number) => void,
   keyDown: (e: React.KeyboardEvent<HTMLLIElement>, id: number) => void,
 }
 
 function Navigation(props: INavigationProps) {
-  const {stages, click, keyDown} = props;
+  const {
+    stages, index, click, keyDown,
+  } = props;
   return (
     <nav className={styles.navigation}>
       <Container>
@@ -19,6 +22,7 @@ function Navigation(props: INavigationProps) {
               role="menuitem"
               tabIndex={0}
               key={stage}
+              className={i === index ? styles.active : ''}
               onClick={() => click(i)}
               onKeyDown={(e) => keyDown(e, i)}
             >

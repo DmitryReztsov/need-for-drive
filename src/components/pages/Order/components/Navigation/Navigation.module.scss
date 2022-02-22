@@ -18,7 +18,7 @@
     cursor: pointer;
     &::after {
       content: url("../../../../../content/svg/arrow.svg");
-      margin: 0 8px;
+      margin: 0 16px;
     }
     &:last-child {
       &::after {
@@ -28,6 +28,10 @@
     &:hover {
       color: $green;
       @include transition(0.2s,0s);
+    }
+
+    &.active {
+      color: $green;
     }
   }
 }
