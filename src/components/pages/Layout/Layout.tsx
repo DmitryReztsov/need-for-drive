@@ -1,6 +1,6 @@
 import React from 'react';
 import {Outlet} from 'react-router-dom';
-import NavBar from '../../elements/NavBar/NavBar';
+import NavBar from '../../elements/menu/NavBar/NavBar';
 import styles from './Layout.module.scss';
 
 function Layout() {
