@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useSearchParams} from 'react-router-dom';
 import {useFormik} from 'formik';
 import Navigation from '../Navigation/Navigation';
 import styles from './Main.module.scss';
@@ -15,6 +16,7 @@ const stages = [
 
 function Main() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [searchParams] = useSearchParams();
 
   function setClickIndex(id: number) {
     setActiveIndex(id);
@@ -27,13 +29,19 @@ function Main() {
 
   const form = useFormik({
     initialValues: {
-      city: '',
-      pickPoint: '',
+      city: searchParams.get('city') || '',
+      pickPoint: searchParams.get('pickPoint') || '',
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
+  useEffect(() => {
+    console.log(1);
+    form.values.city = searchParams.get('city') || '';
+    form.values.pickPoint = searchParams.get('pickPoint') || '';
+  }, [searchParams]);
 
   return (
     <main className={styles.main}>
@@ -44,7 +52,6 @@ function Main() {
             index={activeIndex}
             city={form.values.city}
             pickPoint={form.values.pickPoint}
-            change={form.handleChange}
           />
           <Checkout />
         </Container>

@@ -9,16 +9,15 @@ interface ICreatorProps {
   index: number,
   city: string,
   pickPoint: string,
-  change: (e:React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 function Creator(props : ICreatorProps) {
   const {
-    index, city, pickPoint, change,
+    index, city, pickPoint,
   } = props;
 
   const components = [
-    <Geo city={city} pickPoint={pickPoint} change={change} />,
+    <Geo pickPoint={pickPoint} city={city} />,
     <Model />,
     <Features />,
     <Total />,
