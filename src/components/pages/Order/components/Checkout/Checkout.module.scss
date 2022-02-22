@@ -1,0 +1,6 @@
+@use '/src/sass/tools' as *;
+
+.checkout {
+  flex: 0 0 320px;
+  border-left: 1px solid $gray-light;
+}

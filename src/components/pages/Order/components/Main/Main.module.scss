@@ -1,0 +1,15 @@
+@use '/src/sass/tools' as *;
+
+.main {
+  @include flex(_,_,column);
+  flex: 1 1 auto;
+}
+
+.body {
+  flex: 1 1 auto;
+}
+
+.container {
+  @include flex(_,_,_);
+  height: 100%;
+}
