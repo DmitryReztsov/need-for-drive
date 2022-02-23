@@ -5,6 +5,7 @@ import styles from './Autocomplete.module.scss';
 import SearchInput from '../inputs/SearchInput/SearchInput';
 import useAppendParams from '../../../hooks/useAppendParams';
 import useOutside from '../../../hooks/useOutsideAlerter';
+import Suggestions from './Suggestions/Suggestions';
 
 interface IAutocompleteProps {
   list: string [],
@@ -50,7 +51,7 @@ function Autocomplete(props: IAutocompleteProps) {
     if (e.code === 'Enter') {
       setActiveSuggestion(0);
       setShowSuggestions(false);
-      appendParams(field, e.currentTarget.innerText);
+      appendParams(field, filteredSuggestions[activeSuggestion]);
     } else if (e.code === 'ArrowUp') {
       if (activeSuggestion === 0) {
         return;
@@ -90,31 +91,14 @@ function Autocomplete(props: IAutocompleteProps) {
         keyDownHandler={handleKeyInput}
       />
       {(showSuggestions)
-        ? (filteredSuggestions.length
-          ? (
-            <ul
-              role="menu"
-              className={styles.suggestions}
-            >
-              {filteredSuggestions.map((suggestion, index) => (
-                <li
-                  role="menuitem"
-                  tabIndex={0}
-                  className={`${index === activeSuggestion ? styles.active : ''}`}
-                  key={suggestion}
-                  onClick={handleClickOption}
-                  onKeyDown={handleKeyOption}
-                >
-                  {suggestion}
-                </li>
-              ))}
-            </ul>
-          )
-          : (
-            <div className={styles.no_suggestions}>
-              Города не найдены
-            </div>
-          ))
+        ? (
+          <Suggestions
+            filteredSuggestions={filteredSuggestions}
+            activeSuggestion={activeSuggestion}
+            click={handleClickOption}
+            keyDown={handleKeyOption}
+          />
+        )
         : null}
     </div>
   );

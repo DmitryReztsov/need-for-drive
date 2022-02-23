@@ -7,36 +7,3 @@
   line-height: 1rem;
   font-weight: 300;
 }
-
-.suggestions {
-  position: absolute;
-  right: 0;
-  z-index: 3;
-  width: 206px;
-  max-height: 143px;
-  padding: 4px 8px;
-  overflow-y: auto;
-  border: 1px solid $gray;
-  border-top-width: 0;
-  background-color: $white;
-  color: $gray;
-  list-style: none;
-  @include transition(0.2s,0s);
-
-  li {
-    padding: 4px 0;
-  }
-}
-
-.active,
-.suggestions li:hover,
-.suggestions li:focus {
-  color: $green;
-  cursor: pointer;
-  @include transition(0.2s,0s);
-  
-}
-
-.no_suggestions {
-  @extend .suggestions;
-}
