@@ -1,9 +1,5 @@
-export interface IForm {
-  [key: string] : string,
-}
-
 export interface IFormState {
-  form: IForm;
+  [key: string]: string,
 }
 
 export interface ISetFormPayload {
@@ -19,6 +15,5 @@ export interface SetFormDataAction {
   type: FormActionTypes.SET_FORM_DATA,
   payload: ISetFormPayload,
 }
-
 
 export type FormAction = SetFormDataAction;

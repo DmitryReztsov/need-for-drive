@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useSearchParams} from 'react-router-dom';
-import {useFormik} from 'formik';
 import Navigation from '../Navigation/Navigation';
 import styles from './Main.module.scss';
 import Creator from '../Creator/Creator';
 import Checkout from '../Checkout/Checkout';
 import Container from '../../../../common/Container/Container';
+import useTypedSelector from '../../../../../store/selectors';
+import setForm from '../../../../../store/form/actions';
 
 const stages = [
   'Местоположение',
@@ -15,48 +17,38 @@ const stages = [
 ];
 
 function Main() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const {city, pickPoint} = useTypedSelector((state) => state.form);
 
   function setClickIndex(id: number) {
     setActiveIndex(id);
   }
+
   function setKeyIndex(e:React.KeyboardEvent<HTMLLIElement>, id: number) {
     if (e.code === 'Enter') {
       setActiveIndex(id);
     }
   }
 
-  const form = useFormik({
-    initialValues: {
-      city: searchParams.get('city') || '',
-      pickPoint: searchParams.get('pickPoint') || '',
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-
-  function getClick(e: React.MouseEvent<HTMLLIElement>) {
-    form.values.city = e.currentTarget.innerText.toString();
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    alert(JSON.stringify({city, pickPoint}, null, 2));
   }
 
   useEffect(() => {
-    form.values.city = searchParams.get('city') || '';
-    form.values.pickPoint = searchParams.get('pickPoint') || '';
+    // при обновлении страницы считываем все параметры строки
+    searchParams.forEach((value, key) => dispatch(setForm(key, value)));
   }, []);
 
   return (
     <main className={styles.main}>
       <Navigation stages={stages} index={activeIndex} click={setClickIndex} keyDown={setKeyIndex} />
-      <form className={styles.body} onSubmit={form.handleSubmit}>
+      <form className={styles.body} onSubmit={handleSubmit}>
         <Container className={styles.container}>
           <Creator
             index={activeIndex}
-            city={form.values.city}
-            pickPoint={form.values.pickPoint}
-            change={form.handleChange}
-            getClick={getClick}
           />
           <Checkout />
         </Container>

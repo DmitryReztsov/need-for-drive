@@ -41,7 +41,9 @@
         "implicit-arrow-linebreak": "off",
         "@typescript-eslint/no-unused-vars": "error",
         "no-unused-vars": "off",
-        "no-nested-ternary": "off"
+        "no-nested-ternary": "off",
+        "no-shadow": "off",
+        "default-param-last": "off"
     },
     "settings": {
         "import/resolver": {

@@ -7,19 +7,15 @@ import Features from './stages/Features/Features';
 
 interface ICreatorProps {
   index: number,
-  city: string,
-  pickPoint: string,
-  change: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  getClick: (e: React.MouseEvent<HTMLLIElement>) => void,
 }
 
 function Creator(props : ICreatorProps) {
   const {
-    index, city, pickPoint, change, getClick,
+    index,
   } = props;
 
   const components = [
-    <Geo city={city} pickPoint={pickPoint} change={change} getClick={getClick} />,
+    <Geo />,
     <Model />,
     <Features />,
     <Total />,

@@ -1,24 +1,21 @@
-import {FormAction, FormActionTypes, IForm, IFormState, ISetFormPayload} from './types';
+import {
+  FormAction, FormActionTypes, IFormState,
+} from './types';
 
 const initialState : IFormState = {
-  form: {
-    city: '',
-    pickPoint: '',
-  }
-}
+  city: '',
+  pickPoint: '',
+};
 
-export function formReducer(state: IFormState = initialState, action: FormAction) {
+function formReducer(state: IFormState = initialState, action: FormAction) {
   switch (action.type) {
     case FormActionTypes.SET_FORM_DATA: {
-      return {...state, form: getNewForm(state.form, action.payload)}
+      return {...state, [action.payload.key]: action.payload.value};
     }
     default: {
-      return state
+      return state;
     }
   }
 }
 
-function getNewForm(form: IForm, {key, value}: ISetFormPayload) {
-  form[key] = value;
-  return form;
-}
+export default formReducer;
