@@ -7,4 +7,5 @@
 
 .form {
   @include flex(_,flex-end,column);
+  row-gap: 13px;
 }

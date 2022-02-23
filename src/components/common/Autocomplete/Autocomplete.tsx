@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useSearchParams} from 'react-router-dom';
 import styles from './Autocomplete.module.scss';
 import SearchInput from '../inputs/SearchInput/SearchInput';
-import setForm from '../../../store/form/actions';
 import useAppendParams from '../../../hooks/useAppendParams';
+import useOutside from '../../../hooks/useOutsideAlerter';
 
 interface IAutocompleteProps {
   list: string [],
@@ -19,12 +19,15 @@ function Autocomplete(props: IAutocompleteProps) {
     list, field, label, value, placeholder,
   } = props;
 
+  const wrapperRef = useRef(null);
   const dispatch = useDispatch();
-  const appendParams = useAppendParams;
   const [searchParams, setSearchParams] = useSearchParams();
+  // Под вопросом реализация пользовательского хука
+  const appendParams = useAppendParams(dispatch, searchParams, setSearchParams);
   const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string []>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  useOutside(wrapperRef, setShowSuggestions);
 
   function handleChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
     setFilteredSuggestions(list.filter(
@@ -35,21 +38,19 @@ function Autocomplete(props: IAutocompleteProps) {
     appendParams(field, e.currentTarget.value);
   }
 
-  function handleClickOption(e:React.MouseEvent<HTMLLIElement>) {
-    setFilteredSuggestions([]);
-    setShowSuggestions(false);
-    dispatch(setForm(field, e.currentTarget.innerText));
-    searchParams.set(field, e.currentTarget.innerText);
-    setSearchParams(searchParams);
+  function handleClickInput(e: React.MouseEvent<HTMLInputElement>) {
+    setFilteredSuggestions(list.filter(
+      (suggestion) =>
+        suggestion.toLowerCase().includes(e.currentTarget.value.toLowerCase()),
+    ));
+    setShowSuggestions(true);
   }
 
   function handleKeyInput(e:React.KeyboardEvent<HTMLInputElement>) {
     if (e.code === 'Enter') {
       setActiveSuggestion(0);
       setShowSuggestions(false);
-      dispatch(setForm(field, filteredSuggestions[activeSuggestion]));
-      searchParams.set(field, filteredSuggestions[activeSuggestion]);
-      setSearchParams(searchParams);
+      appendParams(field, e.currentTarget.innerText);
     } else if (e.code === 'ArrowUp') {
       if (activeSuggestion === 0) {
         return;
@@ -67,23 +68,28 @@ function Autocomplete(props: IAutocompleteProps) {
     if (e.code === 'Enter') {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      dispatch(setForm(field, e.currentTarget.innerText));
-      searchParams.set(field, e.currentTarget.innerText);
-      setSearchParams(searchParams);
+      appendParams(field, e.currentTarget.innerText);
     }
   }
 
+  function handleClickOption(e:React.MouseEvent<HTMLLIElement>) {
+    setFilteredSuggestions([]);
+    setShowSuggestions(false);
+    appendParams(field, e.currentTarget.innerText);
+  }
+
   return (
-    <div className={styles.autocomplete}>
+    <div className={styles.autocomplete} ref={wrapperRef}>
       <SearchInput
         field={field}
         label={label}
         value={value}
         placeholder={placeholder}
+        clickHandler={handleClickInput}
         changeHandler={handleChangeInput}
         keyDownHandler={handleKeyInput}
       />
-      {(showSuggestions && value)
+      {(showSuggestions)
         ? (filteredSuggestions.length
           ? (
             <ul

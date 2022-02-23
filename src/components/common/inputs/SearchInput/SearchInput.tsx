@@ -6,13 +6,14 @@ interface ISearchInputProps {
   label: string,
   value: string,
   placeholder?: string,
+  clickHandler: (e: React.MouseEvent<HTMLInputElement>) => void,
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void,
   keyDownHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 function SearchInput(props: ISearchInputProps) {
   const {
-    field, label, value, placeholder, changeHandler, keyDownHandler,
+    field, label, value, placeholder, clickHandler, changeHandler, keyDownHandler,
   } = props;
 
   return (
@@ -24,6 +25,7 @@ function SearchInput(props: ISearchInputProps) {
         type="search"
         tabIndex={0}
         placeholder={placeholder}
+        onClick={clickHandler}
         onChange={changeHandler}
         onKeyDown={keyDownHandler}
         value={value}
