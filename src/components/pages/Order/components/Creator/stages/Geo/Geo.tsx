@@ -12,28 +12,34 @@ const cities = [
 interface IGeoProps {
   city: string,
   pickPoint: string,
+  change: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  getClick: (e: React.MouseEvent<HTMLLIElement>) => void,
 }
 
 function Geo(props: IGeoProps) {
-  const {city, pickPoint} = props;
+  const {
+    city, pickPoint, change, getClick,
+  } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string []>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
 
   function handleCityChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(city, searchParams.get('city'));
+    console.log(searchParams.get('city'));
     setFilteredSuggestions(cities.filter(
       (suggestion) =>
         suggestion.toLowerCase().includes(e.currentTarget.value.toLowerCase()),
     ));
     setShowSuggestions(true);
+    change(e);
     setSearchParams({city: e.currentTarget.value});
   }
 
   function handleCityClick(e:React.MouseEvent<HTMLLIElement>) {
     setFilteredSuggestions([]);
     setShowSuggestions(false);
+    getClick(e);
     setSearchParams({city: e.currentTarget.innerText});
   }
 

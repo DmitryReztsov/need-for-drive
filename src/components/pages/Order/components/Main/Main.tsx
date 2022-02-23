@@ -37,11 +37,14 @@ function Main() {
     },
   });
 
+  function getClick(e: React.MouseEvent<HTMLLIElement>) {
+    form.values.city = e.currentTarget.innerText.toString();
+  }
+
   useEffect(() => {
-    console.log(1);
     form.values.city = searchParams.get('city') || '';
     form.values.pickPoint = searchParams.get('pickPoint') || '';
-  }, [searchParams]);
+  }, []);
 
   return (
     <main className={styles.main}>
@@ -52,6 +55,8 @@ function Main() {
             index={activeIndex}
             city={form.values.city}
             pickPoint={form.values.pickPoint}
+            change={form.handleChange}
+            getClick={getClick}
           />
           <Checkout />
         </Container>
