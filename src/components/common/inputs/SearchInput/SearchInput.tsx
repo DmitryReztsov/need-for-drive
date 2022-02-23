@@ -16,7 +16,7 @@ function SearchInput(props: ISearchInputProps) {
   } = props;
 
   return (
-    <label htmlFor={field} className={styles.search}>
+    <label htmlFor={field} className={styles.label}>
       {label}
       <input
         id={field}
@@ -27,6 +27,7 @@ function SearchInput(props: ISearchInputProps) {
         onChange={changeHandler}
         onKeyDown={keyDownHandler}
         value={value}
+        className={styles.input}
       />
     </label>
   );

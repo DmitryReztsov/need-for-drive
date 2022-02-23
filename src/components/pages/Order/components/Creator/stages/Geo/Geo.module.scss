@@ -7,31 +7,4 @@
 
 .form {
   @include flex(_,flex-end,column);
-  font-size: 0.875rem;
-  line-height: 1rem;
-  font-weight: 300;
-
-  label {
-
-  }
-
-  input {
-    width: 224px;
-    margin: 0px 0px 5px 8px;
-    border-bottom: 1px solid $gray;
-    padding: 0px 0px 3px 8px;
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: $black;
-    &::placeholder {
-      color: $gray;
-    }
-    &[type="search"]::-webkit-search-cancel-button {
-      -webkit-appearance: none;
-      width: 8px;
-      height: 8px;
-      margin-right: 8px;
-      background: url("../../../../../../../content/svg/clear-button.svg");
-    }
-  }
 }

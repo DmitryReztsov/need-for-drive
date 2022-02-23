@@ -4,6 +4,7 @@ import {useSearchParams} from 'react-router-dom';
 import styles from './Autocomplete.module.scss';
 import SearchInput from '../inputs/SearchInput/SearchInput';
 import setForm from '../../../store/form/actions';
+import useAppendParams from '../../../hooks/useAppendParams';
 
 interface IAutocompleteProps {
   list: string [],
@@ -19,23 +20,22 @@ function Autocomplete(props: IAutocompleteProps) {
   } = props;
 
   const dispatch = useDispatch();
+  const appendParams = useAppendParams;
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string []>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
     setFilteredSuggestions(list.filter(
       (suggestion) =>
         suggestion.toLowerCase().includes(e.currentTarget.value.toLowerCase()),
     ));
     setShowSuggestions(true);
-    dispatch(setForm(field, e.currentTarget.value));
-    searchParams.set(field, e.currentTarget.value);
-    setSearchParams(searchParams);
+    appendParams(field, e.currentTarget.value);
   }
 
-  function handleClick(e:React.MouseEvent<HTMLLIElement>) {
+  function handleClickOption(e:React.MouseEvent<HTMLLIElement>) {
     setFilteredSuggestions([]);
     setShowSuggestions(false);
     dispatch(setForm(field, e.currentTarget.innerText));
@@ -43,10 +43,13 @@ function Autocomplete(props: IAutocompleteProps) {
     setSearchParams(searchParams);
   }
 
-  function handleKeyDown(e:React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyInput(e:React.KeyboardEvent<HTMLInputElement>) {
     if (e.code === 'Enter') {
       setActiveSuggestion(0);
       setShowSuggestions(false);
+      dispatch(setForm(field, filteredSuggestions[activeSuggestion]));
+      searchParams.set(field, filteredSuggestions[activeSuggestion]);
+      setSearchParams(searchParams);
     } else if (e.code === 'ArrowUp') {
       if (activeSuggestion === 0) {
         return;
@@ -60,7 +63,7 @@ function Autocomplete(props: IAutocompleteProps) {
     }
   }
 
-  function handleLiEnter(e:React.KeyboardEvent<HTMLLIElement>) {
+  function handleKeyOption(e:React.KeyboardEvent<HTMLLIElement>) {
     if (e.code === 'Enter') {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
@@ -77,8 +80,8 @@ function Autocomplete(props: IAutocompleteProps) {
         label={label}
         value={value}
         placeholder={placeholder}
-        changeHandler={handleChange}
-        keyDownHandler={handleKeyDown}
+        changeHandler={handleChangeInput}
+        keyDownHandler={handleKeyInput}
       />
       {(showSuggestions && value)
         ? (filteredSuggestions.length
@@ -90,10 +93,11 @@ function Autocomplete(props: IAutocompleteProps) {
               {filteredSuggestions.map((suggestion, index) => (
                 <li
                   role="menuitem"
+                  tabIndex={0}
                   className={`${index === activeSuggestion ? styles.active : ''}`}
                   key={suggestion}
-                  onClick={handleClick}
-                  onKeyDown={handleLiEnter}
+                  onClick={handleClickOption}
+                  onKeyDown={handleKeyOption}
                 >
                   {suggestion}
                 </li>
@@ -101,8 +105,8 @@ function Autocomplete(props: IAutocompleteProps) {
             </ul>
           )
           : (
-            <div className={styles.no_suggestion}>
-              <em>No suggestions available.</em>
+            <div className={styles.no_suggestions}>
+              Города не найдены
             </div>
           ))
         : null}

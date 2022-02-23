@@ -34,7 +34,7 @@ function Main() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    alert(JSON.stringify({city, pickPoint}, null, 2));
+    console.log(JSON.stringify({city, pickPoint}, null, 2));
   }
 
   useEffect(() => {
