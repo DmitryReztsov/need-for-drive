@@ -2,10 +2,21 @@
 
 .geo {
   padding-top: 32px;
-  @include flex(_,_,_);
+  @include flex(_,flex-start,column);
 }
 
 .form {
   @include flex(_,flex-end,column);
   row-gap: 13px;
+}
+
+.text {
+  margin-top: 45px;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: 300;
+}
+
+.map {
+  margin-top: 16px;
 }

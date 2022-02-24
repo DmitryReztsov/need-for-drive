@@ -3,8 +3,8 @@ import setForm from '../store/form/actions';
 
 function useAppendParams(
   dispatch: Dispatch,
-  searchParams : URLSearchParams,
-  setSearchParams : (searchParams: URLSearchParams) => void,
+  searchParams: URLSearchParams,
+  setSearchParams: (params: URLSearchParams) => void,
 ) {
   return function (field: string, value: string) {
     dispatch(setForm(field, value));

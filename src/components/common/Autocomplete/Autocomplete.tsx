@@ -90,7 +90,7 @@ function Autocomplete(props: IAutocompleteProps) {
         changeHandler={handleChangeInput}
         keyDownHandler={handleKeyInput}
       />
-      {(showSuggestions)
+      {showSuggestions
         ? (
           <Suggestions
             filteredSuggestions={filteredSuggestions}
