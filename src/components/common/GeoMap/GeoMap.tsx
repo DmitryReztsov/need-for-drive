@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {
   YMaps, Map, Placemark, YMapsApi, AnyObject,
 } from 'react-yandex-maps';
+import {useDispatch} from 'react-redux';
 import styles from './GeoMap.module.scss';
 import PlaceMarkIcon from '../../../content/svg/placemark.svg';
+import setForm from '../../../store/form/actions';
 
 interface IGeoMapProps {
   className: string,
@@ -15,16 +17,25 @@ const coordinates = [
 ];
 
 function GeoMap(props: IGeoMapProps) {
+  const dispatch = useDispatch();
   const {className} = props;
   const [center, setCenter] = useState<number[]>([45.0222, 38.97745623606236]);
-  const [zoom] = useState<number>(15);
+  const [zoom] = useState<number>(13);
 
   function getGeoLocation(ymaps: YMapsApi) {
     return ymaps.geolocation
       .get({provider: 'yandex', mapStateAutoApply: true})
-      .then((result: AnyObject) => result.geoObjects.get(0).geometry.getCoordinates())
-      .then((result: number[]) => setCenter(result));
+      .then((result: AnyObject) => result.geoObjects.get(0))
+      .then((result: AnyObject) => {
+        dispatch(setForm('city', result.getLocalities().join(', ')));
+        setCenter(result.geometry.getCoordinates());
+      });
   }
+
+  function centerMark(coordinate : number[]) {
+    setCenter(coordinate);
+  }
+
   useEffect(() => {
     console.log(center);
   }, [center]);
@@ -43,6 +54,7 @@ function GeoMap(props: IGeoMapProps) {
           <Placemark
             key={coordinate[0]}
             geometry={coordinate}
+            onClick={() => centerMark(coordinate)}
             options={{
               iconLayout: 'default#image',
               iconImageHref: PlaceMarkIcon,
