@@ -22,7 +22,6 @@ function Autocomplete(props: IAutocompleteProps) {
   const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string []>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
-
   const appendParams = useAppendParams();
   // Обработка клика вне меню
   useOutside(wrapperRef, setShowSuggestions);
