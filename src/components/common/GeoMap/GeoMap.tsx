@@ -81,7 +81,7 @@ function GeoMap(props: IGeoMapProps) {
   }, [pickPoint]);
 
   useEffect(() => {
-    setNewCenter(`${city}, ${pickPoint}`);
+    setNewCenter(city ? `${city}, ${pickPoint}` : 'Краснодар');
   }, [city, pickPoint]);
   return (
     <Map

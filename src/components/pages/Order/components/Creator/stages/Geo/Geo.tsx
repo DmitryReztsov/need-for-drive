@@ -22,8 +22,20 @@ function Geo() {
   return (
     <div className={styles.geo}>
       <div className={styles.form}>
-        <Autocomplete list={cities} field="city" label="Город" value={city} placeholder="Начните вводить город ..." />
-        <Autocomplete list={getCityPickPoints()} field="pickPoint" label="Пункт выдачи" value={pickPoint} placeholder="Начните вводить пункт ..." />
+        <Autocomplete
+          list={cities}
+          field="city"
+          label="Город"
+          value={city}
+          placeholder="Начните вводить город ..."
+        />
+        <Autocomplete
+          list={getCityPickPoints()}
+          field="pickPoint"
+          label="Пункт выдачи"
+          value={pickPoint}
+          placeholder="Начните вводить пункт ..."
+        />
       </div>
       <p className={styles.text}>Выбрать на карте:</p>
       <GeoMap className={styles.map} city={city} pickPoint={pickPoint} pickPoints={pickPoints} />
