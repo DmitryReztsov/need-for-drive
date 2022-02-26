@@ -1,23 +1,22 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Geo.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
 import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
 import {cities, pickPoints} from './mocks';
-import useAppendParams from '../../../../../../../hooks/useAppendParams';
 
 function Geo() {
   const {city, pickPoint} = useTypedSelector((state) => state.form);
-  const appendParams = useAppendParams();
+  const [pickPointsList, setPickPointList] = useState<string []>([]);
 
-  function getCityPickPoints(): string[] {
-    return pickPoints
+  function getCityPickPoints() {
+    setPickPointList(pickPoints
       .filter((pickPoint) => pickPoint.city === city)
-      .map((pickPoint) => pickPoint.address);
+      .map((pickPoint) => pickPoint.address));
   }
 
   useEffect(() => {
-    appendParams('pickPoint', '');
+    getCityPickPoints();
   }, [city]);
   return (
     <div className={styles.geo}>
@@ -30,7 +29,7 @@ function Geo() {
           placeholder="Начните вводить город ..."
         />
         <Autocomplete
-          list={getCityPickPoints()}
+          list={pickPointsList}
           field="pickPoint"
           label="Пункт выдачи"
           value={pickPoint}

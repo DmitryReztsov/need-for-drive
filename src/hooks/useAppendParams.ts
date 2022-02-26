@@ -5,6 +5,7 @@ import setForm from '../store/form/actions';
 function useAppendParams() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+
   return function (field: string, value: string) {
     dispatch(setForm(field, value));
     searchParams.set(field, value);

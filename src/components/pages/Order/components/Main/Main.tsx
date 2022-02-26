@@ -39,7 +39,10 @@ function Main() {
 
   useEffect(() => {
     // при обновлении страницы считываем все параметры строки
-    searchParams.forEach((value, key) => dispatch(setForm(key, value)));
+    searchParams.forEach((value, key) => {
+      console.log(value, key);
+      dispatch(setForm(key, value));
+    });
   }, []);
 
   return (
