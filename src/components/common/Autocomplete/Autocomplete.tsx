@@ -1,6 +1,4 @@
 import React, {useRef, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {useSearchParams} from 'react-router-dom';
 import styles from './Autocomplete.module.scss';
 import SearchInput from '../inputs/SearchInput/SearchInput';
 import useAppendParams from '../../../hooks/useAppendParams';
@@ -21,13 +19,12 @@ function Autocomplete(props: IAutocompleteProps) {
   } = props;
 
   const wrapperRef = useRef(null);
-  const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
-  // Под вопросом реализация пользовательского хука
-  const appendParams = useAppendParams(dispatch, searchParams, setSearchParams);
   const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string []>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+
+  const appendParams = useAppendParams();
+  // Обработка клика вне меню
   useOutside(wrapperRef, setShowSuggestions);
 
   function handleChangeInput(e: React.ChangeEvent<HTMLInputElement>) {

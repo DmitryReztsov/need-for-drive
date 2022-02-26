@@ -1,11 +1,10 @@
-import {Dispatch} from 'redux';
+import {useDispatch} from 'react-redux';
+import {useSearchParams} from 'react-router-dom';
 import setForm from '../store/form/actions';
 
-function useAppendParams(
-  dispatch: Dispatch,
-  searchParams: URLSearchParams,
-  setSearchParams: (params: URLSearchParams) => void,
-) {
+function useAppendParams() {
+  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
   return function (field: string, value: string) {
     dispatch(setForm(field, value));
     searchParams.set(field, value);
