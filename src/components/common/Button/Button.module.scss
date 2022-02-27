@@ -58,3 +58,11 @@
     background: $grad-very-dark-purple;
   }
 }
+
+.blocked {
+  background: $gray-light;
+  user-select: none;
+  &:hover,focus,active {
+    background: $gray-light;
+  }
+}

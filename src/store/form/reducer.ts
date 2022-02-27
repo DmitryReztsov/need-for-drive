@@ -5,6 +5,8 @@ import {
 const initialState : IFormState = {
   city: '',
   pickPoint: '',
+  model: '',
+  price: '',
 };
 
 function formReducer(state: IFormState = initialState, action: FormAction) {

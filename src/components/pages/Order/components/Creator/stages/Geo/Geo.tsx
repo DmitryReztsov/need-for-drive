@@ -3,7 +3,7 @@ import styles from './Geo.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
 import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
-import {cities, pickPoints} from './mocks';
+import {cities, pickPoints} from '../../../../mocks';
 
 function Geo() {
   const {city, pickPoint} = useTypedSelector((state) => state.form);

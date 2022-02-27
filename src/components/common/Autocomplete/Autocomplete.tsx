@@ -32,8 +32,8 @@ function Autocomplete(props: IAutocompleteProps) {
         suggestion.toLowerCase().includes(e.currentTarget.value.toLowerCase()),
     ));
     setShowSuggestions(true);
-    appendParams('pickPoint', '');
     appendParams(field, e.currentTarget.value);
+    if (field === 'city') appendParams('pickPoint', '');
   }
 
   function handleClickInput(e: React.MouseEvent<HTMLInputElement>) {

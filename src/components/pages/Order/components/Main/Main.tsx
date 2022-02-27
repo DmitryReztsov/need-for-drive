@@ -26,10 +26,14 @@ function Main() {
     setActiveIndex(id);
   }
 
-  function setKeyIndex(e:React.KeyboardEvent<HTMLLIElement>, id: number) {
+  function setKeyIndex(e: React.KeyboardEvent<HTMLLIElement>, id: number) {
     if (e.code === 'Enter') {
       setActiveIndex(id);
     }
+  }
+
+  function incrementIndex() {
+    setActiveIndex((state) => state + 1);
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -40,20 +44,24 @@ function Main() {
   useEffect(() => {
     // при обновлении страницы считываем все параметры строки
     searchParams.forEach((value, key) => {
-      console.log(value, key);
       dispatch(setForm(key, value));
     });
   }, []);
 
   return (
     <main className={styles.main}>
-      <Navigation stages={stages} index={activeIndex} click={setClickIndex} keyDown={setKeyIndex} />
+      <Navigation
+        stages={stages}
+        activeIndex={activeIndex}
+        click={setClickIndex}
+        keyDown={setKeyIndex}
+      />
       <form className={styles.body} onSubmit={handleSubmit}>
         <Container className={styles.container}>
           <Creator
             index={activeIndex}
           />
-          <Checkout />
+          <Checkout click={incrementIndex} activeIndex={activeIndex} />
         </Container>
       </form>
     </main>
