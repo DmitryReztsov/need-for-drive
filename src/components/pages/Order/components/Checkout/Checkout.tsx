@@ -1,37 +1,26 @@
 import React from 'react';
 import styles from './Checkout.module.scss';
-import useTypedSelector from '../../../../../store/selectors';
 import Button from '../../../../common/Button/Button';
+import {IFields} from '../Main/Main';
+import useTypedSelector from '../../../../../store/selectors';
 
 interface ICheckoutProps {
   click?: () => void,
   activeIndex: number,
+  fields: IFields [],
 }
 
 function Checkout(props: ICheckoutProps) {
-  const {click, activeIndex} = props;
-  const {
-    city, pickPoint, model, price,
-  } = useTypedSelector((state) => state.form);
+  const {click, activeIndex, fields} = props;
+  const {price} = useTypedSelector((state) => state.form);
 
-  // массив внутри, так как хук можно вызвать только внутри компонентов
-  const fields = [
-    {
-      label: 'Пункт выдачи',
-      value: (city && pickPoint) ? `${city}, ${pickPoint}` : '',
-    },
-    {
-      label: 'Модель',
-      value: (model) ? `${model}` : '',
-    },
-  ];
   return (
     <div className={styles.checkout}>
       <h3 className={styles.header}>Ваш заказ:</h3>
       <ul className={styles.details}>
-        {fields.map((field) => {
-          // Если значение пустое - не отображаем
-          return field.value
+        {fields.map((field, i) => {
+          // Если значение пустое и не price - не отображаем
+          return field.value && (i !== 3)
             ? (
               <li key={field.value} className={styles.row}>
                 <span className={styles.label}>{field.label}</span>
