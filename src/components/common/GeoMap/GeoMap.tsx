@@ -34,6 +34,9 @@ function GeoMap(props: IGeoMapProps) {
             state.push(obj);
             return state;
           });
+        })
+        .catch((err: Error) => {
+          console.log(err.message);
         });
     });
   }
@@ -41,11 +44,14 @@ function GeoMap(props: IGeoMapProps) {
   function getGeoLocation(ymaps: YMapsApi) {
     setYmaps(ymaps);
     getPickPointData(ymaps);
-    if (city) {
-      return ymaps.geocode(city)
+    if (city || pickPoint) {
+      return ymaps.geocode(`${city}, ${pickPoint}`)
         .then((result: AnyObject) => result.geoObjects.get(0))
         .then((result: AnyObject) => {
           setCenter(result.geometry.getCoordinates());
+        })
+        .catch((err: Error) => {
+          console.log(err.message);
         });
     }
     return ymaps.geolocation
@@ -66,6 +72,9 @@ function GeoMap(props: IGeoMapProps) {
         .then((result: AnyObject) => result.geoObjects.get(0))
         .then((result: AnyObject) => {
           setCenter(result.geometry.getCoordinates());
+        })
+        .catch((err: Error) => {
+          console.log(err.message);
         });
     }
   }
@@ -81,7 +90,7 @@ function GeoMap(props: IGeoMapProps) {
   }, [pickPoint]);
 
   useEffect(() => {
-    setNewCenter(city ? `${city}, ${pickPoint}` : 'Краснодар');
+    setNewCenter(city ? `${city}, ${pickPoint}` : 'Ульяновск');
   }, [city, pickPoint]);
   return (
     <Map
