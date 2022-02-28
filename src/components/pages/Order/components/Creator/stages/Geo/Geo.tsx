@@ -27,6 +27,8 @@ function Geo() {
           label="Город"
           value={city}
           placeholder="Начните вводить город ..."
+          resetField="pickPoint"
+          clickDropdown
         />
         <Autocomplete
           list={pickPointsList}

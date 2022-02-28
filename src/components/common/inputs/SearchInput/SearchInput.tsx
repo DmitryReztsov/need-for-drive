@@ -9,11 +9,12 @@ interface ISearchInputProps {
   clickHandler: (e: React.MouseEvent<HTMLInputElement>) => void,
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void,
   keyDownHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void,
+  blurHandler: (e: React.FocusEvent<HTMLInputElement>) => void,
 }
 
 function SearchInput(props: ISearchInputProps) {
   const {
-    field, label, value, placeholder, clickHandler, changeHandler, keyDownHandler,
+    field, label, value, placeholder, clickHandler, changeHandler, keyDownHandler, blurHandler,
   } = props;
 
   return (
@@ -28,6 +29,7 @@ function SearchInput(props: ISearchInputProps) {
         onClick={clickHandler}
         onChange={changeHandler}
         onKeyDown={keyDownHandler}
+        onBlur={blurHandler}
         value={value}
         className={styles.input}
       />

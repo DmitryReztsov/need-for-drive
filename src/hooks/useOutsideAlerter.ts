@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 
-function useOutside(ref: React.RefObject<HTMLDivElement>, close: (arg: boolean) => void) {
+function useOutside(
+  ref: React.RefObject<HTMLDivElement>,
+  close: (arg: boolean) => void,
+) {
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (ref) {
