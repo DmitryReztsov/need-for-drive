@@ -6,66 +6,63 @@ import styles from './Main.module.scss';
 import Creator from '../Creator/Creator';
 import Checkout from '../Checkout/Checkout';
 import Container from '../../../../common/Container/Container';
-import useTypedSelector from '../../../../../store/selectors';
 import setForm from '../../../../../store/form/actions';
+import useTypedSelector from '../../../../../store/selectors';
 
-export interface IFields {
-  [key: string]: string,
+export interface IStage {
+  name: string,
+  vars: any [],
+  buttonLabel: string,
 }
 
 function Main() {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const {city, pickPoint, model} = useTypedSelector((state) => state.form);
+  const {
+    city, pickPoint, model, color, rentTime, tariff,
+  } = useTypedSelector((state) => state.form);
 
-  const stages = [
-    'Местоположение',
-    'Модель',
-    'Дополнительно',
-    'Итого',
-  ];
-
-  // массив внутри, так как хук можно вызвать только внутри компонентов
-  const fields : IFields [] = [
+  // Здесь храним название для навигации, возможность навигации и текст кнопки
+  const stages: IStage [] = [
     {
-      label: 'Пункт выдачи',
-      value: (city && pickPoint) ? `${city}, ${pickPoint}` : '',
-      stage: 'Местоположение',
-      next: 'Выбрать модель',
+      name: 'Местоположение',
+      vars: [city, pickPoint],
+      buttonLabel: 'Выбрать модель',
     },
     {
-      label: 'Модель',
-      value: (model) ? `${model}` : '',
-      stage: 'Модель',
-      next: 'Дополнительно',
+      name: 'Модель',
+      vars: [model],
+      buttonLabel: 'Дополнительно',
     },
     {
-      label: 'Полный бак',
-      value: '',
-      stage: 'Дополнительно',
-      next: 'Итого',
+      name: 'Дополнительно',
+      vars: [color, rentTime, tariff],
+      buttonLabel: 'Итого',
     },
     {
-      label: '...',
-      value: '',
-      stage: 'Итого',
-      next: 'Заказать',
+      name: 'Итого',
+      vars: [],
+      buttonLabel: 'Заказать',
     },
   ];
 
   function setClickIndex(id: number) {
-    setActiveIndex(id);
+    if (id === 0 || !stages[id - 1].vars.includes('')) {
+      setActiveIndex(id);
+    }
   }
 
   function setKeyIndex(e: React.KeyboardEvent<HTMLLIElement>, id: number) {
-    if (e.code === 'Enter') {
+    if (e.code === 'Enter' && (id === 0 || !stages[id - 1].vars.includes(''))) {
       setActiveIndex(id);
     }
   }
 
   function incrementIndex() {
-    setActiveIndex((state) => state + 1);
+    if (!stages[activeIndex].vars.includes('')) {
+      setActiveIndex((state) => state + 1);
+    }
   }
 
   useEffect(() => {
@@ -91,7 +88,7 @@ function Main() {
           <Checkout
             click={incrementIndex}
             activeIndex={activeIndex}
-            fields={fields}
+            stages={stages}
           />
         </Container>
       </form>

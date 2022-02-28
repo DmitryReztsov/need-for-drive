@@ -1,9 +1,10 @@
 import React from 'react';
 import Container from '../../../../common/Container/Container';
 import styles from './Navigation.module.scss';
+import {IStage} from '../Main/Main';
 
 interface INavigationProps {
-  stages: string [],
+  stages: IStage [],
   activeIndex: number,
   click: (id: number) => void,
   keyDown: (e: React.KeyboardEvent<HTMLLIElement>, id: number) => void,
@@ -21,12 +22,12 @@ function Navigation(props: INavigationProps) {
             <li
               role="menuitem"
               tabIndex={0}
-              key={stage}
+              key={stage.name}
               className={i === activeIndex ? styles.active : ''}
               onClick={() => click(i)}
               onKeyDown={(e) => keyDown(e, i)}
             >
-              {stage}
+              {stage.name}
             </li>
           ))}
         </ul>

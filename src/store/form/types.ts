@@ -1,5 +1,14 @@
 export interface IFormState {
-  [key: string]: string,
+  city: string,
+  pickPoint: string,
+  model: string,
+  price: string,
+  color: string,
+  rentTime: string,
+  tariff: string,
+  fuel: boolean,
+  babySeat: boolean,
+  rightHandDrive: boolean,
 }
 
 export interface ISetFormPayload {

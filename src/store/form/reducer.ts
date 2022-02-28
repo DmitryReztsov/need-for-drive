@@ -7,6 +7,12 @@ const initialState : IFormState = {
   pickPoint: '',
   model: '',
   price: '',
+  color: '',
+  rentTime: '',
+  tariff: '',
+  fuel: false,
+  babySeat: false,
+  rightHandDrive: false,
 };
 
 function formReducer(state: IFormState = initialState, action: FormAction) {
