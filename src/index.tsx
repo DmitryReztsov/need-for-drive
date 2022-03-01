@@ -6,12 +6,11 @@ import {Provider} from 'react-redux';
 import {YMaps} from 'react-yandex-maps';
 import App from './components/App/App';
 import {store} from './store';
-import {APIKEY} from './utils/settings';
 
 ReactDOM.render(
   <Provider store={store}>
     <YMaps query={{
-      apikey: APIKEY,
+      apikey: process.env.React_App_YANDEX_API_KEY,
     }}
     >
       <HashRouter>
