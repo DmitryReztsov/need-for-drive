@@ -26,10 +26,12 @@ function Autocomplete(props: IAutocompleteProps) {
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const appendParams = useAppendParams();
 
+  // Здесь мы проверяем, обнуляет ли изменения этого поля какое-то другое поле.
   function clearField() {
     if (resetField) appendParams(resetField, '');
   }
 
+  // В зависимости от значения сортируем список элементов
   function handleChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
     setFilteredSuggestions(list.sort().filter(
       (suggestion) =>

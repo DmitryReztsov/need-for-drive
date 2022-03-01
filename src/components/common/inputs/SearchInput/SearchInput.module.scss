@@ -4,6 +4,10 @@
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 300;
+  @include media($md) {
+    @include flex(center,_,column);
+    row-gap: 10px;
+  }
 }
 
 
@@ -15,9 +19,15 @@
   font-size: 0.875rem;
   font-weight: 300;
   color: $black;
+
+  @include media($md) {
+    margin: 0;
+  }
+
   &::placeholder {
     color: $gray;
   }
+
   &[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     width: 8px;

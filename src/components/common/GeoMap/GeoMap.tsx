@@ -30,8 +30,9 @@ function GeoMap(props: IGeoMapProps) {
       ymaps.geocode(`${pickPoint.city}, ${pickPoint.address}`)
         .then((result: AnyObject) => {
           setGeoPickPoints((state) => {
-            const obj = Object.assign(result.geoObjects.get(0), pickPoint);
-            state.push(obj);
+            // создаем массив объектов с информацией о точке, добавляем туда название точки
+            const pointsArray = Object.assign(result.geoObjects.get(0), pickPoint);
+            state.push(pointsArray);
             return state;
           });
         })
@@ -41,9 +42,11 @@ function GeoMap(props: IGeoMapProps) {
     });
   }
 
+  // Запускается функция при загрузке карты
   function getGeoLocation(ymaps: YMapsApi) {
     setYmaps(ymaps);
     getPickPointData(ymaps);
+    // если есть данные - прогружаем их на карту
     if (city || pickPoint) {
       return ymaps.geocode(`${city}, ${pickPoint}`)
         .then((result: AnyObject) => result.geoObjects.get(0))
@@ -54,6 +57,7 @@ function GeoMap(props: IGeoMapProps) {
           console.log(err.message);
         });
     }
+    // иначе - поиск местоположения по айпи
     return ymaps.geolocation
       .get({provider: 'yandex', mapStateAutoApply: true})
       .then((result: AnyObject) => result.geoObjects.get(0))

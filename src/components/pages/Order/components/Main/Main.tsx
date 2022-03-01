@@ -23,7 +23,7 @@ function Main() {
     city, pickPoint, model, color, rentTime, tariff,
   } = useTypedSelector((state) => state.form);
 
-  // Здесь храним название для навигации, возможность навигации и текст кнопки
+  // Здесь храним название для навигации, переменные страниц заказа и текст кнопки
   const stages: IStage [] = [
     {
       name: 'Местоположение',
@@ -47,24 +47,28 @@ function Main() {
     },
   ];
 
+  // проверяем заполненность данных
   function setClickIndex(id: number) {
     if (id === 0 || !stages[id - 1].vars.includes('')) {
       setActiveIndex(id);
     }
   }
 
+  // проверяем заполненность данных по клавише
   function setKeyIndex(e: React.KeyboardEvent<HTMLLIElement>, id: number) {
     if (e.code === 'Enter' && (id === 0 || !stages[id - 1].vars.includes(''))) {
       setActiveIndex(id);
     }
   }
 
+  // обработчик нажатия кнопки
   function incrementIndex() {
     if (!stages[activeIndex].vars.includes('')) {
       setActiveIndex((state) => state + 1);
     }
   }
 
+  // при загрузке страницы смотрим на url, если есть - заполняем redux
   useEffect(() => {
     // при обновлении страницы считываем все параметры строки
     searchParams.forEach((value, key) => {

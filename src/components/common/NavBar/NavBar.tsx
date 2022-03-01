@@ -90,7 +90,7 @@ function NavBar() {
             </li>
           </ul>
         </div>
-        <div className={styles.glass} />
+        <div className={new URL(document.location.href).toString().includes('order') ? '' : styles.glass} />
         <LangSwitcher
           lang={lang}
           className={styles.switcher}

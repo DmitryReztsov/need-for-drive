@@ -45,16 +45,15 @@
   height: 100vh;
   transform: translateX(-100%);
   overflow: auto;
-
   @include transition(0.5s,0s);
+
+  @include media($md) {
+    @include flex(space-between,stretch,column);
+  }
 
   &.active {
     transform: translateX(0);
     @include transition(0.5s,0s);
-  }
-
-  @include media($md) {
-    @include flex(space-between,stretch,column);
   }
 
   .switcher {
