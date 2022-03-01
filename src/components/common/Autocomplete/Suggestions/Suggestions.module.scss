@@ -5,15 +5,26 @@
   right: 0;
   z-index: 3;
   width: 206px;
-  max-height: 143px;
+  max-height: 106px;
   padding: 4px 8px;
   overflow-y: auto;
-  border: 1px solid $gray;
+  border: 1px solid $gray-light;
   border-top-width: 0;
   background-color: $white;
   color: $gray;
   list-style: none;
   @include transition(0.2s,0s);
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    border: 1px solid $gray-light;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 2px;
+    border-radius: 2px;
+    background-color: $gray;
+  }
 
   li {
     padding: 4px 0;

@@ -16,7 +16,7 @@ function Navigation(props: INavigationProps) {
   } = props;
   return (
     <nav className={styles.navigation}>
-      <Container>
+      <Container className={styles.container}>
         <ul role="menu" tabIndex={0} className={styles.list}>
           {stages.map((stage, i) => (
             <li

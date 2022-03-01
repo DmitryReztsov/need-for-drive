@@ -4,3 +4,15 @@
   @include flex(_,_,column);
   flex: 1 1 auto;
 }
+
+.container {
+  @include media($xl) {
+    padding: 0 64px;
+  }
+  @include media($lg) {
+    padding: 0 32px;
+  }
+  @include media($md) {
+    padding: 0 16px;
+  }
+}

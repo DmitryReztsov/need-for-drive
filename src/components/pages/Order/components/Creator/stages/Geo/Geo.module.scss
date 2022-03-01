@@ -3,6 +3,10 @@
 .geo {
   padding-top: 32px;
   @include flex(_,flex-start,column);
+
+  @include media($md) {
+    padding-top: 16px;
+  }
 }
 
 .form {
@@ -15,8 +19,23 @@
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 300;
+
+  @include media($lg) {
+    margin-top: 24px;
+  }
 }
 
 .map {
   margin-top: 16px;
+  width: 79.4%;
+  height: 352px;
+
+  @include media($lg) {
+    width: 100%;
+    height: 352px;
+  }
+
+  @include media($md) {
+    width: 100%;
+  }
 }

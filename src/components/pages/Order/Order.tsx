@@ -6,7 +6,7 @@ import styles from './Order.module.scss';
 function Order() {
   return (
     <div className={styles.order}>
-      <Header />
+      <Header padding={styles.container} />
       <Main />
     </div>
   );

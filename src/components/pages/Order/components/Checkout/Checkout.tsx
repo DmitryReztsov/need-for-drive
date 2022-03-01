@@ -66,6 +66,7 @@ function Checkout(props: ICheckoutProps) {
             ? (
               <li key={field.value} className={styles.row}>
                 <span className={styles.label}>{field.label}</span>
+                <span />
                 <span className={styles.value}>
                   {field.value}
                 </span>

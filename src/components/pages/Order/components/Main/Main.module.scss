@@ -11,5 +11,16 @@
 
 .container {
   @include flex(_,_,_);
-  height: 100%;
+  max-height: 100%;
+
+  @include media($xl) {
+    padding: 0 64px;
+  }
+  @include media($lg) {
+    @include flex(_,_,column);
+    padding: 0 32px;
+  }
+  @include media($md) {
+    padding: 0 16px;
+  }
 }
