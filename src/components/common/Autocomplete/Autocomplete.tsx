@@ -20,7 +20,7 @@ function Autocomplete(props: IAutocompleteProps) {
     list, field, label, value, placeholder, resetField, clickDropdown,
   } = props;
 
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string []>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
@@ -73,13 +73,13 @@ function Autocomplete(props: IAutocompleteProps) {
   }
 
   function handleBlurInput(e: React.FocusEvent<HTMLInputElement>) {
-    const value = filteredSuggestions.find((sugg) => sugg.includes(e.currentTarget.value));
+    const buffer = filteredSuggestions.find((sugg) => sugg.includes(e.currentTarget.value));
     // Чтобы дать возможность сработать клику по меню, оставляем варианты когда
     // только одна опция или нет. Таким образом, мы автоподставляем нужно значение
-    if (filteredSuggestions.length <= 1) {
+    if (wrapperRef.current && !wrapperRef.current.contains(e.relatedTarget) && value) {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      appendParams(field, value || '');
+      appendParams(field, buffer || '');
     }
   }
 
