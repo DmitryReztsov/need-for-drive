@@ -36,6 +36,9 @@
     &::after {
       content: url("../../../../../content/svg/arrow.svg");
       margin: 0 16px;
+      @include media($md) {
+        margin: 0 8px;
+      }
     }
     &:last-child {
       &::after {

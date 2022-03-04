@@ -20,7 +20,7 @@
   }
 
   @include media($md) {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 32px;
@@ -72,16 +72,13 @@
 .body {
   flex: 1 1 auto;
   padding: 35vh 0px 0px 128px;
-  max-height: 100%;
   background: $shadow-black;
 
   @include media($xl) {
-    flex: 1 1 100%;
     padding: 35vh 0px 0px 97px;
   }
 
   @include media($md) {
-    flex: 1 1 100%;
     padding: 15vh 0px 0px 28px;
   }
 }

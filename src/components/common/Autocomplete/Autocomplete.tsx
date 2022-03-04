@@ -43,16 +43,11 @@ function Autocomplete(props: IAutocompleteProps) {
   }
 
   function handleClickInput(e: React.MouseEvent<HTMLInputElement>) {
-    if (clickDropdown) {
-      setFilteredSuggestions(list);
-      setShowSuggestions(true);
-    } else {
-      setFilteredSuggestions(list.filter(
-        (suggestion) =>
-          suggestion.toLowerCase().includes(e.currentTarget.value.toLowerCase()),
-      ));
-      setShowSuggestions(true);
-    }
+    setFilteredSuggestions(clickDropdown ? list : list.filter(
+      (suggestion) =>
+        suggestion.toLowerCase().includes(e.currentTarget.value.toLowerCase()),
+    ));
+    setShowSuggestions(true);
   }
 
   function handleKeyInput(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -116,16 +111,14 @@ function Autocomplete(props: IAutocompleteProps) {
         keyDownHandler={handleKeyInput}
         blurHandler={handleBlurInput}
       />
-      {showSuggestions
-        ? (
-          <Suggestions
-            filteredSuggestions={filteredSuggestions}
-            activeSuggestion={activeSuggestion}
-            click={handleClickOption}
-            keyDown={handleKeyOption}
-          />
-        )
-        : null}
+      {showSuggestions && (
+      <Suggestions
+        filteredSuggestions={filteredSuggestions}
+        activeSuggestion={activeSuggestion}
+        click={handleClickOption}
+        keyDown={handleKeyOption}
+      />
+      )}
     </div>
   );
 }

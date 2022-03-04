@@ -39,7 +39,9 @@ function Geo() {
         />
       </div>
       <p className={styles.text}>Выбрать на карте:</p>
-      <GeoMap className={styles.map} city={city} pickPoint={pickPoint} pickPoints={pickPoints} />
+      <div className={styles.map}>
+        <GeoMap city={city} pickPoint={pickPoint} pickPoints={pickPoints} />
+      </div>
     </div>
   );
 }

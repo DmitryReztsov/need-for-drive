@@ -7,7 +7,7 @@ import PlaceMarkIcon from '../../../content/svg/placemark.svg';
 import useAppendParams from '../../../hooks/useAppendParams';
 
 interface IGeoMapProps {
-  className: string,
+  className?: string,
   city?: string,
   pickPoint?: string,
   pickPoints: {city: string, address: string} [],

@@ -1,12 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Checkout.module.scss';
 import Button from '../../../../common/Button/Button';
 import useTypedSelector from '../../../../../store/selectors';
 import {IStage} from '../Main/Main';
-
-export interface IFields {
-  [key: string]: any,
-}
+import {generateFields} from './fields';
 
 interface ICheckoutProps {
   click?: () => void,
@@ -16,45 +13,12 @@ interface ICheckoutProps {
 
 function Checkout(props: ICheckoutProps) {
   const {click, activeIndex, stages} = props;
-  const {
-    city, pickPoint, model, price, color, rentTime, tariff, fuel, babySeat, rightHandDrive,
-  } = useTypedSelector((state) => state.form);
+  const form = useTypedSelector((state) => state.form);
+  let fields = generateFields(form);
 
-  // хардкодно, альтернатива - засунуть label в redux, но потеряем логику useAppendParams
-  const fields : IFields [] = [
-    {
-      label: 'Пункт выдачи',
-      value: (city && pickPoint) ? `${city}, ${pickPoint}` : '',
-    },
-    {
-      label: 'Модель',
-      value: model,
-    },
-    {
-      label: 'Цвет',
-      value: color,
-    },
-    {
-      label: 'Длительность аренды',
-      value: rentTime,
-    },
-    {
-      label: 'Тариф',
-      value: tariff,
-    },
-    {
-      label: 'Полный бак',
-      value: fuel,
-    },
-    {
-      label: 'Детское кресло',
-      value: babySeat,
-    },
-    {
-      label: 'Правый руль',
-      value: rightHandDrive,
-    },
-  ];
+  useEffect(() => {
+    fields = generateFields(form);
+  }, [form]);
 
   return (
     <div className={styles.checkout}>
@@ -62,29 +26,37 @@ function Checkout(props: ICheckoutProps) {
       <ul className={styles.details}>
         {fields.map((field) => {
           // Если значение пустое - не отображаем
-          return field.value
-            ? (
-              <li key={field.value} className={styles.row}>
-                <span className={styles.label}>{field.label}</span>
-                <span />
-                <span className={styles.value}>
-                  {field.value}
-                </span>
-              </li>
-            )
-            : null;
+          return field.value && (
+            <li key={field.value} className={styles.row}>
+              <span className={styles.label}>{field.label}</span>
+              <span />
+              <span className={styles.value}>
+                {field.label === 'Пункт выдачи'
+                  ? (
+                    <>
+                      <span>
+                        {field.value.split(', ')[0]}
+                      </span>
+                      <br />
+                      <span>
+                        {field.value.split(', ')[1]}
+                      </span>
+                    </>
+                  )
+                  : field.value}
+              </span>
+            </li>
+          );
         })}
       </ul>
-      {price
-        ? (
-          <p className={styles.price}>
-            Цена:
-            <span>
-              {price}
-            </span>
-          </p>
-        )
-        : null}
+      {form.price && (
+      <p className={styles.price}>
+        Цена:
+        <span>
+          {form.price}
+        </span>
+      </p>
+      )}
       <Button
         click={click}
         className={styles.button}

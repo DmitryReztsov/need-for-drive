@@ -12,32 +12,29 @@ function Suggestions(props: ISuggestionsProps) {
   const {
     filteredSuggestions, activeSuggestion, click, keyDown,
   } = props;
+
+  if (!filteredSuggestions.length) {
+    return <div className={styles.no_suggestions}>Опций не найдено</div>;
+  }
+
   return (
-    filteredSuggestions.length
-      ? (
-        <ul
-          role="menu"
-          className={styles.suggestions}
+    <ul
+      role="menu"
+      className={styles.suggestions}
+    >
+      {filteredSuggestions.map((suggestion, index) => (
+        <li
+          role="menuitem"
+          tabIndex={0}
+          className={`${index === activeSuggestion ? styles.active : ''}`}
+          key={suggestion}
+          onClick={click}
+          onKeyDown={keyDown}
         >
-          {filteredSuggestions.map((suggestion, index) => (
-            <li
-              role="menuitem"
-              tabIndex={0}
-              className={`${index === activeSuggestion ? styles.active : ''}`}
-              key={suggestion}
-              onClick={click}
-              onKeyDown={keyDown}
-            >
-              {suggestion}
-            </li>
-          ))}
-        </ul>
-      )
-      : (
-        <div className={styles.no_suggestions}>
-          Опций не найдено
-        </div>
-      )
+          {suggestion}
+        </li>
+      ))}
+    </ul>
   );
 }
 
