@@ -15,9 +15,9 @@ function RadioGroup(props: IRadioGroupProps) {
   } = props;
   return (
     <div className={`${styles.group} ${className}`}>
-      {allTypes && <RadioButton field={field} value={allTypes} />}
+      {allTypes && <RadioButton key={allTypes} field={field} value={allTypes} />}
       {list.map((category) => {
-        return <RadioButton field={field} value={category} />;
+        return <RadioButton key={category} field={field} value={category} />;
       })}
     </div>
   );
