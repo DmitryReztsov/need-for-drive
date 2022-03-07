@@ -58,17 +58,21 @@
   }
 }
 
-.button {
-  margin: 60px 0 0 64px;
-  padding: 15px 64px 12px 64px;
-
-  @include media($xl) {
-    margin: 60px 0 0 32px;
-  }
+.container {
+  margin-top: 60px;
 
   @include media($md) {
-    margin: 32px 0 0 0;
+    margin-top: 0;
+    padding: 0;
     width: 100%;
+  }
+}
+
+.button {
+  padding: 15px 64px 12px 64px;
+
+  @include media($md) {
     border-radius: 0;
+    width: 100%;
   }
 }

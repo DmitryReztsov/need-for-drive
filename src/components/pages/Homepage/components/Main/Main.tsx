@@ -17,9 +17,11 @@ function Main() {
           <p className={styles.text}>Поминутная аренда авто твоего города</p>
         </div>
       </Container>
-      <CustomLink href="/order">
-        <Button className={styles.button}>Забронировать</Button>
-      </CustomLink>
+      <Container className={styles.container}>
+        <CustomLink href="/order">
+          <Button className={styles.button}>Забронировать</Button>
+        </CustomLink>
+      </Container>
     </main>
   );
 }
