@@ -21,7 +21,17 @@ function Autocomplete(props: IAutocompleteProps) {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const auto = useAuto({
+  const {
+    showSuggestions,
+    filteredSuggestions,
+    activeSuggestion,
+    handleChangeInput,
+    handleClickInput,
+    handleKeyInput,
+    handleBlurInput,
+    handleClickOption,
+    handleKeyOption,
+  } = useAuto({
     resetField, list, field, value, clickDropdown, wrapperRef,
   });
 
@@ -32,17 +42,17 @@ function Autocomplete(props: IAutocompleteProps) {
         label={label}
         value={value}
         placeholder={placeholder}
-        clickHandler={auto.handleClickInput}
-        changeHandler={auto.handleChangeInput}
-        keyDownHandler={auto.handleKeyInput}
-        blurHandler={auto.handleBlurInput}
+        clickHandler={handleClickInput}
+        changeHandler={handleChangeInput}
+        keyDownHandler={handleKeyInput}
+        blurHandler={handleBlurInput}
       />
-      {auto.showSuggestions && (
+      {showSuggestions && (
       <Suggestions
-        filteredSuggestions={auto.filteredSuggestions}
-        activeSuggestion={auto.activeSuggestion}
-        click={auto.handleClickOption}
-        keyDown={auto.handleKeyOption}
+        filteredSuggestions={filteredSuggestions}
+        activeSuggestion={activeSuggestion}
+        click={handleClickOption}
+        keyDown={handleKeyOption}
       />
       )}
     </div>
