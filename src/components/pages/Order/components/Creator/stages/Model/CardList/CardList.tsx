@@ -1,9 +1,15 @@
 import React from 'react';
 import styles from './CardList.module.scss';
 
-function CardList() {
+interface ICardListProps {
+  list: any [],
+}
+
+function CardList(props: ICardListProps) {
   return (
-    <div className={styles.cardList} />
+    <div className={styles.cardList}>
+
+    </div>
   );
 }
 

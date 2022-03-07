@@ -11,7 +11,7 @@ function RadioButton(props: IRadioButtonProps) {
     field, value,
   } = props;
   return (
-    <label htmlFor={value} className={styles.label}>
+    <div className={styles.radio}>
       <input
         type="radio"
         tabIndex={0}
@@ -20,8 +20,11 @@ function RadioButton(props: IRadioButtonProps) {
         value={value}
         className={styles.input}
       />
-      {value}
-    </label>
+      <label htmlFor={value}>
+        {value}
+      </label>
+    </div>
+
   );
 }
 
