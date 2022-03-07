@@ -16,7 +16,7 @@ function Model() {
   return (
     <div className={styles.model}>
       <RadioGroup list={getCategories()} field="category" allTypes="Все модели" className={styles.radio} />
-      <CardList />
+      <CardList list={models} />
     </div>
   );
 }

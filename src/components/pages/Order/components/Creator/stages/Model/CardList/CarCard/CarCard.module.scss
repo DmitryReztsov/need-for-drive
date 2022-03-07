@@ -1,0 +1,29 @@
+@use '/src/sass/tools' as *;
+
+.card {
+  flex: 0 0 50%;
+  height: 224px;
+  padding: 16px;
+  background-position: bottom right;
+  background-size: 69%, auto, cover;
+  background-repeat: no-repeat;
+  outline: 1px solid $gray-light;
+  outline-offset: -1px;
+  @include transition(0.2s,0s);
+
+  &:hover,&:focus,&:active {
+    outline: 1px solid $green;
+    @include transition(0.2s,0s);
+  }
+  p {
+    &:first-child {
+      font-size: 1.125rem;
+      line-height: 1.3125rem;
+    }
+    &:last-child {
+      font-size: 0.875rem;
+      line-height: 1rem;
+      color: $gray;
+    }
+  }
+}
