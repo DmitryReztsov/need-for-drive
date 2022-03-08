@@ -1,0 +1,22 @@
+@use '/src/sass/tools' as *;
+
+.dots {
+  position: absolute;
+  bottom: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0rem 4px;
+  background-color: $gray-light;
+  cursor: pointer;
+  &.active {
+    background-color: $green;
+  }
+}
