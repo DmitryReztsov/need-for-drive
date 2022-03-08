@@ -4,11 +4,13 @@ import styles from './RadioButton.module.scss';
 interface IRadioButtonProps {
   field: string,
   value: string,
+  click: (e: React.MouseEvent<HTMLInputElement>) => void,
+  keyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 function RadioButton(props: IRadioButtonProps) {
   const {
-    field, value,
+    field, value, click, keyDown,
   } = props;
   return (
     <div className={styles.radio}>
@@ -19,6 +21,8 @@ function RadioButton(props: IRadioButtonProps) {
         name={field}
         value={value}
         className={styles.input}
+        onClick={click}
+        onKeyDown={keyDown}
       />
       <label htmlFor={value}>
         {value}

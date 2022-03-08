@@ -16,6 +16,7 @@
     line-height: 1rem;
     font-weight: 300;
     color: $gray;
+    cursor: pointer;
     @include transition(0.2s,0s);
 
     &:hover,&:active,&:focus {
@@ -32,12 +33,10 @@
       position: absolute;
       border-radius: 50%;
       border: 1px solid $gray;
-      @include transition(0.2s,0s);
     }
     &:hover,&:active,&:focus {
       &:before {
         border: 1px solid $green;
-        @include transition(0.2s,0s);
       }
     }
   }
@@ -45,7 +44,6 @@
   input[type=radio]:checked + label{
     color: $black;
     &:before {
-      @include transition(0.2s,0s);
       outline: 3px solid $green;
       outline-offset: -3px;
     }
