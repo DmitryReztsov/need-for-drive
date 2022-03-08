@@ -6,4 +6,7 @@
 
 .radio {
   margin-top: 32px;
+  @include media($md) {
+    margin-top: 16px;
+  }
 }

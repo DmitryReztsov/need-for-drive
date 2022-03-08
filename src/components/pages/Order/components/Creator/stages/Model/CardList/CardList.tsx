@@ -5,15 +5,16 @@ import {IModels} from '../../../../../mocks';
 
 interface ICardListProps {
   list: IModels [],
+  filter?: string,
 }
 
 function CardList(props: ICardListProps) {
-  const {list} = props;
+  const {list, filter} = props;
   return (
     <div className={styles.cardList}>
-      {list.map((car) => {
-        return <CarCard key={car.name} car={car} />;
-      })}
+      {list
+        .filter((car) => car.category.includes(filter as string))
+        .map((car) => <CarCard key={car.name} car={car} />)}
     </div>
   );
 }

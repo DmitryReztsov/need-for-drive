@@ -4,7 +4,7 @@
   flex: 0 0 50%;
   height: 224px;
   padding: 16px;
-  background-position: bottom right;
+  background-position: bottom 16px right 16px;
   background-size: 69%, auto, cover;
   background-repeat: no-repeat;
   outline: 1px solid $gray-light;
@@ -12,9 +12,14 @@
   @include transition(0.2s,0s);
 
   &:hover,&:focus,&:active {
-    outline: 1px solid $green;
+    outline: 1px solid $gray;
     @include transition(0.2s,0s);
   }
+
+  @include media($md) {
+    height: 170px;
+  }
+
   p {
     &:first-child {
       font-size: 1.125rem;
