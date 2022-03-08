@@ -24,6 +24,7 @@ function RadioGroup(props: IRadioGroupProps) {
           value={allTypes}
           click={click}
           keyDown={keyDown}
+          defaultValue
         />
       )}
       {list.map((category) => {

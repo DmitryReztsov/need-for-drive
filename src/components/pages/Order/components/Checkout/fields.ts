@@ -9,17 +9,19 @@ const labelArray = ['Пункт выдачи', 'Модель', 'Цвет', 'Дл
 export function generateFields(form: IFormState) {
   const props: any[] = [];
   Object.entries(form).forEach((elem) => {
-    if (elem[0] === ('city' || 'price')) return;
+    if (elem[0] === 'city' || elem[0] === 'price') return;
     if (elem[0] === 'pickPoint' && elem[1]) {
       props.push(`${form.city}, ${elem[1]}`);
       return;
     }
     props.push(elem[1]);
   });
+  console.log(props);
 
   const fields: IFields [] = [];
   props.forEach((prop, i) => {
     fields.push({label: labelArray[i], value: prop});
   });
+  console.log(fields);
   return fields;
 }

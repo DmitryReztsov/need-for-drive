@@ -14,7 +14,7 @@ function CardList(props: ICardListProps) {
     <div className={styles.cardList}>
       {list
         .filter((car) => car.category.includes(filter as string))
-        .map((car) => <CarCard key={car.name} car={car}/>)}
+        .map((car) => <CarCard key={car.name} car={car} />)}
     </div>
   );
 }

@@ -16,12 +16,12 @@ function Model() {
   }
 
   function clickCategory(e: React.MouseEvent<HTMLInputElement>) {
-    setCategory(getCategories().includes(e.currentTarget.value) ? e.currentTarget.value : '');
+    setCategory(e.currentTarget.value);
   }
 
   function enterCategory(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.code === 'Enter') {
-      setCategory(getCategories().includes(e.currentTarget.value) ? e.currentTarget.value : '');
+      setCategory(e.currentTarget.value);
     }
   }
 

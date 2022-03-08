@@ -21,9 +21,9 @@ function Burger(props: IBurgerProps): React.ReactElement {
       onClick={click}
       onKeyDown={keyDown}
     >
-      <span/>
-      <span/>
-      <span/>
+      <span />
+      <span />
+      <span />
     </span>
   );
 }

@@ -9,9 +9,9 @@ function App() {
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<Homepage/>}/>
-          <Route path="order" element={<Order/>}/>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Homepage />} />
+          <Route path="order" element={<Order />} />
         </Route>
       </Routes>
     </div>

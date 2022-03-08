@@ -10,10 +10,10 @@ interface ICreatorProps {
 }
 
 const components = [
-  <Geo/>,
-  <Model/>,
-  <Features/>,
-  <Total/>,
+  <Geo />,
+  <Model />,
+  <Features />,
+  <Total />,
 ];
 
 function Creator(props: ICreatorProps) {

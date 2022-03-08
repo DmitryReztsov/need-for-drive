@@ -32,4 +32,8 @@
       color: $gray;
     }
   }
+
+  &.active {
+    outline: 1px solid $green;
+  }
 }

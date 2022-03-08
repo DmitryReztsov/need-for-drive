@@ -6,8 +6,8 @@ import styles from './Layout.module.scss';
 function Layout() {
   return (
     <div className={styles.layout}>
-      <NavBar/>
-      <Outlet/>
+      <NavBar />
+      <Outlet />
     </div>
   );
 }

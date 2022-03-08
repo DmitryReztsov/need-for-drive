@@ -80,17 +80,17 @@ function NavBar() {
           </ul>
           <ul className={styles.social}>
             <li>
-              <CustomLink><FacebookIcon className="logo"/></CustomLink>
+              <CustomLink><FacebookIcon className="logo" /></CustomLink>
             </li>
             <li>
-              <CustomLink><TelegramIcon className="logo"/></CustomLink>
+              <CustomLink><TelegramIcon className="logo" /></CustomLink>
             </li>
             <li>
-              <CustomLink><InstagramIcon className="logo"/></CustomLink>
+              <CustomLink><InstagramIcon className="logo" /></CustomLink>
             </li>
           </ul>
         </div>
-        <div className={new URL(document.location.href).toString().includes('order') ? '' : styles.glass}/>
+        <div className={new URL(document.location.href).toString().includes('order') ? '' : styles.glass} />
         <LangSwitcher
           lang={lang}
           className={styles.switcher}

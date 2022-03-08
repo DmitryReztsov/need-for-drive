@@ -29,7 +29,7 @@ function Checkout(props: ICheckoutProps) {
           return field.value && (
             <li key={field.value} className={styles.row}>
               <span className={styles.label}>{field.label}</span>
-              <span/>
+              <span />
               <span className={styles.value}>
                 {field.label === 'Пункт выдачи'
                   ? (
@@ -37,7 +37,7 @@ function Checkout(props: ICheckoutProps) {
                       <span>
                         {field.value.split(', ')[0]}
                       </span>
-                      <br/>
+                      <br />
                       <span>
                         {field.value.split(', ')[1]}
                       </span>
@@ -53,7 +53,7 @@ function Checkout(props: ICheckoutProps) {
         <p className={styles.price}>
           Цена:
           <span>
-            {form.price}
+            {` ${form.price} руб.`}
           </span>
         </p>
       )}

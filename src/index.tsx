@@ -14,7 +14,7 @@ ReactDOM.render(
     }}
     >
       <HashRouter>
-        <App/>
+        <App />
       </HashRouter>
     </YMaps>
   </Provider>,

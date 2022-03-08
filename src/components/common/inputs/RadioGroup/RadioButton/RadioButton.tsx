@@ -6,11 +6,12 @@ interface IRadioButtonProps {
   value: string,
   click: (e: React.MouseEvent<HTMLInputElement>) => void,
   keyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void,
+  defaultValue?: boolean,
 }
 
 function RadioButton(props: IRadioButtonProps) {
   const {
-    field, value, click, keyDown,
+    field, value, click, keyDown, defaultValue,
   } = props;
   return (
     <div className={styles.radio}>
@@ -19,10 +20,11 @@ function RadioButton(props: IRadioButtonProps) {
         tabIndex={0}
         id={value}
         name={field}
-        value={value}
+        value={defaultValue ? '' : value}
         className={styles.input}
         onClick={click}
         onKeyDown={keyDown}
+        defaultChecked={defaultValue}
       />
       <label htmlFor={value}>
         {value}

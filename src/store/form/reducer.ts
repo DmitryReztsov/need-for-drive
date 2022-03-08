@@ -6,7 +6,7 @@ const initialState: IFormState = {
   city: '',
   pickPoint: '',
   model: '',
-  price: '',
+  price: '0',
   color: '',
   rentTime: '',
   tariff: '',

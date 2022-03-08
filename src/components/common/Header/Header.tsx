@@ -16,7 +16,7 @@ function Header({padding}: IHeaderProps) {
           <h1>Need for drive</h1>
           <CustomLink className={styles.geo}>
             <>
-              <GeoIcon className="logo"/>
+              <GeoIcon className="logo" />
               <span>Ульяновск</span>
             </>
           </CustomLink>

@@ -13,8 +13,8 @@ function Homepage() {
   }, []);
   return (
     <div className={styles.homepage}>
-      <Start/>
-      <Slider slides={slides}/>
+      <Start />
+      <Slider slides={slides} />
     </div>
   );
 }
