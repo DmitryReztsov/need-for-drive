@@ -1,0 +1,15 @@
+@use '/src/sass/tools' as *;
+
+.features {
+
+}
+
+.color {
+  margin-top: 32px;
+  @include media($md) {
+    margin-top: 16px;
+  }
+  p {
+    margin-bottom: 16px;
+  }
+}
