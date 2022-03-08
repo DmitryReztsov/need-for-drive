@@ -18,13 +18,13 @@ function RadioGroup(props: IRadioGroupProps) {
   return (
     <div className={`${styles.group} ${className}`}>
       {allTypes && (
-      <RadioButton
-        key={allTypes}
-        field={field}
-        value={allTypes}
-        click={click}
-        keyDown={keyDown}
-      />
+        <RadioButton
+          key={allTypes}
+          field={field}
+          value={allTypes}
+          click={click}
+          keyDown={keyDown}
+        />
       )}
       {list.map((category) => {
         return (

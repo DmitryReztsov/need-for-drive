@@ -1,7 +1,7 @@
 @use '/src/sass/tools' as *;
 
 .main {
-  @include flex(_,_,column);
+  @include flex(_, _, column);
   flex: 1 1 auto;
 }
 
@@ -10,14 +10,14 @@
 }
 
 .container {
-  @include flex(_,_,_);
+  @include flex(_, _, _);
   max-height: 100%;
 
   @include media($xl) {
     padding: 0 64px;
   }
   @include media($lg) {
-    @include flex(_,_,column);
+    @include flex(_, _, column);
     padding: 0 32px;
   }
   @include media($md) {

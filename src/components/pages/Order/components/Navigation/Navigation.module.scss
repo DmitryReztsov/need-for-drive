@@ -26,7 +26,7 @@
     font-weight: 700;
     line-height: 1rem;
     color: $gray;
-    @include transition(0.2s,0s);
+    @include transition(0.2s, 0s);
     cursor: pointer;
 
     @include media($md) {
@@ -40,14 +40,16 @@
         margin: 0 8px;
       }
     }
+
     &:last-child {
       &::after {
         content: '';
       }
     }
+
     &:hover {
       color: $green;
-      @include transition(0.2s,0s);
+      @include transition(0.2s, 0s);
     }
 
     &.active {

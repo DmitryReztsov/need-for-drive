@@ -1,7 +1,7 @@
 @use '/src/sass/tools' as *;
 
 .checkout {
-  @include flex(_,_,column);
+  @include flex(_, _, column);
   flex: 0 0 320px;
   padding: 32px 0px 0px 32px;
   border-left: 1px solid $gray-light;
@@ -29,7 +29,7 @@
 
 .row {
   margin-top: 16px;
-  @include flex(space-between,flex-end,_);
+  @include flex(space-between, flex-end, _);
   font-size: 0.875rem;
   font-weight: 300;
 
@@ -37,11 +37,13 @@
     &:first-child {
       flex: 0 1 auto;
     }
+
     &:nth-child(2) {
       flex: 1 1 auto;
       border-bottom: 1px dotted $gray;
       margin: 0px 11px 0px 11px;
     }
+
     &:last-child {
       text-align: right;
       @include media($lg) {

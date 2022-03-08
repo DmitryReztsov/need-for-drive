@@ -127,7 +127,7 @@ function Slider({slides}: ISliderProps): React.ReactElement {
   return (
     <div ref={ref} className={styles.slider}>
       <div className={styles.content} style={{transform: `translateX(-${translate}px)`, width}}>
-        {slides.map((slide, i) => <Slide key={slides[i].src} slide={slides[i]} />)}
+        {slides.map((slide, i) => <Slide key={slides[i].src} slide={slides[i]}/>)}
       </div>
       <div
         role="button"
@@ -136,7 +136,7 @@ function Slider({slides}: ISliderProps): React.ReactElement {
         onClick={prevSlide}
         onKeyDown={prevSlideEnter}
       >
-        <LeftArrow />
+        <LeftArrow/>
       </div>
       <div
         role="button"
@@ -145,7 +145,7 @@ function Slider({slides}: ISliderProps): React.ReactElement {
         onClick={nextSlide}
         onKeyDown={nextSlideEnter}
       >
-        <RightArrow />
+        <RightArrow/>
       </div>
       <Dots
         slides={slides}

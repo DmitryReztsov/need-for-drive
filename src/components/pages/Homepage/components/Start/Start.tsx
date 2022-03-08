@@ -7,9 +7,9 @@ import styles from './Start.module.scss';
 function Start() {
   return (
     <div className={styles.start}>
-      <Header />
-      <Main />
-      <Footer />
+      <Header/>
+      <Main/>
+      <Footer/>
     </div>
   );
 }

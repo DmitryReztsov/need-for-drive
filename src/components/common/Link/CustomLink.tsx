@@ -8,7 +8,7 @@ interface LinkProps {
   className?: string,
 }
 
-function CustomLink(props: LinkProps) : React.ReactElement {
+function CustomLink(props: LinkProps): React.ReactElement {
   const {children, href = '', className} = props;
   return (
     <Link to={href} className={`${styles.link} ${className}`}>{children}</Link>

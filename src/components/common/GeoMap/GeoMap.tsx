@@ -10,7 +10,7 @@ interface IGeoMapProps {
   className?: string,
   city?: string,
   pickPoint?: string,
-  pickPoints: {city: string, address: string} [],
+  pickPoints: { city: string, address: string } [],
 }
 
 function GeoMap(props: IGeoMapProps) {

@@ -2,7 +2,7 @@ import {
   FormAction, FormActionTypes, IFormState,
 } from './types';
 
-const initialState : IFormState = {
+const initialState: IFormState = {
   city: '',
   pickPoint: '',
   model: '',
