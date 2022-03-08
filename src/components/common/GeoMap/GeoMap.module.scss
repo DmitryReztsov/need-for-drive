@@ -1,0 +1,14 @@
+@use '/src/sass/tools' as *;
+
+.map {
+  width: 100%;
+  height: 352px;
+  @include media($md) {
+
+  }
+}
+
+[class*='copyrights-pane'] {
+  display: none;
+}
+

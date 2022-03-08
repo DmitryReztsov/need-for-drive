@@ -1,0 +1,57 @@
+@use '/src/sass/tools' as *;
+
+.navigation {
+  padding: 8px 0;
+  border-top: 1px solid $gray-light;
+  border-bottom: 1px solid $gray-light;
+}
+
+.container {
+  @include media($xl) {
+    padding: 0 64px;
+  }
+  @include media($lg) {
+    padding: 0 32px;
+  }
+  @include media($md) {
+    padding: 0 16px;
+  }
+}
+
+.list {
+
+  li {
+    display: inline;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1rem;
+    color: $gray;
+    @include transition(0.2s,0s);
+    cursor: pointer;
+
+    @include media($md) {
+      line-height: 1.5rem;
+    }
+
+    &::after {
+      content: url("../../../../../content/svg/arrow.svg");
+      margin: 0 16px;
+      @include media($md) {
+        margin: 0 8px;
+      }
+    }
+    &:last-child {
+      &::after {
+        content: '';
+      }
+    }
+    &:hover {
+      color: $green;
+      @include transition(0.2s,0s);
+    }
+
+    &.active {
+      color: $green;
+    }
+  }
+}

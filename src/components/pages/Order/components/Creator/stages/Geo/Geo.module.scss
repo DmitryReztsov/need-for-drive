@@ -1,0 +1,43 @@
+@use '/src/sass/tools' as *;
+
+.geo {
+  padding-top: 32px;
+  @include flex(_,flex-start,column);
+
+  @include media($md) {
+    padding-top: 16px;
+  }
+}
+
+.form {
+  @include flex(_,flex-end,column);
+  row-gap: 13px;
+}
+
+.text {
+  margin-top: 45px;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: 300;
+
+  @include media($lg) {
+    margin-top: 24px;
+  }
+}
+
+.map {
+  margin-top: 16px;
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 79.4%;
+
+  @include media($lg) {
+    width: 99%;
+  }
+  @include media($md + 1px) {
+    width: 84%;
+  }
+  @include media($md) {
+    width: 99%;
+  }
+}

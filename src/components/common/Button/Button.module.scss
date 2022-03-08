@@ -1,0 +1,68 @@
+@use '/src/sass/tools' as *;
+
+.button {
+  padding: 15px 32px 12px 32px;
+  font-family: $roboto;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: center;
+  color: $white;
+  background: $grad-green;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+
+  &:hover,focus {
+    background: $grad-dark-green;
+  }
+  &:active {
+    background: $grad-very-dark-green;
+  }
+}
+
+.forest {
+  background: $grad-forest;
+  &:hover,focus {
+    background: $grad-dark-forest;
+  }
+  &:active {
+    background: $grad-very-dark-forest;
+  }
+}
+.sea {
+  background: $grad-sea;
+  &:hover,focus {
+    background: $grad-dark-sea;
+  }
+  &:active {
+    background: $grad-very-dark-sea;
+  }
+}
+
+.magenta {
+  background: $grad-magenta;
+  &:hover,focus {
+    background: $grad-dark-magenta;
+  }
+  &:active {
+    background: $grad-very-dark-magenta;
+  }
+}
+.purple {
+  background: $grad-purple;
+  &:hover,focus {
+    background: $grad-dark-purple;
+  }
+  &:active {
+    background: $grad-very-dark-purple;
+  }
+}
+
+.blocked {
+  background: $gray-light;
+  user-select: none;
+  &:hover,focus,active {
+    background: $gray-light;
+  }
+}
