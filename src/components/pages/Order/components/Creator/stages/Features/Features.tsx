@@ -4,6 +4,8 @@ import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import useTypedSelector from '../../../../../../../store/selectors';
 import {models} from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
+import {bonuses, tariffs} from './options';
+import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
 
 function Features() {
   const {model} = useTypedSelector((state) => state.form);
@@ -13,26 +15,49 @@ function Features() {
     return models.find((item) => item.name === model)!.colors;
   }
 
-  function clickColor(e: React.MouseEvent<HTMLInputElement>) {
-    appendParams('color', e.currentTarget.value);
+  function clickHandler(e: React.MouseEvent<HTMLInputElement>, field: string) {
+    appendParams(field, e.currentTarget.value);
   }
 
-  function enterColor(e: React.KeyboardEvent<HTMLInputElement>) {
+  function enterHandler(e: React.KeyboardEvent<HTMLInputElement>, field: string) {
     if (e.code === 'Enter') {
-      appendParams('color', e.currentTarget.value);
+      appendParams(field, e.currentTarget.value);
     }
   }
 
   return (
     <div className={styles.features}>
-      <div className={styles.color}>
+      <div className={styles.block}>
         <p>Цвет</p>
         <RadioGroup
           list={getColors()}
           field="color"
           allTypes="Любой"
-          click={clickColor}
-          keyDown={enterColor}
+          click={(e) => clickHandler(e, 'color')}
+          keyDown={(e) => enterHandler(e, 'color')}
+        />
+      </div>
+      <div className={styles.block}>
+        <p>Дата аренды</p>
+
+      </div>
+      <div className={styles.block}>
+        <p>Тариф</p>
+        <RadioGroup
+          list={tariffs}
+          field="tariff"
+          click={(e) => clickHandler(e, 'tariff')}
+          keyDown={(e) => enterHandler(e, 'tariff')}
+          className={styles.tariff}
+        />
+      </div>
+      <div className={styles.block}>
+        <p>Доп услуги</p>
+        <CheckBoxGroup
+          list={bonuses}
+          click={(e) => clickHandler(e, e.currentTarget.name)}
+          keyDown={(e) => enterHandler(e, e.currentTarget.name)}
+          className={styles.bonuses}
         />
       </div>
     </div>
