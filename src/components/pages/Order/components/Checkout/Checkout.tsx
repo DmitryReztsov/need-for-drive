@@ -27,7 +27,7 @@ function Checkout(props: ICheckoutProps) {
         {fields.map((field) => {
           // Если значение пустое - не отображаем
           return field.value && (
-            <li key={field.value} className={styles.row}>
+            <li key={field.label} className={styles.row}>
               <span className={styles.label}>{field.label}</span>
               <span />
               <span className={styles.value}>
@@ -49,11 +49,11 @@ function Checkout(props: ICheckoutProps) {
           );
         })}
       </ul>
-      {form.price && (
+      {form.priceMin && (
         <p className={styles.price}>
           Цена:
           <span>
-            {` ${form.price} руб.`}
+            {`от ${form.priceMin} до ${form.priceMax} руб.`}
           </span>
         </p>
       )}

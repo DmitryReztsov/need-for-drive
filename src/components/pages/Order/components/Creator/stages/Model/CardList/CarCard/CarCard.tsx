@@ -15,13 +15,14 @@ function CarCard(props: ICarCardProps) {
 
   function handleCLickCard(car: IModels) {
     appendParams('model', car.name);
-    appendParams('price', `от ${car.priceMin} до ${car.priceMax}`);
+    appendParams('priceMin', car.priceMin);
+    appendParams('priceMax', car.priceMax);
   }
   function handleKeyCard(e:React.KeyboardEvent<HTMLDivElement>, car: IModels) {
     if (e.code === 'Enter') {
       appendParams('model', car.name);
-      // todo нет четкого понимания сохранения данных цены
-      appendParams('price', `от ${car.priceMin} до ${car.priceMax}`);
+      appendParams('priceMin', car.priceMin);
+      appendParams('priceMax', car.priceMax);
     }
   }
 

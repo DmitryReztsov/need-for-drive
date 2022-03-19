@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Features.module.scss';
 import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import useTypedSelector from '../../../../../../../store/selectors';
-import {models} from '../../../../mocks';
+import {bonuses, models, tariffs} from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
-import {bonuses, tariffs} from './options';
 import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
+import DateChanger from './DateChanger/DateChanger';
 
 function Features() {
   const {model} = useTypedSelector((state) => state.form);
@@ -39,7 +39,7 @@ function Features() {
       </div>
       <div className={styles.block}>
         <p>Дата аренды</p>
-
+        <DateChanger />
       </div>
       <div className={styles.block}>
         <p>Тариф</p>

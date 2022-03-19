@@ -1,0 +1,8 @@
+@use '/src/sass/tools' as *;
+
+.changer {
+  @include flex(_, flex-end, column);
+  display: inline-flex;
+  row-gap: 13px;
+}
+

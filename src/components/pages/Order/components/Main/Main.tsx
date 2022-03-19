@@ -20,7 +20,7 @@ function Main() {
   const [searchParams] = useSearchParams();
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const {
-    city, pickPoint, model, color, rentTime, tariff,
+    city, pickPoint, model, color, dateFrom, dateTo, tariff,
   } = useTypedSelector((state) => state.form);
 
   // Здесь храним название для навигации, переменные страниц заказа и текст кнопки
@@ -37,7 +37,7 @@ function Main() {
     },
     {
       name: 'Дополнительно',
-      vars: [color, rentTime, tariff],
+      vars: [color, dateFrom, dateTo, tariff],
       buttonLabel: 'Итого',
     },
     {
@@ -72,7 +72,7 @@ function Main() {
   useEffect(() => {
     // при обновлении страницы считываем все параметры строки
     searchParams.forEach((value, key) => {
-      dispatch(setForm(key, value));
+      dispatch(setForm(key, (key === 'dateFrom' || key === 'dateTo') ? +value : value));
     });
   }, []);
 

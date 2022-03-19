@@ -4,24 +4,40 @@ export interface IFields {
   [key: string]: any,
 }
 
-const labelArray = ['Пункт выдачи', 'Модель', 'Цвет', 'Длительность аренды', 'Тариф', 'Полный бак', 'Детское кресло', 'Правый руль'];
-
 export function generateFields(form: IFormState) {
-  const props: any[] = [];
-  Object.entries(form).forEach((elem) => {
-    if (elem[0] === 'city' || elem[0] === 'price') return;
-    if (elem[0] === 'pickPoint' && elem[1]) {
-      props.push(`${form.city}, ${elem[1]}`);
-      return;
-    }
-    props.push(elem[1]);
-  });
-  console.log(props);
-
-  const fields: IFields [] = [];
-  props.forEach((prop, i) => {
-    fields.push({label: labelArray[i], value: prop});
-  });
-  console.log(fields);
+  const fields: IFields [] = [
+    {
+      label: 'Пункт выдачи',
+      value: `${form.city}, ${form.pickPoint}`,
+    },
+    {
+      label: 'Модель',
+      value: form.model,
+    },
+    {
+      label: 'Цвет',
+      value: form.color,
+    },
+    {
+      label: 'Длительность аренды',
+      value: form.dateTo - form.dateFrom || '',
+    },
+    {
+      label: 'Тариф',
+      value: form.tariff.split(', ')[0],
+    },
+    {
+      label: 'Полный бак',
+      value: form.fuel ? 'Да' : '',
+    },
+    {
+      label: 'Детское кресло',
+      value: form.babySeat ? 'Да' : '',
+    },
+    {
+      label: 'Правый руль',
+      value: form.rightHandDrive ? 'Да' : '',
+    },
+  ];
   return fields;
 }
