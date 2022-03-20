@@ -57,7 +57,7 @@ export const models: IModels [] = [
       'Оранжевый',
       'Синий',
     ],
-    number: 'м066то',
+    number: 'М066ТО',
   },
   {
     priceMin: 12000,
@@ -70,7 +70,7 @@ export const models: IModels [] = [
       'Оранжевый',
       'Фиолетовый',
     ],
-    number: 'м230то',
+    number: 'М026ТО',
   },
   {
     priceMin: 12000,
@@ -83,7 +83,7 @@ export const models: IModels [] = [
       'Оранжевый',
       'Синий',
     ],
-    number: 'м066то',
+    number: 'М061ТО',
   },
   {
     priceMin: 10000,
@@ -96,7 +96,7 @@ export const models: IModels [] = [
       'Оранжевый',
       'Синий',
     ],
-    number: 'м066то',
+    number: 'М126ТО',
   },
   {
     priceMin: 10000,
@@ -109,7 +109,7 @@ export const models: IModels [] = [
       'Зеленый',
       'Синий',
     ],
-    number: 'м216ор',
+    number: 'М066ТА',
   },
   {
     priceMin: 20000,
@@ -122,7 +122,7 @@ export const models: IModels [] = [
       'Оранжевый',
       'Баклажан',
     ],
-    number: 'а062то',
+    number: 'М126ТО',
   },
 ];
 
