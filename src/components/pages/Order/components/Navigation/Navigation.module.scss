@@ -55,5 +55,8 @@
     &.active {
       color: $green;
     }
+    &.available {
+      color: $black;
+    }
   }
 }

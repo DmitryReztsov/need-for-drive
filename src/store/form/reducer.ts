@@ -6,7 +6,7 @@ const initialState: IFormState = {
   city: '',
   pickPoint: '',
   model: '',
-  color: '',
+  color: 'Любой',
   dateFrom: Date.now(),
   dateTo: 0,
   priceMin: 0,

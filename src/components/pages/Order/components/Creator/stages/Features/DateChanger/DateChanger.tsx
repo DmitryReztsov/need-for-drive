@@ -3,20 +3,25 @@ import 'react-datepicker/dist/react-datepicker.css';
 import styles from './DateChanger.module.scss';
 import DateInput from '../../../../../../../common/inputs/DateInput/DateInput';
 import useTypedSelector from '../../../../../../../../store/selectors';
+import {intervalMinutesInMilSeconds} from '../../../../../../../../utils/time';
+import useAppendParams from '../../../../../../../../hooks/useAppendParams';
 
 function DateChanger() {
   const {dateFrom, dateTo} = useTypedSelector((state) => state.form);
+  const appendParams = useAppendParams();
 
-  function setFromTimeBorder() {
-    const today = new Date(dateFrom);
-    today.setHours(0, 0, 0, 0);
-    return dateTo - dateFrom < 86400000 ? today : new Date(0);
+  function timeFromFilter(date: Date) {
+    return date >= new Date();
   }
 
-  function setToTimeBorder() {
-    const today = new Date(dateFrom);
-    today.setHours(23, 59, 0, 0);
-    return dateTo - dateFrom < 86400000 ? today : new Date(Infinity);
+  function timeToFilter(date: Date) {
+    return date >= new Date(dateFrom + intervalMinutesInMilSeconds);
+  }
+
+  function fixDate() {
+    if (dateFrom > dateTo) {
+      appendParams('dateTo', dateFrom + intervalMinutesInMilSeconds);
+    }
   }
 
   return (
@@ -26,11 +31,10 @@ function DateChanger() {
         value={new Date(dateFrom)}
         field="dateFrom"
         minDate={new Date()}
-        maxDate={new Date(dateTo)}
         startDate={new Date(dateFrom)}
         endDate={new Date(dateTo)}
-        minTime={setFromTimeBorder()}
-        maxTime={new Date(dateTo)}
+        filterTime={timeFromFilter}
+        onClickOutside={fixDate}
       />
       <DateInput
         label="По"
@@ -40,8 +44,8 @@ function DateChanger() {
         startDate={new Date(dateFrom)}
         endDate={new Date(dateTo)}
         disabled={!dateFrom}
-        minTime={new Date(dateFrom)}
-        maxTime={setToTimeBorder()}
+        filterTime={timeToFilter}
+        onClickOutside={fixDate}
       />
     </div>
   );

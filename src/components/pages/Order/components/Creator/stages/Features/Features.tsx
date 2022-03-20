@@ -16,12 +16,12 @@ function Features() {
   }
 
   function clickHandler(e: React.MouseEvent<HTMLInputElement>, field: string) {
-    appendParams(field, e.currentTarget.value);
+    appendParams(field, e.currentTarget.value || 'Любой');
   }
 
   function enterHandler(e: React.KeyboardEvent<HTMLInputElement>, field: string) {
     if (e.code === 'Enter') {
-      appendParams(field, e.currentTarget.value);
+      appendParams(field, e.currentTarget.value || 'Любой');
     }
   }
 

@@ -23,7 +23,7 @@ function Navigation(props: INavigationProps) {
               role="menuitem"
               tabIndex={0}
               key={stage.name}
-              className={i === activeIndex ? styles.active : ''}
+              className={i === activeIndex ? styles.active : i < activeIndex ? styles.available : ''}
               onClick={() => click(i)}
               onKeyDown={(e) => keyDown(e, i)}
             >

@@ -16,6 +16,14 @@ function Checkout(props: ICheckoutProps) {
   const form = useTypedSelector((state) => state.form);
   let fields = generateFields(form);
 
+  function generatePrice() {
+    if (form.tariff && form.dateFrom && form.dateTo) {
+      // пока без логики расчета, только для верстки
+      return ` ${form.priceMin} руб.`;
+    }
+    return ` от ${form.priceMin} до ${form.priceMax} руб.`;
+  }
+
   useEffect(() => {
     fields = generateFields(form);
   }, [form]);
@@ -53,7 +61,7 @@ function Checkout(props: ICheckoutProps) {
         <p className={styles.price}>
           Цена:
           <span>
-            {`от ${form.priceMin} до ${form.priceMax} руб.`}
+            {generatePrice()}
           </span>
         </p>
       )}

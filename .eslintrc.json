@@ -45,7 +45,8 @@
         "no-nested-ternary": "off",
         "no-shadow": "off",
         "default-param-last": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "no-unused-expressions": "off"
     },
     "settings": {
         "import/resolver": {

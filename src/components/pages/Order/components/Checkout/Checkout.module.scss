@@ -49,15 +49,17 @@
       @include media($lg) {
         flex: 0 1 auto;
       }
-      @include media($md) {
-        flex: 0 1 150px;
-      }
     }
   }
 
   &:first-child {
     margin-top: 0;
   }
+}
+
+.value {
+  line-height: 1rem;
+  color: $gray;
 }
 
 .price {
