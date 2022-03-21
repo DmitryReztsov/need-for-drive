@@ -16,6 +16,10 @@
     @include transition(0.2s, 0s);
   }
 
+  @include media($xl) {
+    background-size: 59%, auto, cover;
+  }
+
   @include media($md) {
     height: 170px;
   }

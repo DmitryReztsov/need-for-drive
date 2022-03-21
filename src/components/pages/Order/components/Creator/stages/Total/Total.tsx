@@ -15,25 +15,28 @@ function Total() {
     <div className={styles.total}>
       {car
       && (
-      <div className={styles.info} style={{backgroundImage: `url(${car.picture})`}}>
-        {id && <div>Ваш заказ подтверждён</div>}
-        <p>{car.name}</p>
-        <span className={styles.number}>{number}</span>
-        <br />
-        <span className={styles.tank}>
-          <span>
-            Топливо&nbsp;
-          </span>
-          {`${car.tank}%`}
-        </span>
-        <br />
-        <span className={styles.date}>
-          <span>
-            Доступно с&nbsp;
-          </span>
-          {formatDate(dateFrom)}
-        </span>
-      </div>
+        <>
+          <div className={styles.info}>
+            {id && <div>Ваш заказ подтверждён</div>}
+            <p>{car.name}</p>
+            <span className={styles.number}>{number}</span>
+            <br />
+            <span className={styles.tank}>
+              <span>
+                Топливо&nbsp;
+              </span>
+              {`${car.tank}%`}
+            </span>
+            <br />
+            <span className={styles.date}>
+              <span>
+                Доступно с&nbsp;
+              </span>
+              {formatDate(dateFrom)}
+            </span>
+          </div>
+          <img className={styles.picture} src={`${car.picture}`} alt="car" />
+        </>
       )}
     </div>
   );

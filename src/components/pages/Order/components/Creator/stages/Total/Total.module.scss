@@ -3,6 +3,8 @@
 .total {
   margin-top: 32px;
   width: 79.4%;
+  @include flex(space-between,_ ,_);
+  row-gap: 8px;
   @include media($xl) {
     width: 90%;
   }
@@ -10,6 +12,8 @@
     width: 100%;
   }
   @include media($md) {
+    @include flex(center,center,_);
+    flex-direction: column;
     margin-top: 16px;
     text-align: center;
   }
@@ -17,17 +21,9 @@
 
 .info {
 
-  background-position: top 0px right 0px;
-  background-size: 256px, auto, cover;
-  background-repeat: no-repeat;
-  padding-bottom: 10px;
-
   @include media($md) {
-    padding-top: 100px;
-    padding-bottom: 0;
-    background-position: top -24px center;
+    order: 2;
   }
-
   div {
     margin-bottom: 16px;
     font-size: 1.5rem;
@@ -57,5 +53,11 @@
   span {
     font-weight: 700;
   }
+}
 
+.picture {
+  max-width: 265px;
+  @include media($md) {
+    order: 1;
+  }
 }
