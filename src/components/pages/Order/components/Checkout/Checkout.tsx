@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import styles from './Checkout.module.scss';
 import Button from '../../../../common/Button/Button';
 import useTypedSelector from '../../../../../store/selectors';
@@ -9,10 +10,14 @@ interface ICheckoutProps {
   click?: () => void,
   activeIndex: number,
   stages: IStage [],
+  loading?: boolean,
 }
 
 function Checkout(props: ICheckoutProps) {
-  const {click, activeIndex, stages} = props;
+  const {
+    click, activeIndex, stages, loading,
+  } = props;
+  const {id} = useParams();
   const form = useTypedSelector((state) => state.form);
   let fields = generateFields(form);
 
@@ -42,6 +47,7 @@ function Checkout(props: ICheckoutProps) {
                 {field.label === 'Пункт выдачи'
                   ? (
                     <>
+                      {/* делим на спаны из-за особенностей отрисовки адреса */}
                       <span>
                         {field.value.split(', ')[0]}
                       </span>
@@ -68,10 +74,11 @@ function Checkout(props: ICheckoutProps) {
       <Button
         click={click}
         className={styles.button}
-        color={stages[activeIndex].vars.includes('') ? 'blocked' : ''}
+        color={stages[activeIndex].vars.includes('') ? 'blocked' : id ? 'magenta' : ''}
         disabled={stages[activeIndex].vars.includes('')}
+        loading={loading}
       >
-        {stages[activeIndex].buttonLabel}
+        {id ? 'Отменить' : stages[activeIndex].buttonLabel}
       </Button>
     </div>
   );

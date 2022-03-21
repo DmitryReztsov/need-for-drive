@@ -1,6 +1,7 @@
 @use '/src/sass/tools' as *;
 
 .button {
+  position: relative;
   padding: 15px 32px 12px 32px;
   font-family: $roboto;
   font-size: 1.125rem;
@@ -76,5 +77,19 @@
 
   &:hover, focus, active {
     background: $gray-light;
+  }
+}
+
+.loading {
+  color: transparent;
+  user-select: none;
+  &:before {
+    content: url("../../../content/svg/loading.svg");
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 50%;
+    left: 50%;
+    animation: spin 0.75s infinite linear;
   }
 }

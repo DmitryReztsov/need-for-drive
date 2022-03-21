@@ -25,6 +25,9 @@
 
 .details {
   margin-top: 26px;
+  @include media($md) {
+    margin-top: 8px;
+  }
 }
 
 .row {

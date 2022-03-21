@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {useSearchParams} from 'react-router-dom';
+import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import styles from './Main.module.scss';
 import Creator from '../Creator/Creator';
@@ -19,12 +19,18 @@ function Main() {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const {id} = useParams();
   const {
-    city, pickPoint, model, color, dateFrom, dateTo, tariff,
+    city, pickPoint, model, dateFrom, dateTo, tariff,
   } = useTypedSelector((state) => state.form);
 
   // Здесь храним название для навигации, переменные страниц заказа и текст кнопки
   const stages: IStage [] = [
+    // Первое поле отвечает за название шага
+    // Второе - за переменные типа required
+    // Третье - за название кнопки
     {
       name: 'Местоположение',
       vars: [city, pickPoint],
@@ -37,7 +43,7 @@ function Main() {
     },
     {
       name: 'Дополнительно',
-      vars: [color, dateFrom, dateTo, tariff],
+      vars: [dateFrom, dateTo, tariff],
       buttonLabel: 'Итого',
     },
     {
@@ -63,7 +69,15 @@ function Main() {
 
   // обработчик нажатия кнопки
   function incrementIndex() {
-    if (!stages[activeIndex].vars.includes('')) {
+    if (id) {
+      navigate('/', {replace: true});
+    } else if (activeIndex === 3) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        navigate('/order/123456', {replace: true});
+      }, 1000);
+    } else if (!stages[activeIndex].vars.includes('')) {
       setActiveIndex((state) => state + 1);
     }
   }
@@ -78,12 +92,20 @@ function Main() {
 
   return (
     <main className={styles.main}>
-      <Navigation
-        stages={stages}
-        activeIndex={activeIndex}
-        click={setClickIndex}
-        keyDown={setKeyIndex}
-      />
+      <nav className={styles.navigation}>
+        <Container className={styles.container}>
+          {id
+            ? <div className={styles.number}>{`Заказ номер ${id}`}</div>
+            : (
+              <Navigation
+                stages={stages}
+                activeIndex={activeIndex}
+                click={setClickIndex}
+                keyDown={setKeyIndex}
+              />
+            )}
+        </Container>
+      </nav>
       <form className={styles.body}>
         <Container className={styles.container}>
           <Creator
@@ -93,6 +115,7 @@ function Main() {
             click={incrementIndex}
             activeIndex={activeIndex}
             stages={stages}
+            loading={loading}
           />
         </Container>
       </form>

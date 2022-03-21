@@ -10,14 +10,17 @@ function DateChanger() {
   const {dateFrom, dateTo} = useTypedSelector((state) => state.form);
   const appendParams = useAppendParams();
 
+  // Ограничиваем выбор времени ранее текущего
   function timeFromFilter(date: Date) {
     return date >= new Date();
   }
 
+  // Делаем невозможным выбор времени конца аренды ранее чем за 10 мин от начала
   function timeToFilter(date: Date) {
     return date >= new Date(dateFrom + intervalMinutesInMilSeconds);
   }
 
+  // Если дата начала стала старше конца, добавляем к дате конца 10 мин от даты начала
   function fixDate() {
     if (dateFrom > dateTo) {
       appendParams('dateTo', dateFrom + intervalMinutesInMilSeconds);

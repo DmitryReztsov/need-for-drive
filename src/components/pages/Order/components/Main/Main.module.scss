@@ -5,6 +5,33 @@
   flex: 1 1 auto;
 }
 
+.navigation {
+  padding: 8px 0;
+  border-top: 1px solid $gray-light;
+  border-bottom: 1px solid $gray-light;
+}
+
+.container {
+  @include media($xl) {
+    padding: 0 64px;
+  }
+  @include media($lg) {
+    padding: 0 32px;
+  }
+  @include media($md) {
+    padding: 0 16px;
+  }
+}
+
+.number {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  @include media($md) {
+    text-align: center;
+  }
+}
+
 .body {
   flex: 1 1 auto;
   @include flex(_, _, _);

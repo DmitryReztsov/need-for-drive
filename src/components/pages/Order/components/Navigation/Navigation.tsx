@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from '../../../../common/Container/Container';
 import styles from './Navigation.module.scss';
 import {IStage} from '../Main/Main';
 
@@ -15,24 +14,20 @@ function Navigation(props: INavigationProps) {
     stages, activeIndex, click, keyDown,
   } = props;
   return (
-    <nav className={styles.navigation}>
-      <Container className={styles.container}>
-        <ul role="menu" tabIndex={0} className={styles.list}>
-          {stages.map((stage, i) => (
-            <li
-              role="menuitem"
-              tabIndex={0}
-              key={stage.name}
-              className={i === activeIndex ? styles.active : i < activeIndex ? styles.available : ''}
-              onClick={() => click(i)}
-              onKeyDown={(e) => keyDown(e, i)}
-            >
-              {stage.name}
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </nav>
+    <ul role="menu" tabIndex={0} className={styles.list}>
+      {stages.map((stage, i) => (
+        <li
+          role="menuitem"
+          tabIndex={0}
+          key={stage.name}
+          className={i === activeIndex ? styles.active : i < activeIndex ? styles.available : ''}
+          onClick={() => click(i)}
+          onKeyDown={(e) => keyDown(e, i)}
+        >
+          {stage.name}
+        </li>
+      ))}
+    </ul>
   );
 }
 

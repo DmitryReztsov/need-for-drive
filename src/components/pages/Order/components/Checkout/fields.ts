@@ -12,7 +12,10 @@ function setDuration(dateTo: number, dateFrom: number): string {
   const hours = Math.trunc((interval % dayInMilSeconds) / hourInMilSeconds);
   const minutes = Math.trunc(((interval % dayInMilSeconds) % hourInMilSeconds) / minInMilSeconds);
   const duration = `${days}д ${hours}ч ${minutes}м`;
-  return duration.split(' ').filter((elem) => elem[0] !== '0').join(' ');
+  return duration
+    .split(' ')
+    .filter((elem) => elem[0])
+    .join(' ');
 }
 
 export function generateFields(form: IFormState) {
