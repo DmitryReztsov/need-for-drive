@@ -2,7 +2,9 @@ import React from 'react';
 import styles from './Features.module.scss';
 import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import useTypedSelector from '../../../../../../../store/selectors';
-import {bonuses, models, tariffs} from '../../../../mocks';
+import {
+  bonuses, models, tariffs,
+} from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
 import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
 import DateChanger from './DateChanger/DateChanger';

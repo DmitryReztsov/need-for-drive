@@ -8,6 +8,7 @@ import Checkout from '../Checkout/Checkout';
 import Container from '../../../../common/Container/Container';
 import setForm from '../../../../../store/form/actions';
 import useTypedSelector from '../../../../../store/selectors';
+import Confirm from '../../../../common/modals/Confirm/Confirm';
 
 export interface IStage {
   name: string,
@@ -20,6 +21,7 @@ function Main() {
   const [searchParams] = useSearchParams();
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const {id} = useParams();
   const {
@@ -53,6 +55,19 @@ function Main() {
     },
   ];
 
+  function toggleModal() {
+    setModal(!modal);
+  }
+
+  function acceptOrder() {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/order/123456', {replace: true});
+      toggleModal();
+    }, 1000);
+  }
+
   // проверяем заполненность данных
   function setClickIndex(id: number) {
     if (id === 0 || !stages[id - 1].vars.includes('')) {
@@ -72,11 +87,7 @@ function Main() {
     if (id) {
       navigate('/', {replace: true});
     } else if (activeIndex === 3) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        navigate('/order/123456', {replace: true});
-      }, 1000);
+      toggleModal();
     } else if (!stages[activeIndex].vars.includes('')) {
       setActiveIndex((state) => state + 1);
     }
@@ -115,10 +126,10 @@ function Main() {
             click={incrementIndex}
             activeIndex={activeIndex}
             stages={stages}
-            loading={loading}
           />
         </Container>
       </form>
+      {modal && <Confirm accept={acceptOrder} deny={toggleModal} loading={loading} />}
     </main>
   );
 }

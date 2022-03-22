@@ -10,15 +10,15 @@ interface ICheckoutProps {
   click?: () => void,
   activeIndex: number,
   stages: IStage [],
-  loading?: boolean,
 }
 
 function Checkout(props: ICheckoutProps) {
   const {
-    click, activeIndex, stages, loading,
+    click, activeIndex, stages,
   } = props;
   const {id} = useParams();
   const form = useTypedSelector((state) => state.form);
+
   let fields = generateFields(form);
 
   function generatePrice() {
@@ -76,7 +76,6 @@ function Checkout(props: ICheckoutProps) {
         className={styles.button}
         color={stages[activeIndex].vars.includes('') ? 'blocked' : id ? 'magenta' : ''}
         disabled={stages[activeIndex].vars.includes('')}
-        loading={loading}
       >
         {id ? 'Отменить' : stages[activeIndex].buttonLabel}
       </Button>

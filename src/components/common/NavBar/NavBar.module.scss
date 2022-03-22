@@ -20,7 +20,7 @@
   }
 
   @include media($md) {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 32px;

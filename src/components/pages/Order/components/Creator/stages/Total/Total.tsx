@@ -7,7 +7,7 @@ import {formatDate} from '../../../../../../../utils/time';
 
 function Total() {
   const {id} = useParams();
-  const {model, dateFrom} = useTypedSelector((state) => state.form);
+  const {model, dateFrom, fuel} = useTypedSelector((state) => state.form);
   const car = models.find((item) => item.name === model);
   const number = `${car?.number[0]} ${car?.number.slice(1, 4)} ${car?.number.slice(4)} 73`;
 
@@ -25,7 +25,7 @@ function Total() {
               <span>
                 Топливо&nbsp;
               </span>
-              {`${car.tank}%`}
+              {`${fuel ? 100 : car.tank}%`}
             </span>
             <br />
             <span className={styles.date}>

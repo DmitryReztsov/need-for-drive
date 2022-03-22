@@ -14,7 +14,7 @@ function setDuration(dateTo: number, dateFrom: number): string {
   const duration = `${days}д ${hours}ч ${minutes}м`;
   return duration
     .split(' ')
-    .filter((elem) => elem[0])
+    .filter((elem) => elem[0] !== '0')
     .join(' ');
 }
 
