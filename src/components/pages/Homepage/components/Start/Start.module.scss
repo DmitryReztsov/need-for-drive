@@ -1,6 +1,6 @@
 @use '/src/sass/tools' as *;
 
 .start {
-  @include flex(space-between,_,column);
+  @include flex(space-between, _, column);
   flex: 1 1 auto;
 }

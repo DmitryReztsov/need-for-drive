@@ -1,13 +1,13 @@
 @use '/src/sass/tools' as *;
 
 .checkout {
-  @include flex(_,_,column);
+  @include flex(_, _, column);
   flex: 0 0 320px;
   padding: 32px 0px 0px 32px;
   border-left: 1px solid $gray-light;
 
   @include media($lg) {
-    flex: 0 0 auto;
+    flex: 1 0 auto;
     padding: 32px 0px 32px 0px;
     border-left: none;
   }
@@ -25,11 +25,14 @@
 
 .details {
   margin-top: 26px;
+  @include media($md) {
+    margin-top: 8px;
+  }
 }
 
 .row {
   margin-top: 16px;
-  @include flex(space-between,flex-end,_);
+  @include flex(space-between, flex-end, _);
   font-size: 0.875rem;
   font-weight: 300;
 
@@ -37,18 +40,17 @@
     &:first-child {
       flex: 0 1 auto;
     }
+
     &:nth-child(2) {
       flex: 1 1 auto;
       border-bottom: 1px dotted $gray;
       margin: 0px 11px 0px 11px;
     }
+
     &:last-child {
       text-align: right;
       @include media($lg) {
         flex: 0 1 auto;
-      }
-      @include media($md) {
-        flex: 0 1 150px;
       }
     }
   }
@@ -58,8 +60,19 @@
   }
 }
 
+.value {
+  line-height: 1rem;
+  color: $gray;
+}
+
 .price {
   margin-top: 32px;
+  font-weight: 500;
+
+  span {
+    font-weight: 400;
+  }
+
 }
 
 .button {

@@ -1,0 +1,53 @@
+@use '/src/sass/tools' as *;
+
+.radio {
+  position: relative;
+  margin-right: 16px;
+  padding-left: 20px;
+  cursor: pointer;
+  user-select: none;
+
+  input[type=radio] {
+    display: none;
+  }
+
+  label {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: 300;
+    color: $gray;
+    cursor: pointer;
+    @include transition(0.2s, 0s);
+
+    &:hover, &:active, &:focus {
+      color: $green;
+      @include transition(0.2s, 0s);
+    }
+
+    &:before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      top: calc(50% - 6px);
+      left: 0;
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid $gray;
+    }
+
+    &:hover, &:active, &:focus {
+      &:before {
+        border: 1px solid $green;
+      }
+    }
+  }
+
+  input[type=radio]:checked + label {
+    color: $black;
+
+    &:before {
+      outline: 3px solid $green;
+      outline-offset: -3px;
+    }
+  }
+}

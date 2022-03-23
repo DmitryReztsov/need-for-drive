@@ -1,0 +1,42 @@
+@use '/src/sass/tools' as *;
+
+.confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $white;
+  opacity: 0.9;
+  z-index: 999999;
+}
+
+.dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  // 47px - отступ по макету, видимо из-за навбара слева
+  transform: translate(calc(-50% + 47px),-75%);
+  text-align: center;
+  @include media($md) {
+    transform: translate(-50%,-50%);
+  }
+}
+
+.text {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+
+.buttons {
+  margin-top: 32px;
+  @include flex(center, center, _);
+  column-gap: 16px;
+  @include media($md) {
+    @include flex(center, center, column);
+    row-gap: 8px;
+    button {
+      width: 100%;
+    }
+  }
+}

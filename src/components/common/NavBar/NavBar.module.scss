@@ -9,7 +9,7 @@
 }
 
 .nav {
-  @include flex(space-between,center,column);
+  @include flex(space-between, center, column);
   width: 64px;
   color: $white;
   background: $shadow-black;
@@ -20,7 +20,7 @@
   }
 
   @include media($md) {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 32px;
@@ -40,20 +40,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  @include flex(space-between,_,_);
+  @include flex(space-between, _, _);
   width: 100vw;
   height: 100vh;
   transform: translateX(-100%);
   overflow: auto;
-  @include transition(0.5s,0s);
+  @include transition(0.5s, 0s);
 
   @include media($md) {
-    @include flex(space-between,stretch,column);
+    @include flex(space-between, stretch, column);
   }
 
   &.active {
     transform: translateX(0);
-    @include transition(0.5s,0s);
+    @include transition(0.5s, 0s);
   }
 
   .switcher {
@@ -100,6 +100,7 @@
 
 .list {
   margin-bottom: 38px;
+
   li {
     margin-bottom: 22px;
   }
@@ -120,7 +121,8 @@
 }
 
 .social {
-  @include flex(_,_,_);
+  @include flex(_, _, _);
+
   svg {
     margin-right: 24px;
   }

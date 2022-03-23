@@ -1,0 +1,47 @@
+@use '/src/sass/tools' as *;
+
+.label {
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: 300;
+  @include media($md) {
+    @include flex(center, _, _);
+    row-gap: 10px;
+  }
+}
+
+.date {
+  width: 224px;
+  margin: 0px 0px 0px 8px;
+  border-bottom: 1px solid $gray;
+  padding: 0px 0px 3px 8px;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: $black;
+
+  @include media($md) {
+    margin: 0;
+  }
+
+  &::placeholder {
+    color: $gray;
+  }
+}
+[class*='react-datepicker-wrapper'] {
+  width: 224px;
+}
+
+[class*='react-datepicker__close-icon'] {
+  padding: 0;
+  right: -3px;
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: url("../../../../content/svg/clear-button.svg");
+    background-repeat: no-repeat;
+    border-radius: 0;
+    cursor: pointer;
+  }
+}

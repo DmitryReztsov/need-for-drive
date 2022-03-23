@@ -1,7 +1,7 @@
 @use "../tools" as *;
 
 #root {
-  @include flex(_,_,column);
+  @include flex(_, _, column);
   min-height: 100%;
   font-family: $roboto;
   color: $black;

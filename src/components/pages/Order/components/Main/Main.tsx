@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {useSearchParams} from 'react-router-dom';
+import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import styles from './Main.module.scss';
 import Creator from '../Creator/Creator';
@@ -8,6 +8,7 @@ import Checkout from '../Checkout/Checkout';
 import Container from '../../../../common/Container/Container';
 import setForm from '../../../../../store/form/actions';
 import useTypedSelector from '../../../../../store/selectors';
+import Confirm from '../../../../common/modals/Confirm/Confirm';
 
 export interface IStage {
   name: string,
@@ -19,12 +20,19 @@ function Main() {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const {id} = useParams();
   const {
-    city, pickPoint, model, color, rentTime, tariff,
+    city, pickPoint, model, dateFrom, dateTo, tariff,
   } = useTypedSelector((state) => state.form);
 
   // Здесь храним название для навигации, переменные страниц заказа и текст кнопки
   const stages: IStage [] = [
+    // Первое поле отвечает за название шага
+    // Второе - за переменные типа required
+    // Третье - за название кнопки
     {
       name: 'Местоположение',
       vars: [city, pickPoint],
@@ -37,7 +45,7 @@ function Main() {
     },
     {
       name: 'Дополнительно',
-      vars: [color, rentTime, tariff],
+      vars: [dateFrom, dateTo, tariff],
       buttonLabel: 'Итого',
     },
     {
@@ -46,6 +54,19 @@ function Main() {
       buttonLabel: 'Заказать',
     },
   ];
+
+  function toggleModal() {
+    setModal(!modal);
+  }
+
+  function acceptOrder() {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/order/123456', {replace: true});
+      toggleModal();
+    }, 1000);
+  }
 
   // проверяем заполненность данных
   function setClickIndex(id: number) {
@@ -63,7 +84,11 @@ function Main() {
 
   // обработчик нажатия кнопки
   function incrementIndex() {
-    if (!stages[activeIndex].vars.includes('')) {
+    if (id) {
+      navigate('/', {replace: true});
+    } else if (activeIndex === 3) {
+      toggleModal();
+    } else if (!stages[activeIndex].vars.includes('')) {
       setActiveIndex((state) => state + 1);
     }
   }
@@ -72,18 +97,26 @@ function Main() {
   useEffect(() => {
     // при обновлении страницы считываем все параметры строки
     searchParams.forEach((value, key) => {
-      dispatch(setForm(key, value));
+      dispatch(setForm(key, (key === 'dateFrom' || key === 'dateTo') ? +value : value));
     });
   }, []);
 
   return (
     <main className={styles.main}>
-      <Navigation
-        stages={stages}
-        activeIndex={activeIndex}
-        click={setClickIndex}
-        keyDown={setKeyIndex}
-      />
+      <nav className={styles.navigation}>
+        <Container className={styles.container}>
+          {id
+            ? <div className={styles.number}>{`Заказ номер ${id}`}</div>
+            : (
+              <Navigation
+                stages={stages}
+                activeIndex={activeIndex}
+                click={setClickIndex}
+                keyDown={setKeyIndex}
+              />
+            )}
+        </Container>
+      </nav>
       <form className={styles.body}>
         <Container className={styles.container}>
           <Creator
@@ -96,6 +129,7 @@ function Main() {
           />
         </Container>
       </form>
+      {modal && <Confirm accept={acceptOrder} deny={toggleModal} loading={loading} />}
     </main>
   );
 }

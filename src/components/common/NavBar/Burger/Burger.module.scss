@@ -24,7 +24,7 @@
     height: 3px;
     border-radius: 3px;
     background-color: $white;
-    @include transition(0.2s,0s);
+    @include transition(0.2s, 0s);
 
     &:first-child {
       top: calc(50% - 10px);
@@ -45,17 +45,20 @@
       background-color: $black;
     }
   }
+
   &.active {
     span {
       transform: scale(0);
       background-color: $white;
-      @include transition(0.2s,0s);
+      @include transition(0.2s, 0s);
+
       &:first-child {
         top: 50%;
         transform: scale(1);
         transform: rotate(45deg);
 
       }
+
       &:last-child {
         top: 50%;
         transform: scale(1);

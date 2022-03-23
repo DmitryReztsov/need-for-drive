@@ -6,6 +6,7 @@ import {ReactComponent as TelegramIcon} from '../../../content/svg/telegram-bran
 import {ReactComponent as InstagramIcon} from '../../../content/svg/instagram-brands.svg';
 import Burger from './Burger/Burger';
 import LangSwitcher from './LangSwitcher/LangSwitcher';
+import toggleBodyOverflow from '../../../utils/helpers';
 
 const options = [
   'ПАРКОВКА',
@@ -42,18 +43,8 @@ function NavBar() {
     return active ? `${styles.menu} ${styles.active}` : styles.menu;
   }
 
-  // Для отмены прокрутки при открытом меню
-  function toggleBodyOverflow() {
-    const body = document.querySelector('body')!;
-    if (active) {
-      body.classList.add('active');
-    } else {
-      body.classList.remove('active');
-    }
-  }
-
   useEffect(() => {
-    toggleBodyOverflow();
+    toggleBodyOverflow(active);
   }, [active]);
   return (
     <div className={styles.nav}>

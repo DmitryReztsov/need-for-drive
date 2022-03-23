@@ -6,7 +6,7 @@ interface DotsProps {
   slides: ISlide [],
   activeIndex: number,
   click: (i: number) => void,
-  tap: (e:React.KeyboardEvent<HTMLSpanElement>, i: number) => void,
+  tap: (e: React.KeyboardEvent<HTMLSpanElement>, i: number) => void,
 }
 
 function Dots(props: DotsProps): React.ReactElement {

@@ -26,10 +26,11 @@
     line-height: 15px;
     text-decoration: none;
     color: $black;
-    @include transition(0.2s,0s);
+    @include transition(0.2s, 0s);
+
     &:hover {
       color: $green;
-      @include transition(0.2s,0s);
+      @include transition(0.2s, 0s);
     }
 
     @include media($md) {
@@ -40,7 +41,7 @@
 
 .body {
   padding: 32px 0;
-  @include flex(space-between,center,_);
+  @include flex(space-between, center, _);
 
   @include media($xl) {
     padding: 32px 4px 38px 0;
@@ -48,7 +49,7 @@
 
   @include media($md) {
     padding: 16px 0;
-    @include flex(_,flex-end,column);
+    @include flex(_, flex-end, column);
     font-size: 0.75rem;
   }
 }

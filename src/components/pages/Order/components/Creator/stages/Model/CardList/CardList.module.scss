@@ -1,0 +1,18 @@
+@use '/src/sass/tools' as *;
+
+.cardList {
+  margin-top: 48px;
+  @include flex(_, _, _);
+  flex-wrap: wrap;
+  width: 79.4%;
+
+  @include media($xl) {
+    width: 100%;
+  }
+  @include media($lg) {
+    margin-top: 32px;
+  }
+  @include media($md) {
+    margin-top: 16px;
+  }
+}

@@ -1,6 +1,7 @@
 @use '/src/sass/tools' as *;
 
 .button {
+  position: relative;
   padding: 15px 32px 12px 32px;
   font-family: $roboto;
   font-size: 1.125rem;
@@ -13,9 +14,10 @@
   border: none;
   cursor: pointer;
 
-  &:hover,focus {
+  &:hover, focus {
     background: $grad-dark-green;
   }
+
   &:active {
     background: $grad-very-dark-green;
   }
@@ -23,18 +25,23 @@
 
 .forest {
   background: $grad-forest;
-  &:hover,focus {
+
+  &:hover, focus {
     background: $grad-dark-forest;
   }
+
   &:active {
     background: $grad-very-dark-forest;
   }
 }
+
 .sea {
   background: $grad-sea;
-  &:hover,focus {
+
+  &:hover, focus {
     background: $grad-dark-sea;
   }
+
   &:active {
     background: $grad-very-dark-sea;
   }
@@ -42,18 +49,23 @@
 
 .magenta {
   background: $grad-magenta;
-  &:hover,focus {
+
+  &:hover, focus {
     background: $grad-dark-magenta;
   }
+
   &:active {
     background: $grad-very-dark-magenta;
   }
 }
+
 .purple {
   background: $grad-purple;
-  &:hover,focus {
+
+  &:hover, focus {
     background: $grad-dark-purple;
   }
+
   &:active {
     background: $grad-very-dark-purple;
   }
@@ -62,7 +74,22 @@
 .blocked {
   background: $gray-light;
   user-select: none;
-  &:hover,focus,active {
+
+  &:hover, focus, active {
     background: $gray-light;
+  }
+}
+
+.loading {
+  color: transparent;
+  user-select: none;
+  &:before {
+    content: url("../../../content/svg/loading.svg");
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 50%;
+    left: 50%;
+    animation: spin 0.75s infinite linear;
   }
 }

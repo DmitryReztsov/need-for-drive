@@ -16,7 +16,7 @@ const components = [
   <Total />,
 ];
 
-function Creator(props : ICreatorProps) {
+function Creator(props: ICreatorProps) {
   const {
     index,
   } = props;
