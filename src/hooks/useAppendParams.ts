@@ -6,9 +6,9 @@ function useAppendParams() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  return function (field: string, value: string) {
+  return function (field: string, value: string | number) {
     dispatch(setForm(field, value));
-    searchParams.set(field, value);
+    searchParams.set(field, value.toString());
     setSearchParams(searchParams);
   };
 }

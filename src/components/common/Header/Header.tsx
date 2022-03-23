@@ -8,7 +8,7 @@ interface IHeaderProps {
   padding?: string,
 }
 
-function Header({padding} : IHeaderProps) {
+function Header({padding}: IHeaderProps) {
   return (
     <header className={styles.header}>
       <Container className={padding}>

@@ -2,7 +2,7 @@
 
 .geo {
   padding-top: 32px;
-  @include flex(_,flex-start,column);
+  @include flex(_, flex-start, column);
 
   @include media($md) {
     padding-top: 16px;
@@ -10,7 +10,7 @@
 }
 
 .form {
-  @include flex(_,flex-end,column);
+  @include flex(_, flex-end, column);
   row-gap: 13px;
 }
 

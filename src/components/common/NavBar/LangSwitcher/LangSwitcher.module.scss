@@ -1,7 +1,7 @@
 @use '../../../../sass/tools' as *;
 
 .switcher {
-  @include flex(center,center,_);
+  @include flex(center, center, _);
   width: 48px;
   height: 48px;
   font-weight: 700;
@@ -10,17 +10,18 @@
   color: $green;
   border-radius: 50%;
   border: 1px solid transparent;
-  @include transition(0.2s,0s);
+  @include transition(0.2s, 0s);
   cursor: pointer;
 
   &:hover {
     color: $white;
     border: 1px solid $gray-light;
-    @include transition(0.2s,0s);
+    @include transition(0.2s, 0s);
   }
+
   &:active {
     color: $green;
-    @include transition(0.2s,0s);
+    @include transition(0.2s, 0s);
   }
 
   @include media($md) {

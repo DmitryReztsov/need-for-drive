@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import styles from './Checkout.module.scss';
 import Button from '../../../../common/Button/Button';
 import useTypedSelector from '../../../../../store/selectors';
@@ -12,9 +13,21 @@ interface ICheckoutProps {
 }
 
 function Checkout(props: ICheckoutProps) {
-  const {click, activeIndex, stages} = props;
+  const {
+    click, activeIndex, stages,
+  } = props;
+  const {id} = useParams();
   const form = useTypedSelector((state) => state.form);
+
   let fields = generateFields(form);
+
+  function generatePrice() {
+    if (form.tariff && form.dateFrom && form.dateTo) {
+      // пока без логики расчета, только для верстки
+      return ` ${form.priceMin} руб.`;
+    }
+    return ` от ${form.priceMin} до ${form.priceMax} руб.`;
+  }
 
   useEffect(() => {
     fields = generateFields(form);
@@ -27,13 +40,14 @@ function Checkout(props: ICheckoutProps) {
         {fields.map((field) => {
           // Если значение пустое - не отображаем
           return field.value && (
-            <li key={field.value} className={styles.row}>
+            <li key={field.label} className={styles.row}>
               <span className={styles.label}>{field.label}</span>
               <span />
               <span className={styles.value}>
                 {field.label === 'Пункт выдачи'
                   ? (
                     <>
+                      {/* делим на спаны из-за особенностей отрисовки адреса */}
                       <span>
                         {field.value.split(', ')[0]}
                       </span>
@@ -49,21 +63,21 @@ function Checkout(props: ICheckoutProps) {
           );
         })}
       </ul>
-      {form.price && (
-      <p className={styles.price}>
-        Цена:
-        <span>
-          {form.price}
-        </span>
-      </p>
+      {form.priceMin && (
+        <p className={styles.price}>
+          Цена:
+          <span>
+            {generatePrice()}
+          </span>
+        </p>
       )}
       <Button
         click={click}
         className={styles.button}
-        color={stages[activeIndex].vars.includes('') ? 'blocked' : ''}
+        color={stages[activeIndex].vars.includes('') ? 'blocked' : id ? 'magenta' : ''}
         disabled={stages[activeIndex].vars.includes('')}
       >
-        {stages[activeIndex].buttonLabel}
+        {id ? 'Отменить' : stages[activeIndex].buttonLabel}
       </Button>
     </div>
   );

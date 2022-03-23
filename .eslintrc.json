@@ -26,6 +26,7 @@
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "react/require-default-props": "off",
         "react/jsx-no-bind": "off",
+        "react/jsx-props-no-spreading": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
@@ -44,7 +45,8 @@
         "no-nested-ternary": "off",
         "no-shadow": "off",
         "default-param-last": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "no-unused-expressions": "off"
     },
     "settings": {
         "import/resolver": {

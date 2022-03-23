@@ -1,0 +1,23 @@
+@use '/src/sass/tools' as *;
+
+.features {
+
+}
+
+.block {
+  margin-top: 32px;
+  @include media($md) {
+    margin-top: 16px;
+  }
+  p {
+    margin-bottom: 16px;
+  }
+}
+
+.tariff {
+  flex-direction: column;
+}
+
+.bonuses {
+  flex-direction: column;
+}

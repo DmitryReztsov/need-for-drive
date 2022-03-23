@@ -2,13 +2,15 @@ import {
   FormAction, FormActionTypes, IFormState,
 } from './types';
 
-const initialState : IFormState = {
+const initialState: IFormState = {
   city: '',
   pickPoint: '',
   model: '',
-  price: '',
-  color: '',
-  rentTime: '',
+  color: 'Любой',
+  dateFrom: Date.now(),
+  dateTo: 0,
+  priceMin: 0,
+  priceMax: 0,
   tariff: '',
   fuel: false,
   babySeat: false,

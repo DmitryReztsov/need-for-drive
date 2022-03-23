@@ -48,12 +48,12 @@ function Autocomplete(props: IAutocompleteProps) {
         blurHandler={handleBlurInput}
       />
       {showSuggestions && (
-      <Suggestions
-        filteredSuggestions={filteredSuggestions}
-        activeSuggestion={activeSuggestion}
-        click={handleClickOption}
-        keyDown={handleKeyOption}
-      />
+        <Suggestions
+          filteredSuggestions={filteredSuggestions}
+          activeSuggestion={activeSuggestion}
+          click={handleClickOption}
+          keyDown={handleKeyOption}
+        />
       )}
     </div>
   );

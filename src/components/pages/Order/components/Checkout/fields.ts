@@ -1,25 +1,57 @@
 import {IFormState} from '../../../../../store/form/types';
+import {dayInMilSeconds, hourInMilSeconds, minInMilSeconds} from '../../../../../utils/time';
 
 export interface IFields {
   [key: string]: any,
 }
 
-const labelArray = ['Пункт выдачи', 'Модель', 'Цвет', 'Длительность аренды', 'Тариф', 'Полный бак', 'Детское кресло', 'Правый руль'];
+function setDuration(dateTo: number, dateFrom: number): string {
+  if (!dateTo) return '';
+  const interval = dateTo - dateFrom;
+  const days = Math.trunc(interval / dayInMilSeconds);
+  const hours = Math.trunc((interval % dayInMilSeconds) / hourInMilSeconds);
+  const minutes = Math.trunc(((interval % dayInMilSeconds) % hourInMilSeconds) / minInMilSeconds);
+  const duration = `${days}д ${hours}ч ${minutes}м`;
+  return duration
+    .split(' ')
+    .filter((elem) => elem[0] !== '0')
+    .join(' ');
+}
 
 export function generateFields(form: IFormState) {
-  const props: any[] = [];
-  Object.entries(form).forEach((elem) => {
-    if (elem[0] === ('city' || 'price')) return;
-    if (elem[0] === 'pickPoint' && elem[1]) {
-      props.push(`${form.city}, ${elem[1]}`);
-      return;
-    }
-    props.push(elem[1]);
-  });
-
-  const fields: IFields [] = [];
-  props.forEach((prop, i) => {
-    fields.push({label: labelArray[i], value: prop});
-  });
+  const fields: IFields [] = [
+    {
+      label: 'Пункт выдачи',
+      value: `${form.city}, ${form.pickPoint}`,
+    },
+    {
+      label: 'Модель',
+      value: form.model,
+    },
+    {
+      label: 'Цвет',
+      value: form.color,
+    },
+    {
+      label: 'Длительность аренды',
+      value: setDuration(form.dateTo, form.dateFrom),
+    },
+    {
+      label: 'Тариф',
+      value: form.tariff.split(', ')[0],
+    },
+    {
+      label: 'Полный бак',
+      value: form.fuel ? 'Да' : '',
+    },
+    {
+      label: 'Детское кресло',
+      value: form.babySeat ? 'Да' : '',
+    },
+    {
+      label: 'Правый руль',
+      value: form.rightHandDrive ? 'Да' : '',
+    },
+  ];
   return fields;
 }

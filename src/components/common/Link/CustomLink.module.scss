@@ -2,9 +2,10 @@
 
 .link {
   text-decoration: none;
-  @include transition(0.2s,0s);
+  @include transition(0.2s, 0s);
+
   &:hover {
     color: $green;
-    @include transition(0.2s,0s);
+    @include transition(0.2s, 0s);
   }
 }

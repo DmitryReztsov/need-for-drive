@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Homepage />} />
           <Route path="order" element={<Order />} />
+          <Route path="order/:id" element={<Order />} />
         </Route>
       </Routes>
     </div>
