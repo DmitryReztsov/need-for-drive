@@ -8,8 +8,9 @@ function useClearForm() {
   const [searchParams, setSearchParams] = useSearchParams();
   const form = useTypedSelector((state) => state.form);
 
-  return function () {
-    Object.entries(form).forEach((field) => {
+  return function (index: number) {
+    Object.entries(form).forEach((field, i) => {
+      if (i < index) return;
       dispatch(setForm(field[0], ''));
       searchParams.delete(field[0]);
     });

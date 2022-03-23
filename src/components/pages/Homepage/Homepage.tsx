@@ -9,7 +9,7 @@ function Homepage() {
   // Костыль, необходимо подумать, как при размонтировании Order очищать форму
   const clearForm = useClearForm();
   useEffect(() => {
-    clearForm();
+    clearForm(0);
   }, []);
   return (
     <div className={styles.homepage}>

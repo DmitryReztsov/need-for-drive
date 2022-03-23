@@ -6,6 +6,7 @@ interface IRadioGroupProps {
   list: string [],
   field: string,
   allTypes?: string,
+  defaultValue?: string,
   className?: string,
   click: (e: React.MouseEvent<HTMLInputElement>) => void,
   keyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void,
@@ -13,7 +14,7 @@ interface IRadioGroupProps {
 
 function RadioGroup(props: IRadioGroupProps) {
   const {
-    list, field, allTypes, className, click, keyDown,
+    list, field, allTypes, defaultValue, className, click, keyDown,
   } = props;
   return (
     <div className={`${styles.group} ${className}`}>
@@ -35,6 +36,7 @@ function RadioGroup(props: IRadioGroupProps) {
             value={category}
             click={click}
             keyDown={keyDown}
+            defaultValue={defaultValue === category}
           />
         );
       })}

@@ -10,7 +10,9 @@ import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBo
 import DateChanger from './DateChanger/DateChanger';
 
 function Features() {
-  const {model} = useTypedSelector((state) => state.form);
+  const {
+    model, color, tariff, fuel, babySeat, rightHandDrive,
+  } = useTypedSelector((state) => state.form);
   const appendParams = useAppendParams();
 
   function getColors() {
@@ -35,6 +37,7 @@ function Features() {
           list={getColors()}
           field="color"
           allTypes="Любой"
+          defaultValue={color}
           click={(e) => clickHandler(e, 'color')}
           keyDown={(e) => enterHandler(e, 'color')}
         />
@@ -48,6 +51,7 @@ function Features() {
         <RadioGroup
           list={tariffs}
           field="tariff"
+          defaultValue={tariff}
           click={(e) => clickHandler(e, 'tariff')}
           keyDown={(e) => enterHandler(e, 'tariff')}
           className={styles.tariff}
@@ -57,6 +61,7 @@ function Features() {
         <p>Доп услуги</p>
         <CheckBoxGroup
           list={bonuses}
+          defaultChecked={[fuel, babySeat, rightHandDrive]}
           click={(e) => clickHandler(e, e.currentTarget.name)}
           keyDown={(e) => enterHandler(e, e.currentTarget.name)}
           className={styles.bonuses}
