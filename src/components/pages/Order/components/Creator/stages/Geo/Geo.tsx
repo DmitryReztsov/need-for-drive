@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import styles from './Geo.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
 import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
 import {cities, pickPoints} from '../../../../mocks';
+import getCity from '../../../../../../../store/api/city/actions';
 
 function Geo() {
   const {city, pickPoint} = useTypedSelector((state) => state.form);
   const [pickPointsList, setPickPointList] = useState<string []>([]);
+  const dispatch = useDispatch();
 
   function getCityPickPoints() {
     setPickPointList(pickPoints
@@ -18,6 +21,9 @@ function Geo() {
   useEffect(() => {
     getCityPickPoints();
   }, [city]);
+  useEffect(() => {
+    dispatch(getCity());
+  }, []);
   return (
     <div className={styles.geo}>
       <div className={styles.form}>
