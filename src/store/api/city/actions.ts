@@ -16,7 +16,6 @@ function getCity() {
           id: elem.id,
         });
       });
-      alert(cities);
       dispatch(getCitySuccess(cities));
     } catch (e: any) {
       dispatch(getCityError(e.message));

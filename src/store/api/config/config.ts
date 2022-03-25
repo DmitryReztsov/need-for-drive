@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseUrl = 'http://api-factory.simbirsoft1.com/api/db/';
+export const baseUrl = 'https://api-factory.simbirsoft1.com/api/db/';
 
 export const api = axios.create({
   baseURL: baseUrl,
