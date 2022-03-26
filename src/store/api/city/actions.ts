@@ -1,16 +1,16 @@
 import {Dispatch} from 'redux';
 import {getCityError, getCityLoading, getCitySuccess} from './actionCreators';
 import {ICity} from './types';
-import {api} from '../config/config';
 import Endpoints from '../config/endpoints';
+import getApi from '../config/fetchApi';
 
 function getCity() {
   return async function (dispatch: Dispatch) {
     dispatch(getCityLoading());
     try {
-      const data: any [] = await api.get(Endpoints.CITY);
+      const data = await getApi(Endpoints.CITY);
       const cities: ICity [] = [];
-      data.forEach((elem) => {
+      data.forEach((elem: any) => {
         cities.push({
           name: elem.name,
           id: elem.id,

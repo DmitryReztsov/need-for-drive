@@ -4,25 +4,29 @@ import styles from './Geo.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
 import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
-import {cities, pickPoints} from '../../../../mocks';
 import getCity from '../../../../../../../store/api/city/actions';
+import getPoint from '../../../../../../../store/api/point/actions';
+import {IPoint} from '../../../../../../../store/api/point/types';
 
 function Geo() {
   const {city, pickPoint} = useTypedSelector((state) => state.form);
-  const [pickPointsList, setPickPointList] = useState<string []>([]);
+  const {cities} = useTypedSelector((state) => state.city);
+  const {points} = useTypedSelector((state) => state.point);
+  const [pointList, setPointList] = useState<IPoint []>([]);
   const dispatch = useDispatch();
 
-  function getCityPickPoints() {
-    setPickPointList(pickPoints
-      .filter((pickPoint) => pickPoint.city === city)
-      .map((pickPoint) => pickPoint.address));
+  function getPoints() {
+    setPickPointList(points
+      .filter((point) => point.city.name === city)
+      .map((point) => point));
   }
 
   useEffect(() => {
-    getCityPickPoints();
+    getPoints();
   }, [city]);
   useEffect(() => {
     dispatch(getCity());
+    dispatch(getPoint());
   }, []);
   return (
     <div className={styles.geo}>

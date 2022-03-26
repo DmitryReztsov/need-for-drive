@@ -31,16 +31,12 @@ function Main() {
   const [loading, setLoading] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
 
-  function toggleModal() {
-    setModal(!modal);
-  }
-
   function acceptOrder() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       navigate('/order/123456', {replace: true});
-      toggleModal();
+      setModal(!modal);
     }, 1000);
   }
 
@@ -59,7 +55,7 @@ function Main() {
     if (id) {
       navigate('/', {replace: true});
     } else if (activeIndex === 3) {
-      toggleModal();
+      setModal(!modal);
     } else if (activeIndex < availableIndex) {
       setActiveIndex((state) => state + 1);
     }
@@ -127,7 +123,7 @@ function Main() {
           />
         </Container>
       </form>
-      {modal && <Confirm accept={acceptOrder} deny={toggleModal} loading={loading} />}
+      {modal && <Confirm accept={acceptOrder} deny={() => setModal(!modal)} loading={loading} />}
     </main>
   );
 }

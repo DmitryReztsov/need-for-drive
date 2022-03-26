@@ -3,10 +3,12 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import formReducer from './form/reducer';
 import cityReducer from './api/city/reducer';
+import pointReducer from './api/point/reducer';
 
 const combinedReducer = combineReducers({
   form: formReducer,
   city: cityReducer,
+  point: pointReducer,
 });
 
 const composeEnhancers = composeWithDevTools({});
