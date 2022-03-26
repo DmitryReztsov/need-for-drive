@@ -10,15 +10,17 @@ function getPoint() {
     try {
       const data = await getApi(Endpoints.POINT);
       const points: IPoint [] = [];
-      data.forEach((elem: any) => {
-        elem.cityId && points.push({
-          name: elem.name,
+      data.forEach(({
+        name, cityId, address, id,
+      }: any) => {
+        cityId && points.push({
+          name,
           cityId: {
-            name: elem.cityId.name,
-            id: elem.cityId.id,
+            name: cityId.name,
+            id: cityId.id,
           },
-          address: elem.address,
-          id: elem.id,
+          address,
+          id,
         });
       });
       dispatch(getPointSuccess(points));

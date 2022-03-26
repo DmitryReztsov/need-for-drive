@@ -10,10 +10,10 @@ function getCity() {
     try {
       const data = await getApi(Endpoints.CITY);
       const cities: ICity [] = [];
-      data.forEach((elem: any) => {
+      data.forEach(({name, id}: any) => {
         cities.push({
-          name: elem.name,
-          id: elem.id,
+          name,
+          id,
         });
       });
       dispatch(getCitySuccess(cities));

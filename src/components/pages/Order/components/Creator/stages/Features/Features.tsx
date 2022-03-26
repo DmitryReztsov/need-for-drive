@@ -3,7 +3,7 @@ import styles from './Features.module.scss';
 import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import useTypedSelector from '../../../../../../../store/selectors';
 import {
-  bonuses, models, tariffs,
+  bonuses, tariffs,
 } from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
 import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
@@ -13,10 +13,11 @@ function Features() {
   const {
     model, color, tariff, fuel, babySeat, rightHandDrive,
   } = useTypedSelector((state) => state.form);
+  const {cars} = useTypedSelector((state) => state.car);
   const appendParams = useAppendParams();
 
   function getColors() {
-    return models.find((item) => item.name === model)!.colors;
+    return cars.find((car) => car.name === model)!.colors;
   }
 
   function clickHandler(e: React.MouseEvent<HTMLInputElement>, field: string) {

@@ -2,13 +2,13 @@ import React from 'react';
 import {useParams} from 'react-router-dom';
 import styles from './Total.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
-import {models} from '../../../../mocks';
 import {formatDate} from '../../../../../../../utils/time';
 
 function Total() {
   const {id} = useParams();
   const {model, dateFrom, fuel} = useTypedSelector((state) => state.form);
-  const car = models.find((item) => item.name === model);
+  const {cars} = useTypedSelector((state) => state.car);
+  const car = cars.find((car) => car.name === model);
   const number = `${car?.number[0]} ${car?.number.slice(1, 4)} ${car?.number.slice(4)} 73`;
 
   return (
@@ -35,7 +35,7 @@ function Total() {
               {formatDate(dateFrom)}
             </span>
           </div>
-          <img className={styles.picture} src={`${car.picture}`} alt="car" />
+          <img className={styles.picture} src={`${car.path}`} alt="car" />
         </>
       )}
     </div>

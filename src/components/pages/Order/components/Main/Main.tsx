@@ -67,7 +67,7 @@ function Main() {
       setActiveIndex(3);
     } else {
       searchParams.forEach((value, key) => {
-        dispatch(setForm(key, value));
+        key && dispatch(setForm(key, value));
       });
       // ставим таймаут чтобы при изменение редакса не коснулись последних двух useEffect
       setTimeout(() => setIsLoaded(true));
@@ -88,7 +88,7 @@ function Main() {
   // Последние два useEffect для сброса шагов при изменении данных
   // доступно только после загрузки данных из URL
   useEffect(() => {
-    !id && isLoaded && clearForm(2);
+    !id && isLoaded && !stages[0].vars[1] && clearForm(2);
   }, stages[0].vars);
 
   useEffect(() => {

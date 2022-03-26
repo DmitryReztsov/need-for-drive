@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import formReducer from './form/reducer';
 import cityReducer from './api/city/reducer';
 import pointReducer from './api/point/reducer';
+import carReducer from './api/car/reducer';
 
 const combinedReducer = combineReducers({
   form: formReducer,
   city: cityReducer,
   point: pointReducer,
+  car: carReducer,
 });
 
 const composeEnhancers = composeWithDevTools({});

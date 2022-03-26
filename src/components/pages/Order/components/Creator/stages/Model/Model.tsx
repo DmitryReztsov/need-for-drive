@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import styles from './Model.module.scss';
 import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import CardList from './CardList/CardList';
-import {models} from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
 import useTypedSelector from '../../../../../../../store/selectors';
+import getCar from '../../../../../../../store/api/car/actions';
 
 function Model() {
   const appendParams = useAppendParams();
   const {category} = useTypedSelector((state) => state.form);
+  const {cars} = useTypedSelector((state) => state.car);
+  const dispatch = useDispatch();
 
   function getCategories() {
     const categories = new Set<string>();
-    models.forEach((model) => {
-      categories.add(model.category);
+    cars.forEach((car) => {
+      categories.add(car.categoryId.name);
     });
     return Array.from(categories);
   }
@@ -28,6 +31,9 @@ function Model() {
     }
   }
 
+  useEffect(() => {
+    dispatch(getCar());
+  }, []);
   return (
     <div className={styles.model}>
       <RadioGroup
@@ -39,7 +45,7 @@ function Model() {
         click={clickCategory}
         keyDown={enterCategory}
       />
-      <CardList list={models} filter={category} />
+      <CardList list={cars} filter={category} />
     </div>
   );
 }

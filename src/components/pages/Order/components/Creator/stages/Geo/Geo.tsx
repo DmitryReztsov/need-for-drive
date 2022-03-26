@@ -6,24 +6,35 @@ import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
 import getCity from '../../../../../../../store/api/city/actions';
 import getPoint from '../../../../../../../store/api/point/actions';
-import {IPoint} from '../../../../../../../store/api/point/types';
 
 function Geo() {
   const {city, pickPoint} = useTypedSelector((state) => state.form);
   const {cities} = useTypedSelector((state) => state.city);
   const {points} = useTypedSelector((state) => state.point);
-  const [pointList, setPointList] = useState<IPoint []>([]);
+  const [pointList, setPointList] = useState<string[]>([]);
+  const [allPointList, setAllPointList] = useState<{city: string, address: string} []>([]);
   const dispatch = useDispatch();
 
-  function getPoints() {
-    setPickPointList(points
-      .filter((point) => point.city.name === city)
-      .map((point) => point));
+  function getFilteredPoints() {
+    setPointList(points
+      .filter((point) => point.cityId.name === city)
+      .map((point) => point.address));
+  }
+
+  function getAllPoints() {
+    setAllPointList(points.map((point) => {
+      return {city: point.cityId.name, address: point.address};
+    }));
   }
 
   useEffect(() => {
-    getPoints();
+    getFilteredPoints();
   }, [city]);
+
+  useEffect(() => {
+    getAllPoints();
+  }, [points]);
+
   useEffect(() => {
     dispatch(getCity());
     dispatch(getPoint());
@@ -32,7 +43,7 @@ function Geo() {
     <div className={styles.geo}>
       <div className={styles.form}>
         <Autocomplete
-          list={cities}
+          list={cities.map((city) => city.name)}
           field="city"
           label="Город"
           value={city}
@@ -41,7 +52,7 @@ function Geo() {
           clickDropdown
         />
         <Autocomplete
-          list={pickPointsList}
+          list={pointList}
           field="pickPoint"
           label="Пункт выдачи"
           value={pickPoint}
@@ -50,7 +61,7 @@ function Geo() {
       </div>
       <p className={styles.text}>Выбрать на карте:</p>
       <div className={styles.map}>
-        <GeoMap city={city} pickPoint={pickPoint} pickPoints={pickPoints} />
+        <GeoMap city={city} pickPoint={pickPoint} pickPoints={allPointList} />
       </div>
     </div>
   );

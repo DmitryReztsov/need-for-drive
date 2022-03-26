@@ -53,7 +53,7 @@ function Checkout(props: ICheckoutProps) {
                       </span>
                       <br />
                       <span>
-                        {field.value.split(', ')[1]}
+                        {field.value.split(', ').slice(1, 3).join(', ')}
                       </span>
                     </>
                   )
