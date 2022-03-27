@@ -6,9 +6,8 @@ import Creator from '../Creator/Creator';
 import Checkout from '../Checkout/Checkout';
 import Container from '../../../../common/Container/Container';
 import Confirm from '../../../../common/modals/Confirm/Confirm';
-import useClearForm from '../../../../../hooks/useClearForm';
 import useStages from '../../../../../hooks/useStages';
-import useDecodeUrl from '../../../../../hooks/useDecodeUrl';
+import useDecodeParams from '../../../../../hooks/useDecodeParams';
 
 export interface IStage {
   name: string,
@@ -18,15 +17,15 @@ export interface IStage {
 
 function Main() {
   const [searchParams] = useSearchParams();
-  const clearForm = useClearForm();
+  // const clearForm = useClearForm();
   const navigate = useNavigate();
   const {id} = useParams();
   const stages = useStages();
-  const decodeUrl = useDecodeUrl();
+  const decodeUrl = useDecodeParams();
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [availableIndex, setAvailableIndex] = useState<number>(0);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  // const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
 
@@ -69,7 +68,7 @@ function Main() {
         key && decodeUrl(key, value);
       });
       // ставим таймаут чтобы при изменение редакса не коснулись последних двух useEffect
-      setTimeout(() => setIsLoaded(true));
+      // setTimeout(() => setIsLoaded(true));
     }
   }, []);
 
@@ -85,13 +84,13 @@ function Main() {
 
   // Последние два useEffect для сброса шагов при изменении данных
   // доступно только после загрузки данных из URL
-  useEffect(() => {
-    !id && isLoaded && !stages[0].vars[1] && clearForm(2);
-  }, stages[0].vars);
-
-  useEffect(() => {
-    !id && isLoaded && clearForm(6);
-  }, stages[1].vars);
+  // useEffect(() => {
+  //   !id && isLoaded && !stages[0].vars[1] && clearForm(2);
+  // }, stages[0].vars);
+  //
+  // useEffect(() => {
+  //   !id && isLoaded && clearForm(6);
+  // }, stages[1].vars);
   return (
     <main className={styles.main}>
       <nav className={styles.navigation}>

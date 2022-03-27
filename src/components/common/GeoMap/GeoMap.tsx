@@ -62,7 +62,7 @@ function GeoMap(props: IGeoMapProps) {
       .get({provider: 'yandex', mapStateAutoApply: true})
       .then((result: AnyObject) => result.geoObjects.get(0))
       .then((result: AnyObject) => {
-        appendParams('city', result.getLocalities().join(', '));
+        appendParams('cityId', result.getLocalities().join(', '));
         setCenter(result.geometry.getCoordinates());
       })
       .catch((err: Error) => {
@@ -85,8 +85,8 @@ function GeoMap(props: IGeoMapProps) {
 
   function setPickPoint(pickPoint: any) {
     console.log(pickPoint);
-    appendParams('city', pickPoint.city);
-    appendParams('pickPoint', pickPoint.address);
+    appendParams('cityId', pickPoint.city);
+    appendParams('pointId', pickPoint.address);
     setCenter(pickPoint.geometry.getCoordinates());
   }
 

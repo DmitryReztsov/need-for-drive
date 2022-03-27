@@ -22,7 +22,7 @@ export function generateFields(form: IFormState) {
   const fields: IFields [] = [
     {
       label: 'Пункт выдачи',
-      value: `${form.city}, ${form.pickPoint}`,
+      value: `${form.cityId?.name}, ${form.pointId?.name}`,
     },
     {
       label: 'Модель',

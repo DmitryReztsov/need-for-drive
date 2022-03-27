@@ -5,7 +5,7 @@ import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
 
 function Geo() {
-  const {city, pickPoint} = useTypedSelector((state) => state.form);
+  const {cityId, pointId} = useTypedSelector((state) => state.form);
   const {cities} = useTypedSelector((state) => state.city);
   const {points} = useTypedSelector((state) => state.point);
   const [pointList, setPointList] = useState<string[]>([]);
@@ -13,7 +13,7 @@ function Geo() {
 
   function getFilteredPoints() {
     setPointList(points
-      .filter((point) => point.cityId.name === city)
+      .filter((point) => point.cityId.name === cityId?.name)
       .map((point) => point.address));
   }
 
@@ -25,7 +25,7 @@ function Geo() {
 
   useEffect(() => {
     getFilteredPoints();
-  }, [city]);
+  }, [cityId]);
 
   useEffect(() => {
     getAllPoints();
@@ -36,24 +36,24 @@ function Geo() {
       <div className={styles.form}>
         <Autocomplete
           list={cities.map((city) => city.name)}
-          field="city"
+          field="cityId"
           label="Город"
-          value={city}
+          value={cityId?.name}
           placeholder="Начните вводить город ..."
-          resetField="pickPoint"
+          resetField="pointId"
           clickDropdown
         />
         <Autocomplete
           list={pointList}
-          field="pickPoint"
+          field="pointId"
           label="Пункт выдачи"
-          value={pickPoint}
+          value={pointId?.address || ''}
           placeholder="Начните вводить пункт ..."
         />
       </div>
       <p className={styles.text}>Выбрать на карте:</p>
       <div className={styles.map}>
-        <GeoMap city={city} pickPoint={pickPoint} pickPoints={allPointList} />
+        <GeoMap city={cityId?.name} pickPoint={pointId?.name} pickPoints={allPointList} />
       </div>
     </div>
   );

@@ -3,8 +3,8 @@ import {
 } from './types';
 
 const initialState: IFormState = {
-  city: '',
-  pickPoint: '',
+  cityId: null,
+  pointId: null,
   carId: null,
   category: '',
   color: 'Любой',

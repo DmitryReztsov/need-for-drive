@@ -1,8 +1,10 @@
 import {ICar} from '../api/car/types';
+import {ICity} from '../api/city/types';
+import {IPoint} from '../api/point/types';
 
 export interface IFormState {
-  city: string,
-  pickPoint: string,
+  cityId: ICity | null,
+  pointId: IPoint | null,
   carId: ICar | null,
   category: string,
   color: string,
@@ -16,7 +18,7 @@ export interface IFormState {
 
 export interface ISetFormPayload {
   key: string,
-  value: string,
+  value: any,
 }
 
 export enum FormActionTypes {

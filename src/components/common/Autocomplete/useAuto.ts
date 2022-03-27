@@ -6,7 +6,7 @@ interface useAutoProps {
   resetField: string | undefined,
   list: string [],
   field: string,
-  value: string,
+  value?: string,
   clickDropdown: boolean | undefined,
   wrapperRef: React.RefObject<HTMLDivElement>,
 }
@@ -22,7 +22,7 @@ export default function (props: useAutoProps) {
 
   // Здесь мы проверяем, обнуляет ли изменения этого поля какое-то другое поле.
   function clearField() {
-    if (resetField) appendParams(resetField, '');
+    if (resetField) appendParams(resetField, null);
   }
 
   // В зависимости от значения сортируем список элементов
@@ -70,7 +70,7 @@ export default function (props: useAutoProps) {
     if (wrapperRef.current && !wrapperRef.current.contains(e.relatedTarget) && value) {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      appendParams(field, buffer || '');
+      appendParams(field, buffer || null);
     }
   }
 

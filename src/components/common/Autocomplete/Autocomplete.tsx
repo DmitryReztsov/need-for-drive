@@ -8,7 +8,7 @@ interface IAutocompleteProps {
   list: string [],
   field: string,
   label: string,
-  value: string,
+  value?: string,
   placeholder?: string,
   resetField?: string,
   clickDropdown?: boolean,
