@@ -1,17 +1,14 @@
-import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import React from 'react';
 import styles from './Model.module.scss';
 import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import CardList from './CardList/CardList';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
 import useTypedSelector from '../../../../../../../store/selectors';
-import getCar from '../../../../../../../store/api/car/actions';
 
 function Model() {
   const appendParams = useAppendParams();
   const {category} = useTypedSelector((state) => state.form);
   const {cars} = useTypedSelector((state) => state.car);
-  const dispatch = useDispatch();
 
   function getCategories() {
     const categories = new Set<string>();
@@ -31,9 +28,6 @@ function Model() {
     }
   }
 
-  useEffect(() => {
-    dispatch(getCar());
-  }, []);
   return (
     <div className={styles.model}>
       <RadioGroup

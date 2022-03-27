@@ -1,9 +1,9 @@
+import {ICar} from '../api/car/types';
+
 export interface IFormState {
   city: string,
   pickPoint: string,
-  model: string,
-  priceMin: number,
-  priceMax: number,
+  carId: ICar | null,
   category: string,
   color: string,
   dateFrom: number,

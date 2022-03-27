@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
 import styles from './Geo.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
 import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
-import getCity from '../../../../../../../store/api/city/actions';
-import getPoint from '../../../../../../../store/api/point/actions';
 
 function Geo() {
   const {city, pickPoint} = useTypedSelector((state) => state.form);
@@ -13,7 +10,6 @@ function Geo() {
   const {points} = useTypedSelector((state) => state.point);
   const [pointList, setPointList] = useState<string[]>([]);
   const [allPointList, setAllPointList] = useState<{city: string, address: string} []>([]);
-  const dispatch = useDispatch();
 
   function getFilteredPoints() {
     setPointList(points
@@ -35,10 +31,6 @@ function Geo() {
     getAllPoints();
   }, [points]);
 
-  useEffect(() => {
-    dispatch(getCity());
-    dispatch(getPoint());
-  }, []);
   return (
     <div className={styles.geo}>
       <div className={styles.form}>

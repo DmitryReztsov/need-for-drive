@@ -6,9 +6,9 @@ import {formatDate} from '../../../../../../../utils/time';
 
 function Total() {
   const {id} = useParams();
-  const {model, dateFrom, fuel} = useTypedSelector((state) => state.form);
+  const {carId, dateFrom, fuel} = useTypedSelector((state) => state.form);
   const {cars} = useTypedSelector((state) => state.car);
-  const car = cars.find((car) => car.name === model);
+  const car = cars.find((car) => car.id === carId?.id);
   const number = `${car?.number[0]} ${car?.number.slice(1, 4)} ${car?.number.slice(4)} 73`;
 
   return (

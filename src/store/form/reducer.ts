@@ -5,9 +5,7 @@ import {
 const initialState: IFormState = {
   city: '',
   pickPoint: '',
-  model: '',
-  priceMin: 0,
-  priceMax: 0,
+  carId: null,
   category: '',
   color: 'Любой',
   dateFrom: Date.now(),

@@ -11,13 +11,13 @@ import DateChanger from './DateChanger/DateChanger';
 
 function Features() {
   const {
-    model, color, tariff, fuel, babySeat, rightHandDrive,
+    carId, color, tariff, fuel, babySeat, rightHandDrive,
   } = useTypedSelector((state) => state.form);
   const {cars} = useTypedSelector((state) => state.car);
   const appendParams = useAppendParams();
 
   function getColors() {
-    return cars.find((car) => car.name === model)!.colors;
+    return cars.find((car) => car.id === carId?.id)!.colors;
   }
 
   function clickHandler(e: React.MouseEvent<HTMLInputElement>, field: string) {

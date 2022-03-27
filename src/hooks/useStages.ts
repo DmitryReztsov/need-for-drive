@@ -2,7 +2,7 @@ import useTypedSelector from '../store/selectors';
 
 function useStages() {
   const {
-    city, pickPoint, model, dateFrom, dateTo, tariff,
+    city, pickPoint, carId, dateFrom, dateTo, tariff,
   } = useTypedSelector((state) => state.form);
 
   // Здесь храним название для навигации, переменные страниц заказа и текст кнопки
@@ -17,7 +17,7 @@ function useStages() {
     },
     {
       name: 'Модель',
-      vars: [model],
+      vars: [carId],
       buttonLabel: 'Дополнительно',
     },
     {

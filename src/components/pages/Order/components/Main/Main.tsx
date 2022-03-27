@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
 import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import styles from './Main.module.scss';
 import Creator from '../Creator/Creator';
 import Checkout from '../Checkout/Checkout';
 import Container from '../../../../common/Container/Container';
-import setForm from '../../../../../store/form/actions';
 import Confirm from '../../../../common/modals/Confirm/Confirm';
 import useClearForm from '../../../../../hooks/useClearForm';
 import useStages from '../../../../../hooks/useStages';
+import useDecodeUrl from '../../../../../hooks/useDecodeUrl';
 
 export interface IStage {
   name: string,
@@ -18,12 +17,12 @@ export interface IStage {
 }
 
 function Main() {
-  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const clearForm = useClearForm();
   const navigate = useNavigate();
   const {id} = useParams();
   const stages = useStages();
+  const decodeUrl = useDecodeUrl();
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [availableIndex, setAvailableIndex] = useState<number>(0);
@@ -67,19 +66,18 @@ function Main() {
       setActiveIndex(3);
     } else {
       searchParams.forEach((value, key) => {
-        key && dispatch(setForm(key, value));
+        key && decodeUrl(key, value);
       });
       // ставим таймаут чтобы при изменение редакса не коснулись последних двух useEffect
       setTimeout(() => setIsLoaded(true));
     }
-    // при обновлении страницы считываем все параметры строки
   }, []);
 
   // нужен для возможности перехода на доступные шаги
   useEffect(() => {
     if (id) return;
     stages.forEach((stage, i, arr) => {
-      if (i === 0 || !arr[i - 1].vars.includes('')) {
+      if (i === 0 || !arr[i - 1].vars.some((elem) => elem === (null || ''))) {
         setAvailableIndex(i);
       }
     });

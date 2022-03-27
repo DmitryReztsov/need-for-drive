@@ -24,9 +24,9 @@ function Checkout(props: ICheckoutProps) {
   function generatePrice() {
     if (form.tariff && form.dateFrom && form.dateTo) {
       // пока без логики расчета, только для верстки
-      return ` ${form.priceMin} руб.`;
+      return ` ${form.carId?.priceMin} руб.`;
     }
-    return ` от ${form.priceMin} до ${form.priceMax} руб.`;
+    return ` от ${form.carId?.priceMin} до ${form.carId?.priceMax} руб.`;
   }
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function Checkout(props: ICheckoutProps) {
           );
         })}
       </ul>
-      {form.priceMin && (
+      {form.carId?.priceMin && (
         <p className={styles.price}>
           Цена:
           <span>

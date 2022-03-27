@@ -26,7 +26,7 @@ export function generateFields(form: IFormState) {
     },
     {
       label: 'Модель',
-      value: form.model,
+      value: form.carId?.name,
     },
     {
       label: 'Цвет',
