@@ -1,6 +1,7 @@
 import {ICar} from '../api/car/types';
 import {ICity} from '../api/city/types';
 import {IPoint} from '../api/point/types';
+import {IRate} from '../api/rate/types';
 
 export interface IFormState {
   cityId: ICity | null,
@@ -10,7 +11,7 @@ export interface IFormState {
   color: string,
   dateFrom: number,
   dateTo: number,
-  tariff: string,
+  rate: IRate | null,
   fuel: boolean,
   babySeat: boolean,
   rightHandDrive: boolean,

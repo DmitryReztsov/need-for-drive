@@ -20,7 +20,7 @@ function RadioButton(props: IRadioButtonProps) {
         tabIndex={0}
         id={value}
         name={field}
-        value={defaultValue ? '' : value}
+        value={value}
         className={styles.input}
         onClick={click}
         onKeyDown={keyDown}

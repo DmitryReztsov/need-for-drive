@@ -9,6 +9,7 @@ function useAppendParams() {
   const {cityId} = useTypedSelector((state) => state.form);
   const {cities} = useTypedSelector((state) => state.city);
   const {points} = useTypedSelector((state) => state.point);
+  const {rates} = useTypedSelector((state) => state.rate);
 
   return function (field: string, value: any) {
     switch (field) {
@@ -24,6 +25,12 @@ function useAppendParams() {
       }
       case ('carId'): {
         dispatch(setForm(field, value));
+        break;
+      }
+      case ('rateId'): {
+        dispatch(
+          setForm(field, value ? rates.find((rate) => rate.rateTypeId.name === value) : null),
+        );
         break;
       }
       default: {

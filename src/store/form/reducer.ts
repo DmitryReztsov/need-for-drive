@@ -10,7 +10,7 @@ const initialState: IFormState = {
   color: 'Любой',
   dateFrom: Date.now(),
   dateTo: 0,
-  tariff: '',
+  rate: null,
   fuel: false,
   babySeat: false,
   rightHandDrive: false,
