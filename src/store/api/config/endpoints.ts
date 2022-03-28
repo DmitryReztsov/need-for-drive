@@ -1,7 +1,8 @@
 enum Endpoints {
   CITY = 'city',
   POINT = 'point',
-  CAR = 'car'
+  CAR = 'car',
+  RATE = 'rate'
 }
 
 export default Endpoints;

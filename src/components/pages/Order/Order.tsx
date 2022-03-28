@@ -7,6 +7,8 @@ import getCity from '../../../store/api/city/actions';
 import getPoint from '../../../store/api/point/actions';
 import getCar from '../../../store/api/car/actions';
 import useTypedSelector from '../../../store/selectors';
+import Loading from '../../common/Loading/Loading';
+import getRate from '../../../store/api/rate/actions';
 
 function Order() {
   const dispatch = useDispatch();
@@ -16,9 +18,10 @@ function Order() {
     dispatch(getCity());
     dispatch(getPoint());
     dispatch(getCar());
+    dispatch(getRate());
   }, []);
   if (loading) {
-    return <div>Загрузка...</div>;
+    return <Loading />;
   }
   if (error) {
     return <div>Возникла ошибка</div>;

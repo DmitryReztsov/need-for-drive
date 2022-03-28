@@ -3,6 +3,7 @@ import styles from './CarCard.module.scss';
 import useTypedSelector from '../../../../../../../../../store/selectors';
 import useAppendParams from '../../../../../../../../../hooks/useAppendParams';
 import {ICar} from '../../../../../../../../../store/api/car/types';
+import noImage from '../../../../../../../../../content/error/no_image_available.png';
 
 interface ICarCardProps {
   car: ICar,
@@ -27,7 +28,7 @@ function CarCard(props: ICarCardProps) {
       role="button"
       tabIndex={0}
       className={`${styles.card} ${carId?.id === car.id ? styles.active : ''}`}
-      style={{backgroundImage: `url(${car.path})`}}
+      style={{backgroundImage: `url(${car.path.includes('data:') ? car.path : noImage})`}}
       onClick={() => handleCLickCard(car)}
       onKeyDown={(e) => handleKeyCard(e, car)}
     >

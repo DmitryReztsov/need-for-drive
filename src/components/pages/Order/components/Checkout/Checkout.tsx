@@ -22,7 +22,7 @@ function Checkout(props: ICheckoutProps) {
   let fields = generateFields(form);
 
   function generatePrice() {
-    if (form.tariff && form.dateFrom && form.dateTo) {
+    if (form.rate && form.dateFrom && form.dateTo) {
       // пока без логики расчета, только для верстки
       return ` ${form.carId?.priceMin} руб.`;
     }
@@ -74,7 +74,7 @@ function Checkout(props: ICheckoutProps) {
       <Button
         click={click}
         className={styles.button}
-        color={stages[activeIndex].vars.includes('') ? 'blocked' : id ? 'magenta' : ''}
+        color={stages[activeIndex].vars.some((elem) => !elem) ? 'blocked' : id ? 'magenta' : ''}
         disabled={stages[activeIndex].vars.includes('')}
       >
         {id ? 'Отменить' : stages[activeIndex].buttonLabel}

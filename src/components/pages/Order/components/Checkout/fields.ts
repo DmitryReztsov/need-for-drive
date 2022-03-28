@@ -22,7 +22,7 @@ export function generateFields(form: IFormState) {
   const fields: IFields [] = [
     {
       label: 'Пункт выдачи',
-      value: `${form.cityId?.name}, ${form.pointId?.name}`,
+      value: form.cityId && `${form.cityId?.name}, ${form.pointId?.address}`,
     },
     {
       label: 'Модель',
@@ -38,7 +38,7 @@ export function generateFields(form: IFormState) {
     },
     {
       label: 'Тариф',
-      value: form.tariff.split(', ')[0],
+      value: form.rate,
     },
     {
       label: 'Полный бак',

@@ -5,7 +5,7 @@
   height: 224px;
   padding: 16px;
   background-position: bottom 16px right 16px;
-  background-size: 69%, auto, cover;
+  background-size: auto 55%;
   background-repeat: no-repeat;
   outline: 1px solid $gray-light;
   outline-offset: -1px;
@@ -16,12 +16,8 @@
     @include transition(0.2s, 0s);
   }
 
-  @include media($xl) {
-    background-size: 59%, auto, cover;
-  }
-
   @include media($md) {
-    height: 170px;
+    background-size: 70% auto;
   }
 
   p {

@@ -76,7 +76,7 @@ function Main() {
   useEffect(() => {
     if (id) return;
     stages.forEach((stage, i, arr) => {
-      if (i === 0 || !arr[i - 1].vars.some((elem) => elem === (null || ''))) {
+      if (i === 0 || !arr[i - 1].vars.some((elem) => !elem)) {
         setAvailableIndex(i);
       }
     });
