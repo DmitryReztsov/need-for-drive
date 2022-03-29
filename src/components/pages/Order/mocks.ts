@@ -1,8 +1,3 @@
-export const tariffs = [
-  'Поминутно, 7₽/мин',
-  'На сутки, 1999 ₽/сутки',
-];
-
 export interface IBonuses {
   name: string,
   desc: string,

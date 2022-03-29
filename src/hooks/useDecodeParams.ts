@@ -8,8 +8,9 @@ function useDecodeParams() {
   const {cities} = useTypedSelector((state) => state.city);
   const {points} = useTypedSelector((state) => state.point);
   const {cars} = useTypedSelector((state) => state.car);
+  const {categories} = useTypedSelector((state) => state.category);
+  const {rates} = useTypedSelector((state) => state.rate);
   return function (key: string, value: string) {
-    console.log(key, value);
     switch (key) {
       case ('cityId'): {
         return dispatch(setForm(key, cities.find((city) => city.name === value)));
@@ -22,8 +23,14 @@ function useDecodeParams() {
       case ('carId'): {
         return dispatch(setForm(key, cars.find((car) => car.id === value)));
       }
+      case ('categoryId'): {
+        return dispatch(setForm(key, categories.find((category) => category.id === value)));
+      }
       case ('dateFrom' || 'dateTo'): {
         return dispatch(setForm(key, +value));
+      }
+      case ('rateId'): {
+        return dispatch(setForm(key, rates.find((rate) => rate.id === value)));
       }
       default: {
         return dispatch(setForm(key, value));

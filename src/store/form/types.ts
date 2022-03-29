@@ -2,16 +2,18 @@ import {ICar} from '../api/car/types';
 import {ICity} from '../api/city/types';
 import {IPoint} from '../api/point/types';
 import {IRate} from '../api/rate/types';
+import {ICategory} from '../Groups/category/types';
+import {IRadioItem} from '../../components/common/inputs/RadioGroup/RadioGroup';
 
 export interface IFormState {
   cityId: ICity | null,
   pointId: IPoint | null,
   carId: ICar | null,
-  category: string,
-  color: string,
+  categoryId: ICategory | null,
+  color: IRadioItem | null,
   dateFrom: number,
   dateTo: number,
-  rate: IRate | null,
+  rateId: IRate | null,
   fuel: boolean,
   babySeat: boolean,
   rightHandDrive: boolean,

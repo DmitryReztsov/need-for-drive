@@ -30,7 +30,7 @@ export function generateFields(form: IFormState) {
     },
     {
       label: 'Цвет',
-      value: form.color,
+      value: form.color?.name,
     },
     {
       label: 'Длительность аренды',
@@ -38,7 +38,7 @@ export function generateFields(form: IFormState) {
     },
     {
       label: 'Тариф',
-      value: form.rate,
+      value: form.rateId?.rateTypeId.name,
     },
     {
       label: 'Полный бак',

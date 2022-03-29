@@ -22,7 +22,7 @@ function Checkout(props: ICheckoutProps) {
   let fields = generateFields(form);
 
   function generatePrice() {
-    if (form.rate && form.dateFrom && form.dateTo) {
+    if (form.rateId && form.dateFrom && form.dateTo) {
       // пока без логики расчета, только для верстки
       return ` ${form.carId?.priceMin} руб.`;
     }

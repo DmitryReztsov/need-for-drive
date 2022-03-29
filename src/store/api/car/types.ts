@@ -1,12 +1,11 @@
+import {ICategory} from '../../Groups/category/types';
+
 export interface ICar {
   priceMin: number,
   priceMax: number,
   name: string,
   number: string,
-  categoryId: {
-    name: string,
-    id: string,
-  },
+  categoryId: ICategory,
   path: string,
   tank: number,
   colors: string [],

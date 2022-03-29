@@ -23,10 +23,6 @@ function useAppendParams() {
         }) : null));
         break;
       }
-      case ('carId'): {
-        dispatch(setForm(field, value));
-        break;
-      }
       case ('rateId'): {
         dispatch(
           setForm(field, value ? rates.find((rate) => rate.rateTypeId.name === value) : null),

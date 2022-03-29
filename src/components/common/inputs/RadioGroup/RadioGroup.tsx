@@ -2,41 +2,44 @@ import React from 'react';
 import styles from './RadioGroup.module.scss';
 import RadioButton from './RadioButton/RadioButton';
 
-interface IRadioGroupProps {
-  list: string [],
-  field: string,
-  allTypes?: string,
-  defaultValue?: string,
-  className?: string,
-  click: (e: React.MouseEvent<HTMLInputElement>) => void,
-  keyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void,
+export interface IRadioItem {
+  id: string,
+  name: string,
 }
 
-function RadioGroup(props: IRadioGroupProps) {
+interface IRadioGroupProps<T> {
+  list: T [],
+  field: string,
+  allTypes?: T,
+  defaultValue?: T | null,
+  className?: string,
+}
+
+function RadioGroup<T extends IRadioItem>(props: IRadioGroupProps<T>) {
   const {
-    list, field, allTypes, defaultValue, className, click, keyDown,
+    list, field, allTypes, defaultValue, className,
   } = props;
   return (
     <div className={`${styles.group} ${className}`}>
       {allTypes && (
         <RadioButton
-          key={allTypes}
+          key={allTypes.id}
           field={field}
-          value={allTypes}
-          click={click}
-          keyDown={keyDown}
+          id={allTypes.id}
+          item={allTypes}
+          value={allTypes.name}
           defaultValue
         />
       )}
       {list.map((category) => {
         return (
           <RadioButton
-            key={category}
+            key={category.id}
             field={field}
-            value={category}
-            click={click}
-            keyDown={keyDown}
-            defaultValue={defaultValue === category}
+            id={category.id}
+            item={category}
+            value={category.name}
+            defaultValue={defaultValue?.id === category.id}
           />
         );
       })}

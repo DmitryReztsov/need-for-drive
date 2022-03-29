@@ -1,32 +1,35 @@
 import React from 'react';
 import styles from './RadioButton.module.scss';
+import {IRadioItem} from '../RadioGroup';
+import useAppendParams from '../../../../../hooks/useAppendParams';
 
-interface IRadioButtonProps {
+interface IRadioButtonProps<T> {
   field: string,
   value: string,
-  click: (e: React.MouseEvent<HTMLInputElement>) => void,
-  keyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void,
+  id: string,
+  item: T,
   defaultValue?: boolean,
 }
 
-function RadioButton(props: IRadioButtonProps) {
+function RadioButton<T extends IRadioItem>(props: IRadioButtonProps<T>) {
   const {
-    field, value, click, keyDown, defaultValue,
+    field, value, id, item, defaultValue,
   } = props;
+  const appendParams = useAppendParams();
   return (
     <div className={styles.radio}>
       <input
         type="radio"
         tabIndex={0}
-        id={value}
+        id={id}
         name={field}
         value={value}
         className={styles.input}
-        onClick={click}
-        onKeyDown={keyDown}
+        onClick={() => appendParams(field, item)}
+        onKeyDown={(e) => e.code === 'Enter' && appendParams(field, item)}
         defaultChecked={defaultValue}
       />
-      <label htmlFor={value}>
+      <label htmlFor={id}>
         {value}
       </label>
     </div>

@@ -1,27 +1,33 @@
 import React from 'react';
 import styles from './Features.module.scss';
-import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
+import RadioGroup, {IRadioItem} from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import useTypedSelector from '../../../../../../../store/selectors';
 import {bonuses} from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
 import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
 import DateChanger from './DateChanger/DateChanger';
-import {IRate} from '../../../../../../../store/api/rate/types';
 
 function Features() {
   const {
     carId, color, fuel, babySeat, rightHandDrive,
   } = useTypedSelector((state) => state.form);
-  const {cars} = useTypedSelector((state) => state.car);
   const {rates} = useTypedSelector((state) => state.rate);
   const appendParams = useAppendParams();
 
   function getColors() {
-    return cars.find((car) => car.id === carId?.id)!.colors;
+    const colors: IRadioItem [] = [];
+    carId?.colors.forEach((color, i) => colors.push({id: i.toString(), name: color}));
+    console.log(colors);
+    return colors;
+  }
+
+  function getRates() {
+    return rates.map((rate) => {
+      return {id: rate.id, name: `${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`};
+    });
   }
 
   function clickHandler(e: React.MouseEvent<HTMLInputElement>, field: string) {
-    console.log(e.currentTarget.value);
     appendParams(field, e.currentTarget.value);
   }
 
@@ -31,10 +37,6 @@ function Features() {
     }
   }
 
-  function getRateString(rate: IRate) {
-    return `${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`;
-  }
-
   return (
     <div className={styles.features}>
       <div className={styles.block}>
@@ -42,10 +44,8 @@ function Features() {
         <RadioGroup
           list={getColors()}
           field="color"
-          allTypes="Любой"
+          allTypes={{id: 'Любой', name: 'Любой'}}
           defaultValue={color}
-          click={(e) => clickHandler(e, 'color')}
-          keyDown={(e) => enterHandler(e, 'color')}
         />
       </div>
       <div className={styles.block}>
@@ -55,11 +55,9 @@ function Features() {
       <div className={styles.block}>
         <p>Тариф</p>
         <RadioGroup
-          list={rates.map((rate) => getRateString(rate))}
+          list={getRates()}
           field="rate"
-          defaultValue={getRateString(rates[0])}
-          click={(e) => clickHandler(e, 'rate')}
-          keyDown={(e) => enterHandler(e, 'rate')}
+          defaultValue={getRates()[0]}
           className={styles.rates}
         />
       </div>
