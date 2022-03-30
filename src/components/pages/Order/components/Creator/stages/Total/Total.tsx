@@ -6,10 +6,12 @@ import {formatDate} from '../../../../../../../utils/time';
 
 function Total() {
   const {id} = useParams();
-  const {carId, dateFrom, fuel} = useTypedSelector((state) => state.form);
+  const {carId, dateFrom, isFullTank} = useTypedSelector((state) => state.form);
   const {cars} = useTypedSelector((state) => state.car);
   const car = cars.find((car) => car.id === carId?.id);
-  const number = `${car?.number[0]} ${car?.number.slice(1, 4)} ${car?.number.slice(4)} 73`;
+  const number = car?.number && car?.number.length === 6
+    ? `${car?.number[0]} ${car?.number.slice(1, 4)} ${car?.number.slice(4)} 73`
+    : `${car?.number[0]} ${car?.number.slice(1, 4)} ${car?.number.slice(4, 6)} ${car?.number.slice(6)}`;
 
   return (
     <div className={styles.total}>
@@ -25,7 +27,7 @@ function Total() {
               <span>
                 Топливо&nbsp;
               </span>
-              {`${fuel ? 100 : car.tank}%`}
+              {`${isFullTank || (car.tank > 100) ? 100 : car.tank}%`}
             </span>
             <br />
             <span className={styles.date}>

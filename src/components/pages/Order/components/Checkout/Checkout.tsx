@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import styles from './Checkout.module.scss';
 import Button from '../../../../common/Button/Button';
 import useTypedSelector from '../../../../../store/selectors';
 import {IStage} from '../Main/Main';
-import {generateFields} from './fields';
+import {generateFields, generatePrice, generatePriceString} from './fields';
+import setForm from '../../../../../store/form/actions';
 
 interface ICheckoutProps {
   click?: () => void,
@@ -18,21 +20,20 @@ function Checkout(props: ICheckoutProps) {
   } = props;
   const {id} = useParams();
   const form = useTypedSelector((state) => state.form);
+  const dispatch = useDispatch();
 
+  let price = generatePrice(form);
   let fields = generateFields(form);
-
-  function generatePrice() {
-    if (form.rateId && form.dateFrom && form.dateTo) {
-      // пока без логики расчета, только для верстки
-      return ` ${form.carId?.priceMin} руб.`;
-    }
-    return ` от ${form.carId?.priceMin} до ${form.carId?.priceMax} руб.`;
-  }
+  let priceString = generatePriceString(price, form);
 
   useEffect(() => {
     fields = generateFields(form);
+    price = generatePrice(form);
+    priceString = generatePriceString(price, form);
   }, [form]);
-
+  useEffect(() => {
+    dispatch(setForm('price', price));
+  }, [price]);
   return (
     <div className={styles.checkout}>
       <h3 className={styles.header}>Ваш заказ:</h3>
@@ -67,7 +68,7 @@ function Checkout(props: ICheckoutProps) {
         <p className={styles.price}>
           Цена:
           <span>
-            {generatePrice()}
+            {priceString}
           </span>
         </p>
       )}

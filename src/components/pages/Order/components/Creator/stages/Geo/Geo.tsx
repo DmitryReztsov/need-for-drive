@@ -47,7 +47,7 @@ function Geo() {
           list={pointList}
           field="pointId"
           label="Пункт выдачи"
-          value={pointId?.address || ''}
+          value={pointId?.address}
           placeholder="Начните вводить пункт ..."
         />
       </div>

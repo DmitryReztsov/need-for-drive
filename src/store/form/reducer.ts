@@ -2,18 +2,28 @@ import {
   FormAction, FormActionTypes, IFormState,
 } from './types';
 
-const initialState: IFormState = {
+export const defaultCategory = {
+  id: '-1',
+  name: 'Все модели',
+};
+
+export const defaultColor = {
+  id: '-1',
+  name: 'Любой',
+};
+
+export const initialState: IFormState = {
   cityId: null,
   pointId: null,
   carId: null,
-  categoryId: null,
-  color: null,
+  categoryId: defaultCategory,
+  color: defaultColor,
   dateFrom: Date.now(),
   dateTo: 0,
   rateId: null,
-  fuel: false,
-  babySeat: false,
-  rightHandDrive: false,
+  isFullTank: false,
+  isNeedChildChair: false,
+  isRightWheel: false,
 };
 
 function formReducer(state: IFormState = initialState, action: FormAction) {

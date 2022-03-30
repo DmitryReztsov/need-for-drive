@@ -6,17 +6,17 @@ export interface IBonuses {
 
 export const bonuses: IBonuses [] = [
   {
-    name: 'fuel',
+    name: 'isFullTank',
     desc: 'Полный бак, 500р',
     cost: 500,
   },
   {
-    name: 'babySeat',
+    name: 'isNeedChildChair',
     desc: 'Детское кресло, 200р',
     cost: 200,
   },
   {
-    name: 'rightHandDrive',
+    name: 'isRightWheel',
     desc: 'Правый руль, 1600р',
     cost: 1600,
   },

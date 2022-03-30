@@ -14,23 +14,14 @@ function CarCard(props: ICarCardProps) {
   const {carId} = useTypedSelector((state) => state.form);
   const appendParams = useAppendParams();
 
-  function handleCLickCard(car: ICar) {
-    appendParams('carId', car);
-  }
-  function handleKeyCard(e:React.KeyboardEvent<HTMLDivElement>, car: ICar) {
-    if (e.code === 'Enter') {
-      appendParams('carId', car);
-    }
-  }
-
   return (
     <div
       role="button"
       tabIndex={0}
       className={`${styles.card} ${carId?.id === car.id ? styles.active : ''}`}
       style={{backgroundImage: `url(${car.path.includes('data:') ? car.path : noImage})`}}
-      onClick={() => handleCLickCard(car)}
-      onKeyDown={(e) => handleKeyCard(e, car)}
+      onClick={() => appendParams('carId', car)}
+      onKeyDown={(e) => e.code === 'Enter' && appendParams('carId', car)}
     >
       <p>{car.name}</p>
       <p>{`${car.priceMin.toLocaleString()} - ${car.priceMax.toLocaleString()} ₽`}</p>

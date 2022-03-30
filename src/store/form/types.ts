@@ -9,14 +9,14 @@ export interface IFormState {
   cityId: ICity | null,
   pointId: IPoint | null,
   carId: ICar | null,
-  categoryId: ICategory | null,
-  color: IRadioItem | null,
+  categoryId: ICategory,
+  color: IRadioItem,
   dateFrom: number,
   dateTo: number,
   rateId: IRate | null,
-  fuel: boolean,
-  babySeat: boolean,
-  rightHandDrive: boolean,
+  isFullTank: boolean,
+  isNeedChildChair: boolean,
+  isRightWheel: boolean,
 }
 
 export interface ISetFormPayload {

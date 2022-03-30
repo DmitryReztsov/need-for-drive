@@ -6,10 +6,12 @@ import {bonuses} from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
 import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
 import DateChanger from './DateChanger/DateChanger';
+import {defaultColor} from '../../../../../../../store/form/reducer';
+import {IExtendedRate} from '../../../../../../../store/api/rate/types';
 
 function Features() {
   const {
-    carId, color, fuel, babySeat, rightHandDrive,
+    carId, color, rateId, isFullTank, isNeedChildChair, isRightWheel,
   } = useTypedSelector((state) => state.form);
   const {rates} = useTypedSelector((state) => state.rate);
   const appendParams = useAppendParams();
@@ -17,26 +19,14 @@ function Features() {
   function getColors() {
     const colors: IRadioItem [] = [];
     carId?.colors.forEach((color, i) => colors.push({id: i.toString(), name: color}));
-    console.log(colors);
     return colors;
   }
 
   function getRates() {
     return rates.map((rate) => {
-      return {id: rate.id, name: `${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`};
+      return {...rate, name: `${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`};
     });
   }
-
-  function clickHandler(e: React.MouseEvent<HTMLInputElement>, field: string) {
-    appendParams(field, e.currentTarget.value);
-  }
-
-  function enterHandler(e: React.KeyboardEvent<HTMLInputElement>, field: string) {
-    if (e.code === 'Enter') {
-      appendParams(field, e.currentTarget.value);
-    }
-  }
-
   return (
     <div className={styles.features}>
       <div className={styles.block}>
@@ -44,7 +34,7 @@ function Features() {
         <RadioGroup
           list={getColors()}
           field="color"
-          allTypes={{id: 'Любой', name: 'Любой'}}
+          allTypes={defaultColor}
           defaultValue={color}
         />
       </div>
@@ -56,8 +46,8 @@ function Features() {
         <p>Тариф</p>
         <RadioGroup
           list={getRates()}
-          field="rate"
-          defaultValue={getRates()[0]}
+          field="rateId"
+          defaultValue={rateId as IExtendedRate}
           className={styles.rates}
         />
       </div>
@@ -65,9 +55,9 @@ function Features() {
         <p>Доп услуги</p>
         <CheckBoxGroup
           list={bonuses}
-          defaultChecked={[fuel, babySeat, rightHandDrive]}
-          click={(e) => clickHandler(e, e.currentTarget.name)}
-          keyDown={(e) => enterHandler(e, e.currentTarget.name)}
+          defaultChecked={[isFullTank, isNeedChildChair, isRightWheel]}
+          click={(e) => appendParams(e.currentTarget.name, e.currentTarget.value)}
+          keyDown={(e) => e.code === 'Enter' && appendParams(e.currentTarget.name, e.currentTarget.value)}
           className={styles.bonuses}
         />
       </div>

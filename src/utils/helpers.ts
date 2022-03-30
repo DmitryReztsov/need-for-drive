@@ -1,4 +1,5 @@
 // Для отмены прокрутки при открытом меню
+
 function toggleBodyOverflow(active: boolean) {
   const body = document.querySelector('body')!;
   if (active) {

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import styles from './Main.module.scss';
@@ -8,6 +9,10 @@ import Container from '../../../../common/Container/Container';
 import Confirm from '../../../../common/modals/Confirm/Confirm';
 import useStages from '../../../../../hooks/useStages';
 import useDecodeParams from '../../../../../hooks/useDecodeParams';
+import {defaultCategory, defaultColor} from '../../../../../store/form/reducer';
+import useTypedSelector from '../../../../../store/selectors';
+import {ICategory} from '../../../../../store/Groups/category/types';
+import setCategory from '../../../../../store/Groups/category/actions';
 
 export interface IStage {
   name: string,
@@ -17,11 +22,15 @@ export interface IStage {
 
 function Main() {
   const [searchParams] = useSearchParams();
+  const {carId} = useTypedSelector((state) => state.form);
+  const {categories} = useTypedSelector((state) => state.category);
+  const {cars} = useTypedSelector((state) => state.car);
   // const clearForm = useClearForm();
   const navigate = useNavigate();
   const {id} = useParams();
   const stages = useStages();
-  const decodeUrl = useDecodeParams();
+  const decodeParams = useDecodeParams();
+  const dispatch = useDispatch();
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [availableIndex, setAvailableIndex] = useState<number>(0);
@@ -59,19 +68,38 @@ function Main() {
     }
   }
 
+  function getCategories() {
+    const array: ICategory [] = [];
+    cars.forEach((car) => {
+      if (!array.some((category) => category.id === car.categoryId.id)) {
+        array.push({id: car.categoryId.id, name: car.categoryId.name});
+      }
+    });
+    dispatch(setCategory(array));
+  }
+
   // при загрузке страницы читаем URL, заполняем redux найденными полями
   useEffect(() => {
     if (id) {
       setActiveIndex(3);
     } else {
       searchParams.forEach((value, key) => {
-        key && decodeUrl(key, value);
+        key && decodeParams(key, value);
       });
       // ставим таймаут чтобы при изменение редакса не коснулись последних двух useEffect
       // setTimeout(() => setIsLoaded(true));
     }
   }, []);
 
+  useEffect(() => {
+    getCategories();
+  }, []);
+  useEffect(() => {
+    decodeParams('color', searchParams.get('carId') || defaultColor.id);
+  }, [carId]);
+  useEffect(() => {
+    decodeParams('categoryId', searchParams.get('categoryId') || defaultCategory.id);
+  }, [categories]);
   // нужен для возможности перехода на доступные шаги
   useEffect(() => {
     if (id) return;

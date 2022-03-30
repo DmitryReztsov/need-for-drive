@@ -1,15 +1,27 @@
 import {useDispatch} from 'react-redux';
 import setForm from '../store/form/actions';
 import useTypedSelector from '../store/selectors';
+import {IRadioItem} from '../components/common/inputs/RadioGroup/RadioGroup';
 
 function useDecodeParams() {
   const dispatch = useDispatch();
-  const {cityId} = useTypedSelector((state) => state.form);
+  const {cityId, carId} = useTypedSelector((state) => state.form);
   const {cities} = useTypedSelector((state) => state.city);
   const {points} = useTypedSelector((state) => state.point);
   const {cars} = useTypedSelector((state) => state.car);
   const {categories} = useTypedSelector((state) => state.category);
   const {rates} = useTypedSelector((state) => state.rate);
+
+  function dispatchById(array: any [], key: string, value: string) {
+    dispatch(setForm(key, array.find((elem) => elem.id === value)));
+  }
+
+  function getColors() {
+    const colors: IRadioItem [] = [];
+    carId?.colors.forEach((color, i) => colors.push({id: i.toString(), name: color}));
+    return colors;
+  }
+
   return function (key: string, value: string) {
     switch (key) {
       case ('cityId'): {
@@ -21,16 +33,22 @@ function useDecodeParams() {
         })));
       }
       case ('carId'): {
-        return dispatch(setForm(key, cars.find((car) => car.id === value)));
+        return dispatchById(cars, key, value);
       }
       case ('categoryId'): {
-        return dispatch(setForm(key, categories.find((category) => category.id === value)));
+        return dispatchById(categories, key, value);
       }
-      case ('dateFrom' || 'dateTo'): {
+      case ('dateFrom'): {
         return dispatch(setForm(key, +value));
       }
+      case ('dateTo'): {
+        return dispatch(setForm(key, +value));
+      }
+      case ('color'): {
+        return dispatchById(getColors(), key, value);
+      }
       case ('rateId'): {
-        return dispatch(setForm(key, rates.find((rate) => rate.id === value)));
+        return dispatchById(rates, key, value);
       }
       default: {
         return dispatch(setForm(key, value));

@@ -10,6 +10,10 @@ export interface IRate {
   id: string,
 }
 
+export interface IExtendedRate extends IRate {
+  name: string,
+}
+
 export interface IRateState {
   rates: IRate [],
   loading: boolean,
