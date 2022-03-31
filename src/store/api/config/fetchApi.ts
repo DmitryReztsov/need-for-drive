@@ -1,8 +1,11 @@
 import {api} from './config';
 
-async function getApi(endpoint: string) {
+export async function getApi(endpoint: string) {
   const response = await api.get(endpoint);
   return response.data.data;
 }
 
-export default getApi;
+export async function postApi(endpoint: string, body: any) {
+  const response = await api.post(endpoint, body);
+  return response.data.data;
+}

@@ -2,7 +2,7 @@ import {Dispatch} from 'redux';
 import {getRateError, getRateLoading, getRateSuccess} from './actionCreators';
 import {IRate} from './types';
 import Endpoints from '../config/endpoints';
-import getApi from '../config/fetchApi';
+import {getApi} from '../config/fetchApi';
 
 function getRate() {
   return async function (dispatch: Dispatch) {

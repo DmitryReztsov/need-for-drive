@@ -13,6 +13,7 @@ import {defaultCategory, defaultColor} from '../../../../../store/form/reducer';
 import useTypedSelector from '../../../../../store/selectors';
 import {ICategory} from '../../../../../store/Groups/category/types';
 import setCategory from '../../../../../store/Groups/category/actions';
+import useClearForm from '../../../../../hooks/useClearForm';
 
 export interface IStage {
   name: string,
@@ -22,10 +23,10 @@ export interface IStage {
 
 function Main() {
   const [searchParams] = useSearchParams();
-  const {carId} = useTypedSelector((state) => state.form);
+  const {pointId, carId} = useTypedSelector((state) => state.form);
   const {categories} = useTypedSelector((state) => state.category);
   const {cars} = useTypedSelector((state) => state.car);
-  // const clearForm = useClearForm();
+  const clearForm = useClearForm();
   const navigate = useNavigate();
   const {id} = useParams();
   const stages = useStages();
@@ -34,7 +35,7 @@ function Main() {
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [availableIndex, setAvailableIndex] = useState<number>(0);
-  // const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
 
@@ -87,7 +88,7 @@ function Main() {
         key && decodeParams(key, value);
       });
       // ставим таймаут чтобы при изменение редакса не коснулись последних двух useEffect
-      // setTimeout(() => setIsLoaded(true));
+      setTimeout(() => setIsLoaded(true));
     }
   }, []);
 
@@ -112,13 +113,13 @@ function Main() {
 
   // Последние два useEffect для сброса шагов при изменении данных
   // доступно только после загрузки данных из URL
-  // useEffect(() => {
-  //   !id && isLoaded && !stages[0].vars[1] && clearForm(2);
-  // }, stages[0].vars);
-  //
-  // useEffect(() => {
-  //   !id && isLoaded && clearForm(6);
-  // }, stages[1].vars);
+  useEffect(() => {
+    !id && isLoaded && !stages[0].vars[1] && clearForm(2);
+  }, [pointId]);
+
+  useEffect(() => {
+    !id && isLoaded && clearForm(4);
+  }, [carId]);
   return (
     <main className={styles.main}>
       <nav className={styles.navigation}>

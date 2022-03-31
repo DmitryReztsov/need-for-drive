@@ -2,7 +2,7 @@ import {Dispatch} from 'redux';
 import {getPointError, getPointLoading, getPointSuccess} from './actionCreators';
 import {IPoint} from './types';
 import Endpoints from '../config/endpoints';
-import getApi from '../config/fetchApi';
+import {getApi} from '../config/fetchApi';
 
 function getPoint() {
   return async function (dispatch: Dispatch) {
