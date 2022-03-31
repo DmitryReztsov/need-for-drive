@@ -5,7 +5,7 @@ import CardList from './CardList/CardList';
 import useTypedSelector from '../../../../../../../store/selectors';
 import {defaultCategory} from '../../../../../../../store/form/reducer';
 
-function Model() {
+export function Model() {
   const {categoryId} = useTypedSelector((state) => state.form);
   const {categories} = useTypedSelector((state) => state.category);
   const {cars} = useTypedSelector((state) => state.car);
@@ -24,4 +24,4 @@ function Model() {
   );
 }
 
-export default Model;
+export const MemoizedModel = React.memo(Model);

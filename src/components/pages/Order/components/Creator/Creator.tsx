@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Creator.module.scss';
 import Geo from './stages/Geo/Geo';
 import Total from './stages/Total/Total';
-import Model from './stages/Model/Model';
+import {MemoizedModel} from './stages/Model/Model';
 import Features from './stages/Features/Features';
 
 interface ICreatorProps {
@@ -11,7 +11,7 @@ interface ICreatorProps {
 
 const components = [
   <Geo />,
-  <Model />,
+  <MemoizedModel />,
   <Features />,
   <Total />,
 ];
