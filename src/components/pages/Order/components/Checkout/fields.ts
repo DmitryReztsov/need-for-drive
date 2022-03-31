@@ -3,6 +3,7 @@ import {
   dayInMilSeconds, hourInMilSeconds, minInMilSeconds, monthInMilSeconds,
 } from '../../../../../utils/time';
 import {bonuses} from '../../mocks';
+import {IOrder} from '../../../../../store/api/order/types';
 
 export interface IFields {
   [key: string]: any,
@@ -21,39 +22,44 @@ function setDuration(dateTo: number, dateFrom: number): string {
     .join(' ');
 }
 
-export function generateFields(form: IFormState) {
+export function generateFields(
+  {
+    cityId, pointId, carId, color, dateFrom, dateTo,
+    rateId, isFullTank, isNeedChildChair, isRightWheel,
+  }: IFormState | IOrder,
+) {
   const fields: IFields [] = [
     {
       label: 'Пункт выдачи',
-      value: form.cityId && `${form.cityId?.name}, ${form.pointId?.address || ''}`,
+      value: cityId && `${cityId?.name}, ${pointId?.address || ''}`,
     },
     {
       label: 'Модель',
-      value: form.carId?.name,
+      value: carId?.name,
     },
     {
       label: 'Цвет',
-      value: form.color?.name,
+      value: typeof color === 'string' ? color : color?.name,
     },
     {
       label: 'Длительность аренды',
-      value: setDuration(form.dateTo, form.dateFrom),
+      value: setDuration(dateTo, dateFrom),
     },
     {
       label: 'Тариф',
-      value: form.rateId?.rateTypeId?.name,
+      value: rateId?.rateTypeId?.name,
     },
     {
       label: 'Полный бак',
-      value: form.isFullTank ? 'Да' : '',
+      value: isFullTank ? 'Да' : '',
     },
     {
       label: 'Детское кресло',
-      value: form.isNeedChildChair ? 'Да' : '',
+      value: isNeedChildChair ? 'Да' : '',
     },
     {
       label: 'Правый руль',
-      value: form.isRightWheel ? 'Да' : '',
+      value: isRightWheel ? 'Да' : '',
     },
   ];
   return fields;

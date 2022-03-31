@@ -14,6 +14,8 @@ import useTypedSelector from '../../../../../store/selectors';
 import {ICategory} from '../../../../../store/Groups/category/types';
 import setCategory from '../../../../../store/Groups/category/actions';
 import useClearForm from '../../../../../hooks/useClearForm';
+import {postOrder} from '../../../../../store/api/order/actions';
+import {ORDERSTATUSID} from '../../../../../store/api/order/types';
 
 export interface IStage {
   name: string,
@@ -23,9 +25,10 @@ export interface IStage {
 
 function Main() {
   const [searchParams] = useSearchParams();
-  const {pointId, carId} = useTypedSelector((state) => state.form);
+  const form = useTypedSelector((state) => state.form);
   const {categories} = useTypedSelector((state) => state.category);
   const {cars} = useTypedSelector((state) => state.car);
+  const {order, loading} = useTypedSelector((state) => state.order);
   const clearForm = useClearForm();
   const navigate = useNavigate();
   const {id} = useParams();
@@ -36,16 +39,14 @@ function Main() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [availableIndex, setAvailableIndex] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
 
   function acceptOrder() {
-    setLoading(true);
+    dispatch(postOrder(form, ORDERSTATUSID.FULFILLED));
     setTimeout(() => {
-      setLoading(false);
-      navigate('/order/123456', {replace: true});
+      navigate(`/order/${order['id']}`, {replace: true});
       setModal(!modal);
-    }, 1000);
+    }, 2000);
   }
 
   // проверяем заполненность данных
@@ -61,7 +62,7 @@ function Main() {
   // обработчик нажатия кнопки
   function incrementIndex() {
     if (id) {
-      navigate('/', {replace: true});
+      dispatch(postOrder(order, ORDERSTATUSID.DECLINED));
     } else if (activeIndex === 3) {
       setModal(!modal);
     } else if (activeIndex < availableIndex) {
@@ -97,7 +98,7 @@ function Main() {
   }, []);
   useEffect(() => {
     decodeParams('color', searchParams.get('color') || defaultColor.id);
-  }, [carId]);
+  }, [form.carId]);
   useEffect(() => {
     decodeParams('categoryId', searchParams.get('categoryId') || defaultCategory.id);
   }, [categories]);
@@ -112,14 +113,14 @@ function Main() {
   }, stages.map((stage) => stage.vars));
 
   // Последние два useEffect для сброса шагов при изменении данных
-  // доступно только после загрузки данных из URL
+  // применяется только после загрузки данных из URL
   useEffect(() => {
     !id && isLoaded && !stages[0].vars[1] && clearForm(2);
-  }, [pointId]);
-
+  }, [form.pointId]);
   useEffect(() => {
     !id && isLoaded && clearForm(4);
-  }, [carId]);
+  }, [form.carId]);
+
   return (
     <main className={styles.main}>
       <nav className={styles.navigation}>

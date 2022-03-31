@@ -7,6 +7,7 @@ import pointReducer from './api/point/reducer';
 import carReducer from './api/car/reducer';
 import rateReducer from './api/rate/reducer';
 import categoryReducer from './Groups/category/reducer';
+import orderReducer from './api/order/reducer';
 
 const combinedReducer = combineReducers({
   form: formReducer,
@@ -15,6 +16,7 @@ const combinedReducer = combineReducers({
   car: carReducer,
   rate: rateReducer,
   category: categoryReducer,
+  order: orderReducer,
 });
 
 const composeEnhancers = composeWithDevTools({});

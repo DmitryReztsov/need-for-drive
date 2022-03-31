@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import styles from './Checkout.module.scss';
 import Button from '../../../../common/Button/Button';
 import useTypedSelector from '../../../../../store/selectors';
 import {IStage} from '../Main/Main';
 import {generateFields, generatePrice, generatePriceString} from './fields';
-import setForm from '../../../../../store/form/actions';
 
 interface ICheckoutProps {
   click?: () => void,
@@ -14,26 +12,22 @@ interface ICheckoutProps {
   stages: IStage [],
 }
 
-function Checkout(props: ICheckoutProps) {
-  const {
-    click, activeIndex, stages,
-  } = props;
+function Checkout({click, activeIndex, stages}: ICheckoutProps) {
   const {id} = useParams();
   const form = useTypedSelector((state) => state.form);
-  const dispatch = useDispatch();
+  const {order} = useTypedSelector((state) => state.order);
+  let actualForm = id ? order : form;
 
-  let price = generatePrice(form);
-  let fields = generateFields(form);
-  let priceString = generatePriceString(price, form);
+  let price;
+  let fields = generateFields(id ? order : form);
+  let priceString;
 
   useEffect(() => {
-    fields = generateFields(form);
-    price = generatePrice(form);
-    priceString = generatePriceString(price, form);
+    actualForm = id ? order : form;
+    fields = generateFields(actualForm);
+    price = generatePrice(actualForm);
+    priceString = generatePriceString(price, actualForm);
   }, [form]);
-  useEffect(() => {
-    dispatch(setForm('price', price));
-  }, [price]);
   return (
     <div className={styles.checkout}>
       <h3 className={styles.header}>Ваш заказ:</h3>
