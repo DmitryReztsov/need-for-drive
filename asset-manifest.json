@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/need-for-drive/static/css/main.937811d5.css",
-    "main.js": "/need-for-drive/static/js/main.3b6a6fe9.js",
+    "main.css": "/need-for-drive/static/css/main.557f598e.css",
+    "main.js": "/need-for-drive/static/js/main.a4a00b07.js",
+    "static/media/loading.gif": "/need-for-drive/static/media/loading.4f3e4b9911a65efa63ed.gif",
     "static/media/service.png": "/need-for-drive/static/media/service.f6dd0c19bdc544af18d8.png",
     "static/media/fuel.png": "/need-for-drive/static/media/fuel.062527c84b5fe160d398.png",
     "static/media/insurance.png": "/need-for-drive/static/media/insurance.3ba9718302f36529c03d.png",
@@ -10,11 +11,10 @@
     "static/media/Roboto-Regular.ttf": "/need-for-drive/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
     "static/media/Roboto-Bold.ttf": "/need-for-drive/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
     "static/media/Roboto-Light.ttf": "/need-for-drive/static/media/Roboto-Light.8be2d1487420548b3b8d.ttf",
+    "static/media/no_image_available.png": "/need-for-drive/static/media/no_image_available.b21add8f8faeb33dea19.png",
     "static/media/telegram-brands.svg": "/need-for-drive/static/media/telegram-brands.4113aaee7b21d8927c4316677a977554.svg",
-    "static/media/instagram-brands.svg": "/need-for-drive/static/media/instagram-brands.772de8729c5d2d20a85d4ea62a90df1b.svg",
     "static/media/geo.svg": "/need-for-drive/static/media/geo.90cb66d69d097498db8e90c1aa9911b0.svg",
     "index.html": "/need-for-drive/index.html",
-    "static/media/facebook-brands.svg": "/need-for-drive/static/media/facebook-brands.24fd896ba8ee5c2651c4156a6e66333d.svg",
     "static/media/clear-button.svg": "/need-for-drive/static/media/clear-button.409d0f979de15b1a5a30.svg",
     "static/media/checked.svg": "/need-for-drive/static/media/checked.f25e94480a05e8a2049e.svg",
     "static/media/loading.svg": "/need-for-drive/static/media/loading.848a825a0d1c6f5451ec.svg",
@@ -22,11 +22,11 @@
     "static/media/right-arrow.svg": "/need-for-drive/static/media/right-arrow.aa22f97f5e46321a93a963a1cf28b2f7.svg",
     "static/media/placemark.svg": "/need-for-drive/static/media/placemark.dd32199f750c6e39a7717ed9ef40fff9.svg",
     "static/media/arrow.svg": "/need-for-drive/static/media/arrow.cfaabacc99eb31e3a4d1.svg",
-    "main.937811d5.css.map": "/need-for-drive/static/css/main.937811d5.css.map",
-    "main.3b6a6fe9.js.map": "/need-for-drive/static/js/main.3b6a6fe9.js.map"
+    "main.557f598e.css.map": "/need-for-drive/static/css/main.557f598e.css.map",
+    "main.a4a00b07.js.map": "/need-for-drive/static/js/main.a4a00b07.js.map"
   },
   "entrypoints": [
-    "static/css/main.937811d5.css",
-    "static/js/main.3b6a6fe9.js"
+    "static/css/main.557f598e.css",
+    "static/js/main.a4a00b07.js"
   ]
 }
