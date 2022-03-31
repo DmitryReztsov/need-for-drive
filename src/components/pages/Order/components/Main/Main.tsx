@@ -95,7 +95,7 @@ function Main() {
     getCategories();
   }, []);
   useEffect(() => {
-    decodeParams('color', searchParams.get('carId') || defaultColor.id);
+    decodeParams('color', searchParams.get('color') || defaultColor.id);
   }, [carId]);
   useEffect(() => {
     decodeParams('categoryId', searchParams.get('categoryId') || defaultCategory.id);

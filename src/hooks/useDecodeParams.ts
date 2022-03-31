@@ -2,6 +2,7 @@ import {useDispatch} from 'react-redux';
 import setForm from '../store/form/actions';
 import useTypedSelector from '../store/selectors';
 import {IRadioItem} from '../components/common/inputs/RadioGroup/RadioGroup';
+import {defaultCategory, defaultColor} from '../store/form/reducer';
 
 function useDecodeParams() {
   const dispatch = useDispatch();
@@ -12,8 +13,9 @@ function useDecodeParams() {
   const {categories} = useTypedSelector((state) => state.category);
   const {rates} = useTypedSelector((state) => state.rate);
 
-  function dispatchById(array: any [], key: string, value: string) {
-    dispatch(setForm(key, array.find((elem) => elem.id === value)));
+  function dispatchById(array: any [], key: string, value: string, defaultElem?: IRadioItem) {
+    const elem = array.find((elem) => elem.id === value);
+    dispatch(setForm(key, elem || defaultElem));
   }
 
   function getColors() {
@@ -36,7 +38,7 @@ function useDecodeParams() {
         return dispatchById(cars, key, value);
       }
       case ('categoryId'): {
-        return dispatchById(categories, key, value);
+        return dispatchById(categories, key, value, defaultCategory);
       }
       case ('dateFrom'): {
         return dispatch(setForm(key, +value));
@@ -45,7 +47,7 @@ function useDecodeParams() {
         return dispatch(setForm(key, +value));
       }
       case ('color'): {
-        return dispatchById(getColors(), key, value);
+        return dispatchById(getColors(), key, value, defaultColor);
       }
       case ('rateId'): {
         return dispatchById(rates, key, value);
