@@ -11,7 +11,7 @@ interface ICarCardProps {
 
 function CarCard(props: ICarCardProps) {
   const {car} = props;
-  const {carId} = useTypedSelector((state) => state.form);
+  const {order: {carId}} = useTypedSelector((state) => state.order);
   const appendParams = useAppendParams();
 
   return (

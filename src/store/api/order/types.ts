@@ -1,6 +1,9 @@
-import {IRate} from '../rate/types';
-import {ICar} from '../car/types';
 import {ICity} from '../city/types';
+import {IRate} from '../rate/types';
+import {ICategory} from '../../Groups/category/types';
+import {ICar} from '../car/types';
+import {IPoint} from '../point/types';
+import {IRadioItem} from '../../../components/common/inputs/RadioGroup/RadioGroup';
 
 export enum ORDERSTATUSID {
   FULFILLED = '5e26a1f0099b810b946c5d8b',
@@ -13,23 +16,20 @@ export interface IOrderStatus {
 }
 
 export interface IOrder {
-  orderStatusId: IOrderStatus | null;
   cityId: ICity | null,
-  pointId: {
-    address: string,
-    id: string,
-    name: string,
-  } | null;
+  pointId: IPoint | null,
   carId: ICar | null,
-  color: string,
+  categoryId?: ICategory,
+  price: string,
+  color: IRadioItem,
   dateFrom: number,
   dateTo: number,
   rateId: IRate | null,
-  price: number,
   isFullTank: boolean,
   isNeedChildChair: boolean,
   isRightWheel: boolean,
-  id: string;
+  orderStatusId: IOrderStatus | null,
+  id: string,
 }
 
 export interface IOrderState {
@@ -39,6 +39,7 @@ export interface IOrderState {
 }
 
 export enum OrderActionTypes {
+  SET_ORDER_FIELD = 'SET_ORDER_FIELD',
   GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS',
   POST_ORDER_SUCCESS = 'POST_ORDER_SUCCESS',
   CLEAR_ORDER = 'CLEAR_ORDER',
@@ -70,7 +71,18 @@ export interface OrderErrorAction {
   payload: string,
 }
 
-export type OrderAction = GetOrderSuccessAction
+export interface ISetOrderFieldPayload {
+  key: string,
+  value: any,
+}
+
+export interface SetOrderFieldAction {
+  type: OrderActionTypes.SET_ORDER_FIELD,
+  payload: ISetOrderFieldPayload,
+}
+
+export type OrderAction = SetOrderFieldAction
+  | GetOrderSuccessAction
   | PostOrderSuccessAction
   | OrderLoadingAction
   | OrderErrorAction

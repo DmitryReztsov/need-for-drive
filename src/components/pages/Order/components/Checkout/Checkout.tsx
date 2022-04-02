@@ -14,20 +14,15 @@ interface ICheckoutProps {
 
 function Checkout({click, activeIndex, stages}: ICheckoutProps) {
   const {id} = useParams();
-  const form = useTypedSelector((state) => state.form);
   const {order} = useTypedSelector((state) => state.order);
-  let actualForm = id ? order : form;
 
-  let price;
-  let fields = generateFields(id ? order : form);
-  let priceString;
+  let fields = generateFields(order);
+  let price = generatePrice(order);
 
   useEffect(() => {
-    actualForm = id ? order : form;
-    fields = generateFields(actualForm);
-    price = generatePrice(actualForm);
-    priceString = generatePriceString(price, actualForm);
-  }, [form]);
+    fields = generateFields(order);
+    price = generatePrice(order);
+  }, [order]);
   return (
     <div className={styles.checkout}>
       <h3 className={styles.header}>Ваш заказ:</h3>
@@ -58,11 +53,11 @@ function Checkout({click, activeIndex, stages}: ICheckoutProps) {
           );
         })}
       </ul>
-      {form.carId?.priceMin && (
+      {order.carId?.priceMin && (
         <p className={styles.price}>
           Цена:
           <span>
-            {priceString}
+            {generatePriceString(price, order)}
           </span>
         </p>
       )}

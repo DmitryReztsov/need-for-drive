@@ -6,24 +6,24 @@ import {bonuses} from '../../../../mocks';
 import useAppendParams from '../../../../../../../hooks/useAppendParams';
 import CheckBoxGroup from '../../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
 import DateChanger from './DateChanger/DateChanger';
-import {defaultColor} from '../../../../../../../store/form/reducer';
-import {IExtendedRate} from '../../../../../../../store/api/rate/types';
+import {IExtendedRate, IRate} from '../../../../../../../store/api/rate/types';
+import {defaultColor} from '../../../../../../../store/api/order/reducer';
 
 function Features() {
   const {
     carId, color, rateId, isFullTank, isNeedChildChair, isRightWheel,
-  } = useTypedSelector((state) => state.form);
+  } = useTypedSelector((state) => state.order);
   const {rates} = useTypedSelector((state) => state.rate);
   const appendParams = useAppendParams();
 
   function getColors() {
     const colors: IRadioItem [] = [];
-    carId?.colors.forEach((color, i) => colors.push({id: i.toString(), name: color}));
+    carId?.colors.forEach((color: any, i: number) => colors.push({id: i.toString(), name: color}));
     return colors;
   }
 
   function getRates() {
-    return rates.map((rate) => {
+    return rates.map((rate: IRate) => {
       return {...rate, name: `${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`};
     });
   }

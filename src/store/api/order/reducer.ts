@@ -1,19 +1,31 @@
 import {IOrderState, OrderAction, OrderActionTypes} from './types';
+import {IRadioItem} from '../../../components/common/inputs/RadioGroup/RadioGroup';
+
+export const defaultCategory: IRadioItem = {
+  id: '-1',
+  name: 'Все модели',
+};
+
+export const defaultColor: IRadioItem = {
+  id: '-1',
+  name: 'Любой',
+};
 
 export const initialState: IOrderState = {
   order: {
-    orderStatusId: null,
     cityId: null,
     pointId: null,
     carId: null,
-    color: '',
-    dateFrom: 0,
+    categoryId: defaultCategory,
+    price: '',
+    color: defaultColor,
+    dateFrom: Date.now(),
     dateTo: 0,
     rateId: null,
-    price: 0,
     isFullTank: false,
     isNeedChildChair: false,
     isRightWheel: false,
+    orderStatusId: null,
     id: '',
   },
   loading: false,
@@ -22,6 +34,12 @@ export const initialState: IOrderState = {
 
 function orderReducer(state: IOrderState = initialState, action: OrderAction) {
   switch (action.type) {
+    case OrderActionTypes.SET_ORDER_FIELD: {
+      return {
+        ...state,
+        order: Object.assign(state.order, {[action.payload.key]: action.payload.value}),
+      };
+    }
     case OrderActionTypes.GET_ORDER_SUCCESS: {
       return {...state, order: action.payload, loading: false};
     }

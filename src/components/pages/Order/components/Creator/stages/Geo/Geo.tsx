@@ -3,9 +3,11 @@ import styles from './Geo.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
 import Autocomplete from '../../../../../../common/Autocomplete/Autocomplete';
 import GeoMap from '../../../../../../common/GeoMap/GeoMap';
+import {IPoint} from '../../../../../../../store/api/point/types';
+import {ICity} from '../../../../../../../store/api/city/types';
 
 function Geo() {
-  const {cityId, pointId} = useTypedSelector((state) => state.form);
+  const {order: {cityId, pointId}} = useTypedSelector((state) => state.order);
   const {cities} = useTypedSelector((state) => state.city);
   const {points} = useTypedSelector((state) => state.point);
   const [pointList, setPointList] = useState<string[]>([]);
@@ -13,12 +15,12 @@ function Geo() {
 
   function getFilteredPoints() {
     setPointList(points
-      .filter((point) => point.cityId.name === cityId?.name)
-      .map((point) => point.address));
+      .filter((point: IPoint) => point.cityId.name === cityId?.name)
+      .map((point: any) => point.address));
   }
 
   function getAllPoints() {
-    setAllPointList(points.map((point) => {
+    setAllPointList(points.map((point: IPoint) => {
       return {city: point.cityId.name, address: point.address};
     }));
   }
@@ -35,7 +37,7 @@ function Geo() {
     <div className={styles.geo}>
       <div className={styles.form}>
         <Autocomplete
-          list={cities.map((city) => city.name)}
+          list={cities.map((city: ICity) => city.name)}
           field="cityId"
           label="Город"
           value={cityId?.name}

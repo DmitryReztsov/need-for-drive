@@ -1,4 +1,3 @@
-import {IFormState} from '../../../../../store/form/types';
 import {
   dayInMilSeconds, hourInMilSeconds, minInMilSeconds, monthInMilSeconds,
 } from '../../../../../utils/time';
@@ -26,7 +25,7 @@ export function generateFields(
   {
     cityId, pointId, carId, color, dateFrom, dateTo,
     rateId, isFullTank, isNeedChildChair, isRightWheel,
-  }: IFormState | IOrder,
+  }: IOrder,
 ) {
   const fields: IFields [] = [
     {
@@ -67,7 +66,7 @@ export function generateFields(
 
 export function generatePrice({
   rateId, dateFrom, dateTo, carId, isFullTank, isNeedChildChair, isRightWheel,
-}: IFormState) {
+}: IOrder) {
   if (rateId && carId) {
     let price;
     const bonus = (
@@ -102,7 +101,7 @@ export function generatePrice({
 
 export function generatePriceString(price: number, {
   rateId, carId, dateFrom, dateTo,
-}: IFormState) {
+}: IOrder) {
   if (rateId && carId && dateFrom && dateTo) {
     return ` ${price} руб.`;
   }

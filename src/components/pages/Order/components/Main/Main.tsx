@@ -9,13 +9,13 @@ import Container from '../../../../common/Container/Container';
 import Confirm from '../../../../common/modals/Confirm/Confirm';
 import useStages from '../../../../../hooks/useStages';
 import useDecodeParams from '../../../../../hooks/useDecodeParams';
-import {defaultCategory, defaultColor} from '../../../../../store/form/reducer';
 import useTypedSelector from '../../../../../store/selectors';
 import {ICategory} from '../../../../../store/Groups/category/types';
 import setCategory from '../../../../../store/Groups/category/actions';
-import useClearForm from '../../../../../hooks/useClearForm';
+import useClearOrder from '../../../../../hooks/useClearOrder';
 import {postOrder} from '../../../../../store/api/order/actions';
 import {ORDERSTATUSID} from '../../../../../store/api/order/types';
+import {defaultCategory, defaultColor} from '../../../../../store/api/order/reducer';
 
 export interface IStage {
   name: string,
@@ -25,11 +25,10 @@ export interface IStage {
 
 function Main() {
   const [searchParams] = useSearchParams();
-  const form = useTypedSelector((state) => state.form);
   const {categories} = useTypedSelector((state) => state.category);
   const {cars} = useTypedSelector((state) => state.car);
   const {order, loading} = useTypedSelector((state) => state.order);
-  const clearForm = useClearForm();
+  const clearForm = useClearOrder();
   const navigate = useNavigate();
   const {id} = useParams();
   const stages = useStages();
@@ -42,9 +41,9 @@ function Main() {
   const [modal, setModal] = useState<boolean>(false);
 
   function acceptOrder() {
-    dispatch(postOrder(form, ORDERSTATUSID.FULFILLED));
+    dispatch(postOrder(order, ORDERSTATUSID.FULFILLED));
     setTimeout(() => {
-      navigate(`/order/${order['id']}`, {replace: true});
+      navigate(`/order/${order.id}`, {replace: true});
       setModal(!modal);
     }, 2000);
   }
@@ -72,7 +71,7 @@ function Main() {
 
   function getCategories() {
     const array: ICategory [] = [];
-    cars.forEach((car) => {
+    cars.forEach((car: any) => {
       if (!array.some((category) => category.id === car.categoryId.id)) {
         array.push({id: car.categoryId.id, name: car.categoryId.name});
       }
@@ -98,7 +97,7 @@ function Main() {
   }, []);
   useEffect(() => {
     decodeParams('color', searchParams.get('color') || defaultColor.id);
-  }, [form.carId]);
+  }, [order.carId]);
   useEffect(() => {
     decodeParams('categoryId', searchParams.get('categoryId') || defaultCategory.id);
   }, [categories]);
@@ -116,10 +115,10 @@ function Main() {
   // применяется только после загрузки данных из URL
   useEffect(() => {
     !id && isLoaded && !stages[0].vars[1] && clearForm(2);
-  }, [form.pointId]);
+  }, [order.pointId]);
   useEffect(() => {
     !id && isLoaded && clearForm(4);
-  }, [form.carId]);
+  }, [order.carId]);
 
   return (
     <main className={styles.main}>

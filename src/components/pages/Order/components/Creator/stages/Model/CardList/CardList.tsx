@@ -3,7 +3,7 @@ import styles from './CardList.module.scss';
 import CarCard from './CarCard/CarCard';
 import {ICar} from '../../../../../../../../store/api/car/types';
 import {ICategory} from '../../../../../../../../store/Groups/category/types';
-import {defaultCategory} from '../../../../../../../../store/form/reducer';
+import {defaultCategory} from '../../../../../../../../store/api/order/reducer';
 
 interface ICardListProps {
   list: ICar [],

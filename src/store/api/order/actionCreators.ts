@@ -1,6 +1,10 @@
 import {IOrder, OrderActionTypes} from './types';
 import {initialState} from './reducer';
 
+export function setOrderField(key: string, value: any) {
+  return {type: OrderActionTypes.SET_ORDER_FIELD, payload: {key, value}};
+}
+
 export function getOrderSuccess(data: IOrder) {
   return {type: OrderActionTypes.GET_ORDER_SUCCESS, payload: data};
 }

@@ -7,7 +7,7 @@ import {intervalMinutesInMilSeconds} from '../../../../../../../../utils/time';
 import useAppendParams from '../../../../../../../../hooks/useAppendParams';
 
 function DateChanger() {
-  const {dateFrom, dateTo} = useTypedSelector((state) => state.form);
+  const {order: {dateFrom, dateTo}} = useTypedSelector((state) => state.order);
   const appendParams = useAppendParams();
 
   // Ограничиваем выбор времени ранее текущего

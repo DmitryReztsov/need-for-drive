@@ -1,11 +1,11 @@
 import {Dispatch} from 'redux';
-import {getApi, postApi} from '../config/fetchApi';
-import Endpoints from '../config/endpoints';
+import {IOrder} from './types';
 import {
   getOrderSuccess, orderError, orderLoading, postOrderSuccess,
 } from './actionCreators';
-import {IFormState} from '../../form/types';
+import Endpoints from '../config/endpoints';
 import {generatePrice} from '../../../components/pages/Order/components/Checkout/fields';
+import {getApi, postApi} from '../config/fetchApi';
 
 export function getOrder(id: string) {
   return async function (dispatch: Dispatch) {
@@ -19,11 +19,11 @@ export function getOrder(id: string) {
   };
 }
 
-export function postOrder(form: IFormState, orderStatusId: string) {
+export function postOrder(order: IOrder, orderStatusId: string) {
   const {
     cityId, pointId, carId, color, dateFrom,
     dateTo, rateId, isFullTank, isNeedChildChair, isRightWheel,
-  } = form;
+  } = order;
   return async function (dispatch: Dispatch) {
     dispatch(orderLoading());
     try {
@@ -38,7 +38,7 @@ export function postOrder(form: IFormState, orderStatusId: string) {
         dateFrom,
         dateTo,
         rateId: rateId?.id,
-        price: generatePrice(form),
+        price: generatePrice(order),
         isFullTank,
         isNeedChildChair,
         isRightWheel,
