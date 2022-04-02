@@ -7,12 +7,14 @@ import {initialState} from '../store/api/order/reducer';
 function useClearOrder() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const order = useTypedSelector((state) => state.order);
+  const {order} = useTypedSelector((state) => state.order);
 
   return function (index: number) {
     Object.entries(order).forEach((field, i) => {
       if (i < index) return;
-      dispatch(setOrderField(field[0], Object.values(initialState)[i]));
+      setTimeout(() => {
+        dispatch(setOrderField(field[0], Object.values(initialState.order)[i]));
+      });
       searchParams.delete(field[0]);
     });
     setSearchParams(searchParams);

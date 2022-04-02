@@ -10,8 +10,7 @@ interface ICardListProps {
   filter?: ICategory | null,
 }
 
-function CardList(props: ICardListProps) {
-  const {list, filter} = props;
+function CardList({list, filter}: ICardListProps) {
   return (
     <div className={styles.cardList}>
       {list

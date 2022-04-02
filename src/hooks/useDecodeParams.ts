@@ -8,7 +8,7 @@ import {IPoint} from '../store/api/point/types';
 
 function useDecodeParams() {
   const dispatch = useDispatch();
-  const {cityId, carId} = useTypedSelector((state) => state.order);
+  const {order: {cityId, carId}} = useTypedSelector((state) => state.order);
   const {cities} = useTypedSelector((state) => state.city);
   const {points} = useTypedSelector((state) => state.point);
   const {cars} = useTypedSelector((state) => state.car);
@@ -22,7 +22,9 @@ function useDecodeParams() {
 
   function getColors() {
     const colors: IRadioItem [] = [];
-    carId?.colors.forEach((color: any, i: number) => colors.push({id: i.toString(), name: color}));
+    if (!carId) return colors;
+    carId.colors
+      .forEach((color: any, i: number) => colors.push({id: i.toString(), name: color}));
     return colors;
   }
 

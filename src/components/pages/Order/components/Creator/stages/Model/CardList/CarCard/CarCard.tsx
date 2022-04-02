@@ -19,7 +19,7 @@ function CarCard(props: ICarCardProps) {
       role="button"
       tabIndex={0}
       className={`${styles.card} ${carId?.id === car.id ? styles.active : ''}`}
-      style={{backgroundImage: `url(${car.path.includes('data:') ? car.path : noImage})`}}
+      style={{backgroundImage: `url(${car.thumbnail.path.includes('data:') ? car.thumbnail.path : noImage})`}}
       onClick={() => appendParams('carId', car)}
       onKeyDown={(e) => e.code === 'Enter' && appendParams('carId', car)}
     >

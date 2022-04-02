@@ -11,7 +11,9 @@ import {defaultColor} from '../../../../../../../store/api/order/reducer';
 
 function Features() {
   const {
-    carId, color, rateId, isFullTank, isNeedChildChair, isRightWheel,
+    order: {
+      carId, color, rateId, isFullTank, isNeedChildChair, isRightWheel,
+    },
   } = useTypedSelector((state) => state.order);
   const {rates} = useTypedSelector((state) => state.rate);
   const appendParams = useAppendParams();

@@ -6,7 +6,9 @@ export interface ICar {
   name: string,
   number: string,
   categoryId: ICategory,
-  path: string,
+  thumbnail: {
+    path: string,
+  }
   tank: number,
   colors: string [],
   id: string

@@ -37,7 +37,7 @@ function orderReducer(state: IOrderState = initialState, action: OrderAction) {
     case OrderActionTypes.SET_ORDER_FIELD: {
       return {
         ...state,
-        order: Object.assign(state.order, {[action.payload.key]: action.payload.value}),
+        order: {...state.order, [action.payload.key]: action.payload.value},
       };
     }
     case OrderActionTypes.GET_ORDER_SUCCESS: {

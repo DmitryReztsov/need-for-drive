@@ -22,7 +22,9 @@ function getCar() {
             name: categoryId.name,
             id: categoryId.id,
           },
-          path,
+          thumbnail: {
+            path,
+          },
           tank,
           colors,
           id,

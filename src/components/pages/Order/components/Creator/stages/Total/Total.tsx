@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import styles from './Total.module.scss';
 import useTypedSelector from '../../../../../../../store/selectors';
 import {formatDate} from '../../../../../../../utils/time';
-import {ICar} from '../../../../../../../store/api/car/types';
+import convertNumber from '../../../../../../../utils/convertNumber';
 
 function Total() {
   const {id} = useParams();
@@ -12,30 +12,28 @@ function Total() {
       carId, dateFrom, isFullTank, orderStatusId,
     },
   } = useTypedSelector((state) => state.order);
-  const {cars} = useTypedSelector((state) => state.car);
-  const car = cars.find((car: ICar) => car.id === carId?.id) && carId;
-  const nums = car?.number;
-  const number = nums && nums.length === 6
-    ? `${nums[0]} ${nums.slice(1, 4)} ${nums.slice(4)} 73`
-    : `${nums![0]} ${nums!.slice(1, 4)} ${nums!.slice(4, 6)} ${nums!.slice(6)}`;
+  const [number, setNumber] = useState<string>('');
 
+  useEffect(() => {
+    setNumber(convertNumber(carId ? carId.number : ''));
+  }, [carId]);
   return (
     <div className={styles.total}>
       <div className={styles.info}>
         {id && (
         <div>
           Ваш заказ&nbsp;
-          {orderStatusId.name}
+          {orderStatusId ? orderStatusId.name : ''}
         </div>
         )}
-        <p>{car?.name}</p>
+        <p>{carId?.name}</p>
         <span className={styles.number}>{number}</span>
         <br />
         <span className={styles.tank}>
           <span>
             Топливо&nbsp;
           </span>
-          {`${isFullTank || ((car?.tank || 0) > 100) ? 100 : car?.tank}%`}
+          {`${isFullTank || ((carId?.tank || 0) > 100) ? 100 : carId?.tank}%`}
         </span>
         <br />
         <span className={styles.date}>
@@ -45,7 +43,7 @@ function Total() {
           {formatDate(dateFrom)}
         </span>
       </div>
-      <img className={styles.picture} src={`${car?.path}`} alt="car" />
+      <img className={styles.picture} src={`${carId ? carId.thumbnail.path : ''}`} alt="car" />
     </div>
   );
 }

@@ -28,9 +28,6 @@ export function postOrder(order: IOrder, orderStatusId: string) {
     dispatch(orderLoading());
     try {
       const body = {
-        orderStatusId: {
-          id: orderStatusId,
-        },
         cityId: cityId?.id,
         pointId: pointId?.id,
         carId: carId?.id,
@@ -42,6 +39,9 @@ export function postOrder(order: IOrder, orderStatusId: string) {
         isFullTank,
         isNeedChildChair,
         isRightWheel,
+        orderStatusId: {
+          id: orderStatusId,
+        },
       };
       const data = await postApi(Endpoints.ORDER, body);
       dispatch(postOrderSuccess(data));

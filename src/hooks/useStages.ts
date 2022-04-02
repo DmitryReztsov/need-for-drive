@@ -2,7 +2,9 @@ import useTypedSelector from '../store/selectors';
 
 function useStages() {
   const {
-    cityId, pointId, carId, dateFrom, dateTo, rateId,
+    order: {
+      cityId, pointId, carId, dateFrom, dateTo, rateId,
+    },
   } = useTypedSelector((state) => state.order);
 
   // Здесь храним название для навигации, переменные страниц заказа и текст кнопки

@@ -13,7 +13,7 @@ import useTypedSelector from '../../../../../store/selectors';
 import {ICategory} from '../../../../../store/Groups/category/types';
 import setCategory from '../../../../../store/Groups/category/actions';
 import useClearOrder from '../../../../../hooks/useClearOrder';
-import {postOrder} from '../../../../../store/api/order/actions';
+import {getOrder, postOrder} from '../../../../../store/api/order/actions';
 import {ORDERSTATUSID} from '../../../../../store/api/order/types';
 import {defaultCategory, defaultColor} from '../../../../../store/api/order/reducer';
 
@@ -28,7 +28,7 @@ function Main() {
   const {categories} = useTypedSelector((state) => state.category);
   const {cars} = useTypedSelector((state) => state.car);
   const {order, loading} = useTypedSelector((state) => state.order);
-  const clearForm = useClearOrder();
+  const clearOrder = useClearOrder();
   const navigate = useNavigate();
   const {id} = useParams();
   const stages = useStages();
@@ -42,10 +42,7 @@ function Main() {
 
   function acceptOrder() {
     dispatch(postOrder(order, ORDERSTATUSID.FULFILLED));
-    setTimeout(() => {
-      navigate(`/order/${order.id}`, {replace: true});
-      setModal(!modal);
-    }, 2000);
+    setTimeout(() => setModal(!modal), 1000);
   }
 
   // проверяем заполненность данных
@@ -62,6 +59,7 @@ function Main() {
   function incrementIndex() {
     if (id) {
       dispatch(postOrder(order, ORDERSTATUSID.DECLINED));
+      setActiveIndex(3);
     } else if (activeIndex === 3) {
       setModal(!modal);
     } else if (activeIndex < availableIndex) {
@@ -82,6 +80,7 @@ function Main() {
   // при загрузке страницы читаем URL, заполняем redux найденными полями
   useEffect(() => {
     if (id) {
+      dispatch(getOrder(id));
       setActiveIndex(3);
     } else {
       searchParams.forEach((value, key) => {
@@ -114,18 +113,21 @@ function Main() {
   // Последние два useEffect для сброса шагов при изменении данных
   // применяется только после загрузки данных из URL
   useEffect(() => {
-    !id && isLoaded && !stages[0].vars[1] && clearForm(2);
+    !id && isLoaded && !stages[0].vars[1] && clearOrder(2);
   }, [order.pointId]);
   useEffect(() => {
-    !id && isLoaded && clearForm(4);
+    !id && isLoaded && clearOrder(5);
   }, [order.carId]);
-
+  useEffect(() => {
+    if (!order.id) return;
+    setTimeout(() => navigate(`/order/${order.id}`, {replace: true}));
+  }, [order.id]);
   return (
     <main className={styles.main}>
       <nav className={styles.navigation}>
         <Container className={styles.container}>
           {id
-            ? <div className={styles.number}>{`Заказ номер ${id}`}</div>
+            ? <div className={styles.number}>{`Заказ номер ${order.id}`}</div>
             : (
               <Navigation
                 stages={stages}
