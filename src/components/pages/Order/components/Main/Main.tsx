@@ -11,11 +11,13 @@ import useStages from '../../../../../hooks/useStages';
 import useDecodeParams from '../../../../../hooks/useDecodeParams';
 import useTypedSelector from '../../../../../store/selectors';
 import {ICategory} from '../../../../../store/Groups/category/types';
-import setCategory from '../../../../../store/Groups/category/actions';
+import {setCategory, setCategoryId} from '../../../../../store/Groups/category/actions';
 import useClearOrder from '../../../../../hooks/useClearOrder';
 import {getOrder, postOrder} from '../../../../../store/api/order/actions';
-import {ORDERSTATUSID} from '../../../../../store/api/order/types';
-import {defaultCategory, defaultColor} from '../../../../../store/api/order/reducer';
+import {defaultColor} from '../../../../../store/api/order/reducer';
+import {orderStatuses} from '../../mocks';
+import {generateFields} from '../../fields';
+import {defaultCategory} from '../../../../../store/Groups/category/reducer';
 
 export interface IStage {
   name: string,
@@ -41,8 +43,8 @@ function Main() {
   const [modal, setModal] = useState<boolean>(false);
 
   function acceptOrder() {
-    dispatch(postOrder(order, ORDERSTATUSID.FULFILLED));
-    setTimeout(() => setModal(!modal), 1000);
+    dispatch(postOrder(order, orderStatuses[0].id));
+    setModal(false);
   }
 
   // проверяем заполненность данных
@@ -58,7 +60,7 @@ function Main() {
   // обработчик нажатия кнопки
   function incrementIndex() {
     if (id) {
-      dispatch(postOrder(order, ORDERSTATUSID.DECLINED));
+      dispatch(postOrder(order, orderStatuses[1].id));
       setActiveIndex(3);
     } else if (activeIndex === 3) {
       setModal(!modal);
@@ -104,7 +106,9 @@ function Main() {
   useEffect(() => {
     if (id) return;
     stages.forEach((stage, i, arr) => {
-      if (i === 0 || !arr[i - 1].vars.some((elem) => !elem)) {
+      if (i === 0
+        || (!arr[i - 1].vars.some((elem) => !elem)
+        && !arr[0].vars.some((elem) => elem && !elem.id))) {
         setAvailableIndex(i);
       }
     });
@@ -113,31 +117,41 @@ function Main() {
   // Последние два useEffect для сброса шагов при изменении данных
   // применяется только после загрузки данных из URL
   useEffect(() => {
-    !id && isLoaded && !stages[0].vars[1] && clearOrder(2);
+    !id
+    && !loading
+    && isLoaded
+    && !stages[0].vars[1]
+    && clearOrder(2)
+    && dispatch(setCategoryId(defaultCategory));
   }, [order.pointId]);
+
   useEffect(() => {
-    !id && isLoaded && clearOrder(5);
+    !id && loading && isLoaded && clearOrder(3);
   }, [order.carId]);
   useEffect(() => {
     if (!order.id) return;
-    setTimeout(() => navigate(`/order/${order.id}`, {replace: true}));
+    navigate(`/order/${order.id}`, {replace: true});
   }, [order.id]);
+
   return (
     <main className={styles.main}>
       <nav className={styles.navigation}>
-        <Container className={styles.container}>
-          {id
-            ? <div className={styles.number}>{`Заказ номер ${order.id}`}</div>
-            : (
-              <Navigation
-                stages={stages}
-                activeIndex={activeIndex}
-                availableIndex={availableIndex}
-                click={setClickIndex}
-                keyDown={setKeyIndex}
-              />
-            )}
-        </Container>
+        {!loading
+          && (
+          <Container className={styles.container}>
+            {id
+              ? <div className={styles.number}>{`Заказ номер ${order.id}`}</div>
+              : (
+                <Navigation
+                  stages={stages}
+                  activeIndex={activeIndex}
+                  availableIndex={availableIndex}
+                  click={setClickIndex}
+                  keyDown={setKeyIndex}
+                />
+              )}
+          </Container>
+          )}
       </nav>
       <form className={styles.body}>
         <Container className={styles.container}>
@@ -147,11 +161,21 @@ function Main() {
           <Checkout
             click={incrementIndex}
             activeIndex={activeIndex}
+            availableIndex={availableIndex}
             stages={stages}
+            fields={generateFields(order)}
+            order={order}
+            loading={loading}
           />
         </Container>
       </form>
-      {modal && <Confirm accept={acceptOrder} deny={() => setModal(!modal)} loading={loading} />}
+      {modal && (
+      <Confirm
+        accept={acceptOrder}
+        deny={() => setModal(!modal)}
+        loading={loading}
+      />
+      )}
     </main>
   );
 }

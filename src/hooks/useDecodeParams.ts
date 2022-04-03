@@ -1,10 +1,12 @@
 import {useDispatch} from 'react-redux';
 import useTypedSelector from '../store/selectors';
 import {IRadioItem} from '../components/common/inputs/RadioGroup/RadioGroup';
-import {defaultCategory, defaultColor} from '../store/api/order/reducer';
+import {defaultColor} from '../store/api/order/reducer';
 import {setOrderField} from '../store/api/order/actionCreators';
 import {ICity} from '../store/api/city/types';
 import {IPoint} from '../store/api/point/types';
+import {setCategoryId} from '../store/Groups/category/actions';
+import {defaultCategory} from '../store/Groups/category/reducer';
 
 function useDecodeParams() {
   const dispatch = useDispatch();
@@ -17,7 +19,9 @@ function useDecodeParams() {
 
   function dispatchById(array: any [], key: string, value: string, defaultElem?: IRadioItem) {
     const elem = array.find((elem) => elem.id === value);
-    dispatch(setOrderField(key, elem || defaultElem));
+    dispatch(key === 'categoryId'
+      ? setCategoryId(elem || defaultElem)
+      : setOrderField(key, elem || defaultElem));
   }
 
   function getColors() {

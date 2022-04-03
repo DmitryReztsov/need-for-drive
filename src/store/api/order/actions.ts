@@ -4,7 +4,7 @@ import {
   getOrderSuccess, orderError, orderLoading, postOrderSuccess,
 } from './actionCreators';
 import Endpoints from '../config/endpoints';
-import {generatePrice} from '../../../components/pages/Order/components/Checkout/fields';
+import {generatePrice} from '../../../components/pages/Order/fields';
 import {getApi, postApi} from '../config/fetchApi';
 
 export function getOrder(id: string) {
@@ -12,7 +12,9 @@ export function getOrder(id: string) {
     dispatch(orderLoading());
     try {
       const data = await getApi(`${Endpoints.ORDER}/${id}`);
-      dispatch(getOrderSuccess(data));
+      delete data.updatedAt;
+      delete data.createdAt;
+      setTimeout(() => dispatch(getOrderSuccess(data)), 1500);
     } catch (e: any) {
       dispatch(orderError(e.message));
     }
@@ -44,7 +46,9 @@ export function postOrder(order: IOrder, orderStatusId: string) {
         },
       };
       const data = await postApi(Endpoints.ORDER, body);
-      dispatch(postOrderSuccess(data));
+      delete data.updatedAt;
+      delete data.createdAt;
+      setTimeout(() => dispatch(postOrderSuccess(data)), 1500);
     } catch (e: any) {
       dispatch(orderError(e.message));
     }

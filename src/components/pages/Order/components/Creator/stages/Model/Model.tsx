@@ -3,10 +3,10 @@ import styles from './Model.module.scss';
 import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import CardList from './CardList/CardList';
 import useTypedSelector from '../../../../../../../store/selectors';
-import {defaultCategory} from '../../../../../../../store/api/order/reducer';
+import {defaultCategory} from '../../../../../../../store/Groups/category/reducer';
 
 export function Model() {
-  const {order: {categoryId}} = useTypedSelector((state) => state.order);
+  const {categoryId} = useTypedSelector((state) => state.category);
   const {categories} = useTypedSelector((state) => state.category);
   const {cars} = useTypedSelector((state) => state.car);
 

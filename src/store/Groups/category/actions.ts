@@ -1,7 +1,9 @@
 import {CategoryActionTypes, ICategory} from './types';
 
-function setCategory(categories: ICategory []) {
+export function setCategory(categories: ICategory []) {
   return {type: CategoryActionTypes.SET_CATEGORY_DATA, payload: categories};
 }
 
-export default setCategory;
+export function setCategoryId(category: ICategory) {
+  return {type: CategoryActionTypes.SET_CATEGORY_ID, payload: category};
+}

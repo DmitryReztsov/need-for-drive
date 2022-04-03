@@ -1,33 +1,31 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import React from 'react';
 import styles from './Total.module.scss';
-import useTypedSelector from '../../../../../../../store/selectors';
 import {formatDate} from '../../../../../../../utils/time';
 import convertNumber from '../../../../../../../utils/convertNumber';
+import {orderStatuses} from '../../../../mocks';
+import Loading from '../../../../../../common/Loading/Loading';
+import useTypedSelector from '../../../../../../../store/selectors';
 
 function Total() {
-  const {id} = useParams();
   const {
     order: {
       carId, dateFrom, isFullTank, orderStatusId,
-    },
+    }, loading,
   } = useTypedSelector((state) => state.order);
-  const [number, setNumber] = useState<string>('');
-
-  useEffect(() => {
-    setNumber(convertNumber(carId ? carId.number : ''));
-  }, [carId]);
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className={styles.total}>
       <div className={styles.info}>
-        {id && (
+        {orderStatusId && (
         <div>
           Ваш заказ&nbsp;
-          {orderStatusId ? orderStatusId.name : ''}
+          {orderStatuses.find((status) => status.id === orderStatusId.id)!.name}
         </div>
         )}
         <p>{carId?.name}</p>
-        <span className={styles.number}>{number}</span>
+        <span className={styles.number}>{convertNumber(carId?.number)}</span>
         <br />
         <span className={styles.tank}>
           <span>
@@ -43,7 +41,7 @@ function Total() {
           {formatDate(dateFrom)}
         </span>
       </div>
-      <img className={styles.picture} src={`${carId ? carId.thumbnail.path : ''}`} alt="car" />
+      <img className={styles.picture} src={`${carId.thumbnail.path}`} alt="car" />
     </div>
   );
 }

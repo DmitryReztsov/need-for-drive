@@ -5,10 +5,12 @@ export interface ICategory {
 
 export interface ICategoryState {
   categories: ICategory [],
+  categoryId: ICategory,
 }
 
 export enum CategoryActionTypes {
   SET_CATEGORY_DATA = 'SET_CATEGORY_DATA',
+  SET_CATEGORY_ID = 'SET_CATEGORY_ID',
 }
 
 export interface SetCategoryDataAction {
@@ -16,4 +18,9 @@ export interface SetCategoryDataAction {
   payload: ICategory [],
 }
 
-export type CategoryAction = SetCategoryDataAction;
+export interface SetCategoryIdAction {
+  type: CategoryActionTypes.SET_CATEGORY_ID,
+  payload: ICategory,
+}
+
+export type CategoryAction = SetCategoryDataAction | SetCategoryIdAction;

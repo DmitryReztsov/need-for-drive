@@ -1,11 +1,6 @@
 import {IOrderState, OrderAction, OrderActionTypes} from './types';
 import {IRadioItem} from '../../../components/common/inputs/RadioGroup/RadioGroup';
 
-export const defaultCategory: IRadioItem = {
-  id: '-1',
-  name: 'Все модели',
-};
-
 export const defaultColor: IRadioItem = {
   id: '-1',
   name: 'Любой',
@@ -16,12 +11,11 @@ export const initialState: IOrderState = {
     cityId: null,
     pointId: null,
     carId: null,
-    categoryId: defaultCategory,
-    price: '',
     color: defaultColor,
     dateFrom: Date.now(),
     dateTo: 0,
     rateId: null,
+    price: '',
     isFullTank: false,
     isNeedChildChair: false,
     isRightWheel: false,

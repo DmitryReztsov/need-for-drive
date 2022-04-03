@@ -47,7 +47,8 @@
         "default-param-last": "off",
         "arrow-body-style": "off",
         "no-unused-expressions": "off",
-        "dot-notation": "off"
+        "dot-notation": "off",
+        "no-prototype-builtins": "off"
     },
     "settings": {
         "import/resolver": {

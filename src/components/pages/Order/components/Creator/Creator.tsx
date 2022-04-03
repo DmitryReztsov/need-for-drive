@@ -9,17 +9,13 @@ interface ICreatorProps {
   index: number,
 }
 
-const components = [
-  <Geo />,
-  <MemoizedModel />,
-  <Features />,
-  <Total />,
-];
-
-function Creator(props: ICreatorProps) {
-  const {
-    index,
-  } = props;
+function Creator({index}: ICreatorProps) {
+  const components = [
+    <Geo />,
+    <MemoizedModel />,
+    <Features />,
+    <Total />,
+  ];
 
   return (
     <div className={styles.creator}>

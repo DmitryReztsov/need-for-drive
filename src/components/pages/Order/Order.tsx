@@ -18,12 +18,14 @@ function Order() {
   const {loading, error} = useTypedSelector((state) => state.car);
 
   useEffect(() => {
-    id
-      ? dispatch(getOrder(id))
-      : dispatch(getCity());
-    dispatch(getPoint());
-    dispatch(getCar());
-    dispatch(getRate());
+    if (id) {
+      dispatch(getOrder(id));
+    } else {
+      dispatch(getCity());
+      dispatch(getPoint());
+      dispatch(getCar());
+      dispatch(getRate());
+    }
   }, []);
   if (loading) {
     return <Loading />;

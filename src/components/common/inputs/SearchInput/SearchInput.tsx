@@ -30,7 +30,7 @@ function SearchInput(props: ISearchInputProps) {
         onChange={changeHandler}
         onKeyDown={keyDownHandler}
         onBlur={blurHandler}
-        value={value || ''}
+        value={value}
         className={styles.input}
       />
     </label>

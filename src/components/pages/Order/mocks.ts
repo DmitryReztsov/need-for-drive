@@ -21,3 +21,14 @@ export const bonuses: IBonuses [] = [
     cost: 1600,
   },
 ];
+
+export const orderStatuses = [
+  {
+    id: '5e26a1f0099b810b946c5d8b',
+    name: 'подтвержден',
+  },
+  {
+    id: '5e26a1f5099b810b946c5d8c',
+    name: 'отменен',
+  },
+];

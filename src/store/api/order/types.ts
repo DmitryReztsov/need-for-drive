@@ -1,14 +1,8 @@
 import {ICity} from '../city/types';
 import {IRate} from '../rate/types';
-import {ICategory} from '../../Groups/category/types';
 import {ICar} from '../car/types';
 import {IPoint} from '../point/types';
 import {IRadioItem} from '../../../components/common/inputs/RadioGroup/RadioGroup';
-
-export enum ORDERSTATUSID {
-  FULFILLED = '5e26a1f0099b810b946c5d8b',
-  DECLINED = '5e26a1f5099b810b946c5d8c',
-}
 
 export interface IOrderStatus {
   name: string,
@@ -19,7 +13,6 @@ export interface IOrder {
   cityId: ICity | null,
   pointId: IPoint | null,
   carId: ICar | null,
-  categoryId?: ICategory,
   price: string,
   color: IRadioItem,
   dateFrom: number,

@@ -22,7 +22,7 @@ export default function (props: useAutoProps) {
 
   // Здесь мы проверяем, обнуляет ли изменения этого поля какое-то другое поле.
   function clearField() {
-    if (resetField) appendParams(resetField, null);
+    if (resetField) appendParams(resetField, '');
   }
 
   // В зависимости от значения сортируем список элементов

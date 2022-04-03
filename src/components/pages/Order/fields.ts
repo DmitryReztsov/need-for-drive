@@ -1,8 +1,8 @@
 import {
   dayInMilSeconds, hourInMilSeconds, minInMilSeconds, monthInMilSeconds,
-} from '../../../../../utils/time';
-import {bonuses} from '../../mocks';
-import {IOrder} from '../../../../../store/api/order/types';
+} from '../../../utils/time';
+import {bonuses} from './mocks';
+import {IOrder} from '../../../store/api/order/types';
 
 export interface IFields {
   [key: string]: any,
@@ -30,7 +30,7 @@ export function generateFields(
   const fields: IFields [] = [
     {
       label: 'Пункт выдачи',
-      value: cityId && `${cityId?.name}, ${pointId?.address || ''}`,
+      value: cityId?.id && pointId?.id && `${cityId?.name}, ${pointId?.address || ''}`,
     },
     {
       label: 'Модель',
@@ -38,7 +38,7 @@ export function generateFields(
     },
     {
       label: 'Цвет',
-      value: typeof color === 'string' ? color : color?.name,
+      value: carId && (typeof color === 'string' ? color : color?.name),
     },
     {
       label: 'Длительность аренды',
