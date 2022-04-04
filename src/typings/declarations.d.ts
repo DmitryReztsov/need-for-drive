@@ -4,4 +4,5 @@ declare module '*.scss' {
 }
 declare module '*.svg';
 declare module '*.png';
+declare module '*.gif';
 declare module 'react-datepicker';

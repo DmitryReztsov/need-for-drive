@@ -4,7 +4,7 @@ import styles from './SearchInput.module.scss';
 interface ISearchInputProps {
   field: string,
   label: string,
-  value: string,
+  value?: string,
   placeholder?: string,
   clickHandler: (e: React.MouseEvent<HTMLInputElement>) => void,
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void,

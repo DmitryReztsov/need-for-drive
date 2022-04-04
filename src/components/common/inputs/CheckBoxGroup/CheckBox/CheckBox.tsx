@@ -5,15 +5,16 @@ interface IRadioButtonProps {
   field: string,
   value: string,
   name: string,
+  defaultChecked?: boolean,
   click: (e: React.MouseEvent<HTMLInputElement>) => void,
   keyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 function CheckBox(props: IRadioButtonProps) {
   const {
-    field, value, name, click, keyDown,
+    field, value, name, defaultChecked, click, keyDown,
   } = props;
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(defaultChecked);
 
   return (
     <div className={styles.checkBox}>
@@ -27,7 +28,7 @@ function CheckBox(props: IRadioButtonProps) {
         onClick={click}
         onKeyDown={keyDown}
         onChange={() => setChecked(!checked)}
-        checked={checked}
+        checked={defaultChecked}
       />
       <label htmlFor={field}>
         {field}

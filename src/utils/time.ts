@@ -8,6 +8,8 @@ export const hourInMilSeconds = 60 * minInMilSeconds;
 
 export const dayInMilSeconds = 24 * hourInMilSeconds;
 
+export const monthInMilSeconds = 30 * dayInMilSeconds;
+
 export function formatDate(timestamp: number) : string {
   const date = new Date(timestamp);
   const year = date.getFullYear();
