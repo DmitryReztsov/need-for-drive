@@ -1,43 +1,47 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
 import styles from './Total.module.scss';
-import useTypedSelector from '../../../../../../../store/selectors';
-import {models} from '../../../../mocks';
 import {formatDate} from '../../../../../../../utils/time';
+import convertNumber from '../../../../../../../utils/convertNumber';
+import {orderStatuses} from '../../../../mocks';
+import Loading from '../../../../../../common/Loading/Loading';
+import useTypedSelector from '../../../../../../../store/selectors';
 
 function Total() {
-  const {id} = useParams();
-  const {model, dateFrom, fuel} = useTypedSelector((state) => state.form);
-  const car = models.find((item) => item.name === model);
-  const number = `${car?.number[0]} ${car?.number.slice(1, 4)} ${car?.number.slice(4)} 73`;
-
+  const {
+    order: {
+      carId, dateFrom, isFullTank, orderStatusId,
+    }, loading,
+  } = useTypedSelector((state) => state.order);
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className={styles.total}>
-      {car
-      && (
-        <>
-          <div className={styles.info}>
-            {id && <div>Ваш заказ подтверждён</div>}
-            <p>{car.name}</p>
-            <span className={styles.number}>{number}</span>
-            <br />
-            <span className={styles.tank}>
-              <span>
-                Топливо&nbsp;
-              </span>
-              {`${fuel ? 100 : car.tank}%`}
-            </span>
-            <br />
-            <span className={styles.date}>
-              <span>
-                Доступно с&nbsp;
-              </span>
-              {formatDate(dateFrom)}
-            </span>
-          </div>
-          <img className={styles.picture} src={`${car.picture}`} alt="car" />
-        </>
-      )}
+      <div className={styles.info}>
+        {orderStatusId && (
+        <div>
+          Ваш заказ&nbsp;
+          {orderStatuses.find((status) => status.id === orderStatusId.id)!.name}
+        </div>
+        )}
+        <p>{carId?.name}</p>
+        <span className={styles.number}>{convertNumber(carId?.number)}</span>
+        <br />
+        <span className={styles.tank}>
+          <span>
+            Топливо&nbsp;
+          </span>
+          {`${isFullTank || ((carId?.tank || 0) > 100) ? 100 : carId?.tank}%`}
+        </span>
+        <br />
+        <span className={styles.date}>
+          <span>
+            Доступно с&nbsp;
+          </span>
+          {formatDate(dateFrom)}
+        </span>
+      </div>
+      <img className={styles.picture} src={`${carId.thumbnail.path}`} alt="car" />
     </div>
   );
 }

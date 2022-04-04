@@ -6,7 +6,7 @@ interface useAutoProps {
   resetField: string | undefined,
   list: string [],
   field: string,
-  value: string,
+  value?: string,
   clickDropdown: boolean | undefined,
   wrapperRef: React.RefObject<HTMLDivElement>,
 }
@@ -70,7 +70,7 @@ export default function (props: useAutoProps) {
     if (wrapperRef.current && !wrapperRef.current.contains(e.relatedTarget) && value) {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      appendParams(field, buffer || '');
+      appendParams(field, buffer || null);
     }
   }
 

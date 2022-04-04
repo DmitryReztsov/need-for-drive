@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CustomLink from '../Link/CustomLink';
 import styles from './NavBar.module.scss';
-import {ReactComponent as FacebookIcon} from '../../../content/svg/facebook-brands.svg';
 import {ReactComponent as TelegramIcon} from '../../../content/svg/telegram-brands.svg';
-import {ReactComponent as InstagramIcon} from '../../../content/svg/instagram-brands.svg';
 import Burger from './Burger/Burger';
 import LangSwitcher from './LangSwitcher/LangSwitcher';
 import toggleBodyOverflow from '../../../utils/helpers';
@@ -71,13 +69,7 @@ function NavBar() {
           </ul>
           <ul className={styles.social}>
             <li>
-              <CustomLink><FacebookIcon className="logo" /></CustomLink>
-            </li>
-            <li>
               <CustomLink><TelegramIcon className="logo" /></CustomLink>
-            </li>
-            <li>
-              <CustomLink><InstagramIcon className="logo" /></CustomLink>
             </li>
           </ul>
         </div>

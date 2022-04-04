@@ -18,7 +18,7 @@ function GeoMap(props: IGeoMapProps) {
     className, city, pickPoint, pickPoints,
   } = props;
 
-  const [ymaps, setYmaps] = useState<YMapsApi | null>(null);
+  const [ymapsExample, setYmapsExample] = useState<YMapsApi | null>(null);
   const [center, setCenter] = useState<number[]>([45.0222, 38.97745623606236]);
   const [geoPickPoints, setGeoPickPoints] = useState<any[]>([]);
   const [zoom, setZoom] = useState<number>(10);
@@ -43,8 +43,8 @@ function GeoMap(props: IGeoMapProps) {
   }
 
   // Запускается функция при загрузке карты
-  function getGeoLocation(ymaps: YMapsApi) {
-    setYmaps(ymaps);
+  async function getGeoLocation(ymaps: YMapsApi) {
+    setYmapsExample(ymaps);
     getPickPointData(ymaps);
     // если есть данные - прогружаем их на карту
     if (city || pickPoint) {
@@ -62,7 +62,7 @@ function GeoMap(props: IGeoMapProps) {
       .get({provider: 'yandex', mapStateAutoApply: true})
       .then((result: AnyObject) => result.geoObjects.get(0))
       .then((result: AnyObject) => {
-        appendParams('city', result.getLocalities().join(', '));
+        appendParams('cityId', result.getLocalities().join(', '));
         setCenter(result.geometry.getCoordinates());
       })
       .catch((err: Error) => {
@@ -71,8 +71,8 @@ function GeoMap(props: IGeoMapProps) {
   }
 
   function setNewCenter(data: string) {
-    if (ymaps) {
-      ymaps.geocode(data)
+    if (ymapsExample) {
+      ymapsExample.geocode(data)
         .then((result: AnyObject) => result.geoObjects.get(0))
         .then((result: AnyObject) => {
           setCenter(result.geometry.getCoordinates());
@@ -84,9 +84,10 @@ function GeoMap(props: IGeoMapProps) {
   }
 
   function setPickPoint(pickPoint: any) {
+    console.log(pickPoint);
+    appendParams('cityId', pickPoint.city);
+    appendParams('pointId', pickPoint.address);
     setCenter(pickPoint.geometry.getCoordinates());
-    appendParams('city', pickPoint.city);
-    appendParams('pickPoint', pickPoint.address);
   }
 
   useEffect(() => {

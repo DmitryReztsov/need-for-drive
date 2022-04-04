@@ -1,38 +1,38 @@
 import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import styles from './Checkout.module.scss';
 import Button from '../../../../common/Button/Button';
-import useTypedSelector from '../../../../../store/selectors';
 import {IStage} from '../Main/Main';
-import {generateFields} from './fields';
+import {generatePrice, generatePriceString, IFields} from '../../fields';
+import {orderStatuses} from '../../mocks';
+import {setOrderField} from '../../../../../store/api/order/actionCreators';
 
 interface ICheckoutProps {
   click?: () => void,
   activeIndex: number,
+  availableIndex: number,
   stages: IStage [],
+  fields: IFields [],
+  order: any,
+  loading: boolean,
 }
 
-function Checkout(props: ICheckoutProps) {
+function Checkout({
+  click, activeIndex, availableIndex, stages, fields, order, loading,
+}: ICheckoutProps) {
   const {
-    click, activeIndex, stages,
-  } = props;
+    carId, dateFrom, dateTo, rateId, isFullTank, isNeedChildChair, isRightWheel, orderStatusId,
+  } = order;
   const {id} = useParams();
-  const form = useTypedSelector((state) => state.form);
-
-  let fields = generateFields(form);
-
-  function generatePrice() {
-    if (form.tariff && form.dateFrom && form.dateTo) {
-      // пока без логики расчета, только для верстки
-      return ` ${form.priceMin} руб.`;
-    }
-    return ` от ${form.priceMin} до ${form.priceMax} руб.`;
-  }
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fields = generateFields(form);
-  }, [form]);
-
+    dispatch(setOrderField('price', generatePrice(order)));
+  }, [carId, dateFrom, dateTo, rateId, isFullTank, isNeedChildChair, isRightWheel]);
+  if (loading) {
+    return null;
+  }
   return (
     <div className={styles.checkout}>
       <h3 className={styles.header}>Ваш заказ:</h3>
@@ -53,7 +53,7 @@ function Checkout(props: ICheckoutProps) {
                       </span>
                       <br />
                       <span>
-                        {field.value.split(', ')[1]}
+                        {field.value.split(', ').slice(1, 3).join(', ')}
                       </span>
                     </>
                   )
@@ -63,22 +63,25 @@ function Checkout(props: ICheckoutProps) {
           );
         })}
       </ul>
-      {form.priceMin && (
+      {carId?.priceMin && (
         <p className={styles.price}>
           Цена:
           <span>
-            {generatePrice()}
+            {generatePriceString(order.price, order)}
           </span>
         </p>
       )}
+      {(orderStatusId && (orderStatusId.id === orderStatuses[1].id))
+      || (
       <Button
         click={click}
         className={styles.button}
-        color={stages[activeIndex].vars.includes('') ? 'blocked' : id ? 'magenta' : ''}
-        disabled={stages[activeIndex].vars.includes('')}
+        color={(availableIndex !== 3) && (availableIndex <= activeIndex) && !id ? 'blocked' : id ? 'magenta' : ''}
+        disabled={(availableIndex !== 3) && (availableIndex <= activeIndex) && !id}
       >
         {id ? 'Отменить' : stages[activeIndex].buttonLabel}
       </Button>
+      )}
     </div>
   );
 }

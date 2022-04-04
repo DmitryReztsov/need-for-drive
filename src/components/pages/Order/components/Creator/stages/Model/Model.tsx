@@ -1,43 +1,27 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './Model.module.scss';
 import RadioGroup from '../../../../../../common/inputs/RadioGroup/RadioGroup';
 import CardList from './CardList/CardList';
-import {models} from '../../../../mocks';
+import useTypedSelector from '../../../../../../../store/selectors';
+import {defaultCategory} from '../../../../../../../store/Groups/category/reducer';
 
-function Model() {
-  const [category, setCategory] = useState<string>('');
-
-  function getCategories() {
-    const categories = new Set<string>();
-    models.forEach((model) => {
-      categories.add(model.category);
-    });
-    return Array.from(categories);
-  }
-
-  function clickCategory(e: React.MouseEvent<HTMLInputElement>) {
-    setCategory(e.currentTarget.value);
-  }
-
-  function enterCategory(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.code === 'Enter') {
-      setCategory(e.currentTarget.value);
-    }
-  }
+export function Model() {
+  const {categoryId} = useTypedSelector((state) => state.category);
+  const {categories} = useTypedSelector((state) => state.category);
+  const {cars} = useTypedSelector((state) => state.car);
 
   return (
     <div className={styles.model}>
       <RadioGroup
-        list={getCategories()}
-        field="category"
-        allTypes="Все модели"
+        list={categories}
+        field="categoryId"
+        allTypes={defaultCategory}
+        defaultValue={categoryId}
         className={styles.radio}
-        click={clickCategory}
-        keyDown={enterCategory}
       />
-      <CardList list={models} filter={category} />
+      <CardList list={cars} filter={categoryId} />
     </div>
   );
 }
 
-export default Model;
+export const MemoizedModel = React.memo(Model);

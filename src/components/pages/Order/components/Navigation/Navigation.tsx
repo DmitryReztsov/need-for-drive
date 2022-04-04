@@ -5,13 +5,14 @@ import {IStage} from '../Main/Main';
 interface INavigationProps {
   stages: IStage [],
   activeIndex: number,
+  availableIndex: number,
   click: (id: number) => void,
   keyDown: (e: React.KeyboardEvent<HTMLLIElement>, id: number) => void,
 }
 
 function Navigation(props: INavigationProps) {
   const {
-    stages, activeIndex, click, keyDown,
+    stages, activeIndex, availableIndex, click, keyDown,
   } = props;
   return (
     <ul role="menu" tabIndex={0} className={styles.list}>
@@ -20,7 +21,7 @@ function Navigation(props: INavigationProps) {
           role="menuitem"
           tabIndex={0}
           key={stage.name}
-          className={i === activeIndex ? styles.active : i < activeIndex ? styles.available : ''}
+          className={i === activeIndex ? styles.active : i <= availableIndex ? styles.available : ''}
           onClick={() => click(i)}
           onKeyDown={(e) => keyDown(e, i)}
         >

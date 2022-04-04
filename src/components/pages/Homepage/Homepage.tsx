@@ -3,13 +3,13 @@ import Slider from './components/slider-components/Slider/Slider';
 import styles from './Homepage.module.scss';
 import Start from './components/Start/Start';
 import slides from './slides';
-import useClearForm from '../../../hooks/useClearForm';
+import useClearOrder from '../../../hooks/useClearOrder';
 
 function Homepage() {
   // Костыль, необходимо подумать, как при размонтировании Order очищать форму
-  const clearForm = useClearForm();
+  const clearOrder = useClearOrder();
   useEffect(() => {
-    clearForm();
+    clearOrder(0);
   }, []);
   return (
     <div className={styles.homepage}>
