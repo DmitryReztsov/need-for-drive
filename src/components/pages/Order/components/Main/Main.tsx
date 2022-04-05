@@ -61,6 +61,7 @@ function Main() {
   function incrementIndex() {
     if (id) {
       dispatch(postOrder(order, orderStatuses[1].id));
+      setTimeout(() => navigate('/', {replace: true}), 3000);
       setActiveIndex(3);
     } else if (activeIndex === 3) {
       setModal(!modal);
