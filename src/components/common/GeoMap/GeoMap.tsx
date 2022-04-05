@@ -43,31 +43,33 @@ function GeoMap(props: IGeoMapProps) {
   }
 
   // Запускается функция при загрузке карты
-  async function getGeoLocation(ymaps: YMapsApi) {
+  function getGeoLocation(ymaps: YMapsApi) {
     setYmapsExample(ymaps);
     getPickPointData(ymaps);
     // если есть данные - прогружаем их на карту
-    if (city || pickPoint) {
-      return ymaps.geocode(`${city}, ${pickPoint}`)
+    setTimeout(() => {
+      if (city || pickPoint) {
+        ymaps.geocode(`${city}, ${pickPoint}`)
+          .then((result: AnyObject) => result.geoObjects.get(0))
+          .then((result: AnyObject) => {
+            setCenter(result.geometry.getCoordinates());
+          })
+          .catch((err: Error) => {
+            console.log(err.message);
+          });
+      }
+      // иначе - поиск местоположения по айпи
+      ymaps.geolocation
+        .get({provider: 'yandex', mapStateAutoApply: true})
         .then((result: AnyObject) => result.geoObjects.get(0))
         .then((result: AnyObject) => {
+          appendParams('cityId', result.getLocalities().join(', '));
           setCenter(result.geometry.getCoordinates());
         })
         .catch((err: Error) => {
           console.log(err.message);
         });
-    }
-    // иначе - поиск местоположения по айпи
-    return ymaps.geolocation
-      .get({provider: 'yandex', mapStateAutoApply: true})
-      .then((result: AnyObject) => result.geoObjects.get(0))
-      .then((result: AnyObject) => {
-        appendParams('cityId', result.getLocalities().join(', '));
-        setCenter(result.geometry.getCoordinates());
-      })
-      .catch((err: Error) => {
-        console.log(err.message);
-      });
+    }, 1000);
   }
 
   function setNewCenter(data: string) {
@@ -83,19 +85,15 @@ function GeoMap(props: IGeoMapProps) {
     }
   }
 
-  function setPickPoint(pickPoint: any) {
-    console.log(pickPoint);
-    appendParams('cityId', pickPoint.city);
-    appendParams('pointId', pickPoint.address);
-    setCenter(pickPoint.geometry.getCoordinates());
+  function setPickPoint(point: any) {
+    appendParams('cityId', point.city);
+    appendParams('pointId', point.address);
+    setNewCenter(`${point.city}, ${point.address}`);
   }
 
   useEffect(() => {
     setZoom(pickPoint ? 15 : 10);
-  }, [pickPoint]);
-
-  useEffect(() => {
-    setNewCenter(city ? `${city}, ${pickPoint}` : 'Ульяновск');
+    setNewCenter(city && pickPoint ? `${city}, ${pickPoint}` : city ? `${city}` : '');
   }, [city, pickPoint]);
   return (
     <Map

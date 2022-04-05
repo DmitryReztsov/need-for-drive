@@ -55,7 +55,7 @@ function Geo() {
       </div>
       <p className={styles.text}>Выбрать на карте:</p>
       <div className={styles.map}>
-        <GeoMap city={cityId?.name} pickPoint={pointId?.name} pickPoints={allPointList} />
+        <GeoMap city={cityId?.name} pickPoint={pointId?.address} pickPoints={allPointList} />
       </div>
     </div>
   );
